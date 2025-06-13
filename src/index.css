@@ -1,83 +1,7 @@
 /* Media query for mobile phones */
 
 @media (max-width: 768px) {
-  .home-info{
-    border: transparent;
-    margin: 0.2rem 0.2rem;
-    padding: 1.5rem 0.8rem;
-    border-radius: 3rem;
-    background-color: rgb(0, 0, 0, 0.1);
-    color: #000;
-    
-  }
-  .navbar {
-    
-    margin-bottom: 1rem;
-    margin-top: 2rem;
-    margin-left: 0.2rem;
-    margin-right: 0.2rem;
-    border:transparent;
-    padding: 1.5rem;
-    border-radius: 2rem;
-    background-color: rgb(0, 0, 0, 0.1);
-  }
-  .nav-links li {
-    margin-bottom: 1rem;
-  }
-
-  .nav-links li a {
-    display: block;
-    padding: 1rem;
-    color: #f0f0f0; /* Adjust link color */
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-   
-    
-  }
-  
-  .nav-links li a:hover {
-    background-color: #f0f0f0; /* Adjust hover background color */
-  }
-  
-  .home-icon-link {
-    display: flex;
-    align-items: center;
-    color: #333; /* Adjust icon color */
-    text-decoration: none;
-  }
-  
-  .home-icon {
-    margin-right: 0.5rem;
-  }
-  
-  .logo-image {
-    max-width: 50px; /* Adjust logo size */
-  }
-  
-  /* Hamburger menu bars styling */
-  .line {
-    width: 25px;
-    height: 3px;
-    background-color: black; /* Adjust bar color */
-    margin: 5px 0;
-    transition: transform 0.3s ease;
-  }
-  
-  .line.open:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-    
-  }
-  
-  .line.open:nth-child(2) {
-    opacity: 0;
-  }
-  
-  .line.open:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  
-  }
-
-  
+ 
 
 
   body{
@@ -202,7 +126,7 @@
   max-height: 100%; /* Allow full screen height */
   padding: 2rem;
   box-shadow: none; /* Remove box-shadow since it covers the full screen */
-  background: linear-gradient(135deg, #1d3443, #3e5463);
+  background: linear-gradient(135deg, #020c13, #324451);
   opacity: 99%;
   width: 40%;
   animation: fadeIn 0.2s ease-in
@@ -251,28 +175,47 @@
     color: white;
     
   }
-
-  .project-linkbox{
-    height: 30rem;
+  h3.project-title{
+    padding: 1px;
+    margin-top: 1px;
   }
-
-  .project-info{
-    height: 0.5rem;
+  .project-linkbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure even spacing */
+    align-items: center;
+    height: auto; /* Allow it to grow naturally */
+    min-height: 30rem; /* Ensures a minimum height */
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden; /* Prevent text overflow */
   }
+  
+  .project-info {
+    flex-grow: 1; /* Allows text to take only required space */
+    padding: 1rem;
+    text-align: center;
+  }
+  
   .project-title {
-    color: black;
-    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
   }
   
   .project-details {
-    color: black;
-    height: 3.5rem;
+    flex-grow: 1; /* Ensures it takes only the space it needs */
+    padding: 0.5rem;
+    text-align: center;
   }
-
+  
   .project-image {
-    height: 20rem;
+    width: 100%; /* Ensures the image fits within its container */
+    max-height: 20rem; /* Prevents excessive stretching */
+    object-fit: cover; /* Ensures the image maintains aspect ratio */
     border-radius: 5px;
   }
+  
 
   .form-container {
    color: white;

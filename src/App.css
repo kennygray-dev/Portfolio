@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(135deg, #1d3443, #3e5463);
+   background: linear-gradient(135deg, #122E34, #0E1d21);
 
   p {
     color: white;
@@ -9,271 +9,11 @@ body {
   font-family: roboto;
 }
 
-.home-info {
-  border: transparent;
-  margin: 3rem 3rem;
-  padding: 2rem 2rem;
-  border-radius: 5rem;
-  background-color: rgb(0, 0, 0, 0.1);
-}
-
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 3rem;
-  margin-top: 2rem;
-  margin-left: 3rem;
-  margin-right: 3rem;
-  border: transparent;
-  padding: 1.5rem;
-  border-radius: 2rem;
-  background-color: rgba(255, 255, 255, 0.033);
-}
-
-.nav-header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  margin-right: auto;
-}
-
-.logo-image {
-  width: 25px;
-  height: auto;
-  animation: fadeIn 1s ease-in;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-ul.nav-links {
-  background-color: transparent;
-}
-
-
-.line.open {
-  background-color: #999;
-}
-
-.hamburger-menu {
-  display: none;
-  cursor: pointer;
-  background-color: none;
-
-}
-
-.line {
-  width: 25px;
-  height: 3px;
-  background-color: rgb(255, 255, 255);
-  margin: 5px;
-  transition: all 0.3s ease;
-  border-radius: 10px;
-  color: #fff;
-}
-
-.hamburger-menu .line:nth-child(1) {
-  width: 25px;
-  /* Top bar */
-  background-color: white;
-}
-
-.hamburger-menu .line:nth-child(2) {
-  width: 30px;
-  /* Middle bar (longer) */
-  background-color: white;
-}
-
-.hamburger-menu .line:nth-child(3) {
-  width: 20px;
-  /* Bottom bar */
-  background-color: white;
-}
-
-.open {
-  transform: none;
-
-}
-
-.nav-links {
-  display: flex;
-  list-style-type: none;
-  margin: 0;
-
-}
-
-.nav-links li {
-  margin-right: 10px;
-  margin-left: 10px;
-}
-
-
-
-.nav-links a {
-  color: #fff;
-  text-decoration: none;
-
-}
-
-a {
-  transition: 300ms;
-}
-
-.nav-links a:hover {
-  color: rgb(183, 243, 243);
-  text-decoration: none;
-  transform: scale(0.7);
-}
-
-
-
-.nav-links a.active {
-  color: rgb(28, 161, 161);
-}
-
-ul.nav-link.open {
-  animation: fadeIn 3s ease-in;
-}
-
-.home-icon {
-  height: 1.6rem;
-  color: rgb(255, 255, 255);
-  animation: fadeIn 3s ease-in;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-/*Home Page*/
-.pointers {
-  font-weight: bolder;
-  text-decoration: none;
-}
-
-
-
-.pointer-links {
-  text-decoration: none;
-}
-
-.pointers-button {
-  background-color: rgb(3, 90, 90);
-  border-radius: 25px;
-
-  margin-left: 5px;
-  padding: 0 0.5rem;
-  color: white;
-  transition: 300ms;
-  border: 1px solid white;
-}
-
-.pointers-button:hover {
-  background-color: rgb(3, 115, 115);
-  transform: translateY(-5px);
-}
-
-
-.me {
-  font-size: 2.5rem;
-  color: white;
-  margin-top: 0px;
-  margin-bottom: 0px;
-
-}
-
-.name {
-  font-weight: lighter;
-  font-size: 20px;
-  color: white;
-}
-
-
-.subtitle {
-  font-weight: 400;
-  text-align: end;
-  color: white;
-  font-size: 17px;
-  padding: 0.5rem;
-  border-bottom: 1px solid #333333;
-}
-
-
-
-.cv-button {
-  border: 1px solid white;
-  padding: 15px 25px;
-  background-color: rgb(3, 90, 90);
-  color: white;
-  border-radius: 25px;
-  cursor: pointer;
-  margin-bottom: 1rem;
-  transition: 300ms;
-}
-
-.cv-button:hover {
-  background-color: rgb(3, 115, 115);
-  transform: translateY(-5px);
-   
-  /* Move the button up by 5 pixels */
-}
-
-.cv-button:active {
-  background-color: rgb(3, 115, 115);
-  color: white;
-}
-
-.home-links {
-  display: flex;
-  margin: 20px 0px;
-  align-items: start;
-  gap: 1rem;
-
-}
 
 
 
 
-.proffessional {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 10px;
 
-}
-
-.github-link,
-.linkedin-link {
-  color: white;
-  margin-left: 10px;
-  text-decoration: none;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-
-}
-
-h2.myWorks {
-  color: white;
-}
 
 h3.project-title {
   color: white;
@@ -281,12 +21,6 @@ h3.project-title {
 
 p.project-details {
   color: white;
-}
-
-.github-link:hover,
-.linkedin-link:hover {
-  color: teal;
-  transform: translateY(-5px);
 }
 
 
@@ -332,8 +66,8 @@ p.project-details {
   width: 350px;
   height: 350px;
   background-color: #f0f0f0;
-  background-image: url('/meee.jpg');
-  filter: grayscale(100%);
+  background-image: url('/moii.jpg');
+  filter: grayscale(40%);
   background-size: cover;
   border-radius: 50%;
   border: 1px solid white;
@@ -362,8 +96,8 @@ p.project-details {
 }
 
 .tools {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   background-color: #ccc;
   display: flex;
   justify-content: center;
@@ -371,8 +105,8 @@ p.project-details {
   margin-bottom: 5px;
   border-radius: 4;
   opacity: 0.8;
-  filter: grayscale(10);
-
+  filter: grayscale(35%);
+ 
 }
 
 p.about {
@@ -395,61 +129,71 @@ p.about {
 
 /* Project.css */
 
-
 .project-linkbox {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  width: 100%;
-  /* Adjust as needed */
-  height: 35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensure even spacing */
+  align-items: center;
+  height: auto; /* Allow it to grow naturally */
+  min-height: 30rem; /* Ensures a minimum height */
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden; /* Prevent text overflow */
   text-decoration: none;
-  box-shadow: -5px 0 10px -5px rgba(102, 99, 99, 0.668);
-  margin-bottom: 5rem;
-  background-color: #efefef22;
 }
+
+.project-info {
+  flex-grow: 1; /* Allows text to take only required space */
+  padding: 1rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.project-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.project-details {
+  flex-grow: 1; /* Ensures it takes only the space it needs */
+  padding: 0.5rem;
+  
+}
+
+.project-image {
+  width: 100%; /* Ensures the image fits within its container */
+  max-height: 20rem; /* Prevents excessive stretching */
+  object-fit: cover; /* Ensures the image maintains aspect ratio */
+  border-radius: 5px;
+}
+
+
+
+
+
+
+
+.project-title {
+  font-size: 1.2em;
+  margin: 0;
+  color: #333;
+  padding: 0.6rem;
+  padding-bottom: 4px;
+  color: white;
+}
+
 
 .project-linkbox:hover {
   background-color: #efefef4d;
 }
 
-.project-image {
-  width: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-  height: 25rem;
-
-}
 
 .project-image:hover {
   transform: scale(1.05);
   opacity: 0.8;
 }
 
-.project-info {
-  padding: 1rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20%;
-  font-size: larger;
-
-}
-
-.project-title {
-  font-size: 1.2em;
-  margin: 0;
-  color: #333;
-  padding: 1rem;
-  padding-bottom: 4px;
-  color: white;
-}
-
-.project-details {
-  font-size: 0.9em;
-  color: white;
-  padding: 1rem;
-}
 
 .projects-container {
   display: grid;
@@ -580,4 +324,8 @@ h3 {
 .footer-content {
   font-size: 14px;
   color: lightgray;
+}
+
+.project-category{
+  color: white;
 }

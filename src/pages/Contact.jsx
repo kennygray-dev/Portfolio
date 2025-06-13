@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import emailjs from 'emailjs-com';
 
 
@@ -9,7 +9,6 @@ function Contact() {
         message: ''
     });
     
-    //new work
         const [buttonText, setButtonText] = useState('Send');
 
     

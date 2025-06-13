@@ -1,0 +1,81 @@
+.companies-container {
+    min-height: auto;
+    background: rgba(2, 12, 19, 0.3); /* Semi-transparent dark blue */
+    padding: 8rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255, 91, 4, 0.2);
+    border-bottom: 1px solid rgba(255, 91, 4, 0.2);
+    
+    /* Glass effect styles */
+    backdrop-filter: blur(16px); /* Creates the blur effect */
+    -webkit-backdrop-filter: blur(16px); /* For Safari support */
+  
+    border-radius: 0; /* Keep it rectangular or add slight rounding if you prefer */
+}
+
+.companies-title {
+    color: #E4EEF0;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    letter-spacing: 2px;
+    font-weight: 300;
+}
+
+.companies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.company-card {
+    background: rgba(22, 35, 42, 0.5);
+    border-radius: 10px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 91, 4, 0.2);
+    cursor: default; /* Changes cursor to default instead of pointer */
+}
+
+.company-logo {
+    max-width: 100%;
+    height: auto;
+    max-height: 80px;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
+}
+
+.company-card:hover .company-logo {
+    filter: none;
+}
+
+.back-link {
+    margin-top: 3rem;
+}
+
+.back-link button {
+    background: #FF5B04;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.back-link button:hover {
+    background: #E4EEF0;
+    color: #020c13;
+}
