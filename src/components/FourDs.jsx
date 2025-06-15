@@ -1,46 +1,29 @@
-import { motion } from "framer-motion";
 import "./FourDs.css";
 
 function FourDs() {
-    const lines = [
-        "Fueled by Desire,",
-        "Forged by Decision,",
-        "Sustained by Dedication,",
-        "Perfected through Discipline.",
-    ];
-
     return (
         <div className="four-ds-container">
-            <div className="four-ds-content">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                    className="four-ds-quote"
-                >
-                    {lines.map((line, index) => (
-                        <motion.p
-                            key={index}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: index * 0.2, duration: 0.6 }}
-                            className="four-ds-line"
-                        >
-                            {line}
-                        </motion.p>
-                    ))}
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 1.2, duration: 0.8 }}
-                        className="four-ds-signature"
+            {/* Spinning circular text around name */}
+            <div className="circle-wrapper">
+                <svg viewBox="0 0 300 300" className="orbit-text">
+                    <defs>
+                        <path
+                            id="circlePath"
+                            d="M150,150 m-100,0 a100,100 0 1,1 200,0 a100,100 0 1,1 -200,0"
+                        />
+                    </defs>
+                    <text
+                        fill="#e4eef0"
+                        fontSize="25"
+                        fontFamily="Georgia"
+                        letterSpacing="3"
                     >
-                        — Ken Agbapuonwu
-                    </motion.p>
-                </motion.div>
-
-                <div className="four-ds-grit-overlay"></div>
+                        <textPath href="#circlePath" startOffset="0%">
+                            Desire • Decision • Dedication • Discipline •
+                        </textPath>
+                    </text>
+                </svg>
+                <h1 className="kennygray-name">KennyGray</h1>
             </div>
         </div>
     );

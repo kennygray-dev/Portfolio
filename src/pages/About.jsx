@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
+import "./About.css"; 
 
 function About() {
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -39,83 +39,51 @@ function About() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
-      <motion.div 
-        className='about-me'
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.div 
-          className='about-container'
-          variants={itemVariants}
-        >
-          <motion.div 
-            className='image-board'
-            whileInView={{ x: [-100, 0], opacity: [0, 1] }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="image-container"></div>
-          </motion.div>
-          
-          <motion.p 
-            className='about'
-            variants={itemVariants}
-          >
-            A front-end heavy fullstack Software engineer with over 10 years of experience converting challenges & ideas into intuitive and scalable solutions.
-            <motion.a 
-              className='mail-link' 
-              href="mailto:kenagbapuonwu@gmail.com"
-              whileHover={{ 
-                color: '#FF5B04',
-                scale: 1.05
-              }}
-              transition={{ duration: 0.3 }}
-            >
-              kenagbapuonwu@gmail.com
-            </motion.a>
-          </motion.p>
+      <motion.h2 className='meet-heading'>Meet Kennedy Agbapuonwu</motion.h2>
+
+      <motion.div className='about-grid' variants={containerVariants} initial="hidden" animate="visible">
+        {/* Top Full Box */}
+        <motion.div className='about-box full' variants={itemVariants}>
+          <p>A front-end focused fullstack Software Engineer with over 10 years of experience crafting scalable and intuitive web applications.</p>
         </motion.div>
 
-        <motion.div 
-          className='skills'
-          variants={itemVariants}
-        >
-          Tools I use-
+        {/* Middle Left: Highlights */}
+        <motion.div className='about-box left' variants={itemVariants}>
+          <div className="profile-highlight">
+            <img src="/your-image.jpg" alt="Kennedy Agbapuonwu" className='about-profile-image' />
+            <p><strong>Location:</strong> Nigeria</p>
+            <p><strong>Email:</strong> kenagbapuonwu@gmail.com</p>
+          </div>
         </motion.div>
-        
-        <motion.div 
-          className='tools-section'
-          variants={containerVariants}
-        >
-          {[
-            { name: 'HTML', img: 'Html.jpeg' },
-            { name: 'CSS', img: 'CSS.jpeg' },
-            { name: 'JS', img: 'Js.jpeg' },
-            { name: 'Tailwind', img: 'Tailwind.jpeg' },
-            { name: 'React', img: 'React.jpeg' },
-            { name: 'Typescript', img: 'TypeScript.jpeg' },
-            { name: 'MongoDB', img: 'MongoDB.jpeg' },
-            { name: 'express', img: 'express.jpeg' },
-            { name: 'GIT', img: 'Git.jpeg' },
-            { name: 'Github', img: 'github.jpeg' },
-            { name: 'Node.js', img: 'nodejs.jpeg' }
-          ].map((tool, index) => (
-            <motion.div 
-              key={index}
-              className='tool-item'
-              variants={itemVariants}
-              whileHover="hover"
-            >
-              <motion.div 
-                className='tools'
-                variants={toolVariants}
-              >
-                <img src={tool.img} alt={tool.name} />
-              </motion.div>
-              <p>{tool.name}</p>
-            </motion.div>
-          ))}
+
+        {/* Middle Right: Favorite Tools */}
+        <motion.div className='about-box right' variants={itemVariants}>
+          <h3>Favorite Tools</h3>
+          <div className='tools-wrapper'>
+            {["React", "Tailwind", "JavaScript", "Git", "Node.js"].map((tool, idx) => (
+              <motion.span key={idx} className='tool-item' variants={toolVariants} whileHover="hover">
+                {tool}
+              </motion.span>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Bottom Left: Experience */}
+        <motion.div className='about-box left' variants={itemVariants}>
+          <h3>Years of Experience</h3>
+          <p>10+ Years designing & developing user interfaces.</p>
+        </motion.div>
+
+        {/* Bottom Right: Something Cool */}
+        <motion.div className='about-box right' variants={itemVariants}>
+          <h3>Something Cool</h3>
+          <p>I blend engineering logic with a photographer’s eye — creating visual harmony in every layout.</p>
+        </motion.div>
+
+        {/* Bottom Full: Articles */}
+        <motion.div className='about-box full' variants={itemVariants}>
+          <h3>Read My Articles</h3>
+          <p>Explore insights on frontend trends, design principles, and real-world development tips on my blog.</p>
         </motion.div>
       </motion.div>
     </motion.div>

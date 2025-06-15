@@ -2,7 +2,7 @@ body {
    background: linear-gradient(135deg, #122E34, #0E1d21);
 
   p {
-    color: white;
+    color: rgba(228, 238, 240, 0.9);
 
   }
 
@@ -304,9 +304,7 @@ p.about {
   color: white;
 }
 
-h3 {
-  text-decoration: underline;
-}
+
 
 
 

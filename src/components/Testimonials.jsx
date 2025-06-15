@@ -99,9 +99,9 @@ function Testimonials() {
               <div className="glass-overlay"></div>
               <div className="testimonial-content">
                 <p className="testimonial-quote">
-                  {testimonials[currentIndex].quote.length > 150 && showFullQuote !== testimonials[currentIndex].id
+                  "{testimonials[currentIndex].quote.length > 150 && showFullQuote !== testimonials[currentIndex].id
                     ? `${testimonials[currentIndex].quote.substring(0, 150)}...`
-                    : testimonials[currentIndex].quote}
+                    : testimonials[currentIndex].quote}"
                 </p>
                 
                 {testimonials[currentIndex].quote.length > 150 && (
@@ -164,7 +164,7 @@ function Testimonials() {
           <div className="modal-content glass-pane" onClick={e => e.stopPropagation()}>
             <div className="glass-overlay"></div>
             <div className="modal-text-content">
-              <p className="full-quote">{testimonials[currentIndex].quote}</p>
+              <p className="full-quote">"{testimonials[currentIndex].quote}"</p>
               <div className="testimonial-author">
                 <h4 className="author-name">{testimonials[currentIndex].name}</h4>
                 <p className="author-position">{testimonials[currentIndex].position}</p>

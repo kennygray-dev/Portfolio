@@ -1,38 +1,39 @@
 /* Home Container */
 .home-container {
     display: grid;
-    min-height: 120vh;
-    max-width: 1400px;
-    background: linear-gradient(135deg, #122E34, #0E1d21);
-    width: 100%;
     color: white;
+    overflow-x: hidden;
+    margin: 0;
 }
 
 .home-info {
     display: flex;
-    margin: 0 auto;
+    justify-content: space-between;
     align-items: center;
-    
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 2rem;
 }
 
 /* Left Column */
 .name-section {
-    flex: 1;
+    flex: 2;
 }
 
 .title {
-    font-size: 3.5rem;
-    font-weight: 400;
+    font-size: 5rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 700;
     margin: 0;
-    line-height: 1;
+    color: rgba(228, 238, 240, 0.9);
 }
-
 
 .name {
     font-size: 1.5rem;
     font-weight: 300;
     margin-bottom: 2rem;
-    color: #FF5B04;
+    color: #ff5b04;
 }
 
 .description {
@@ -69,13 +70,12 @@
     letter-spacing: 1px;
     position: relative;
     overflow: hidden;
-    
 }
 
 /* About Button Specific Styles */
 .about-button {
     background-color: #075056;
-    border: 0.5px solid white;
+    border: 0.5px solid #075056;
 }
 
 .about-button:hover {
@@ -85,7 +85,7 @@
 
 /* Works Button Specific Styles */
 .works-button {
-    background-color:transparent;
+    background-color: transparent;
     border: 0.5px solid #075056;
 }
 
@@ -100,7 +100,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
     margin-left: 9rem;
     margin-bottom: 2rem;
 }
@@ -109,7 +109,6 @@
     width: 100%;
     max-width: 300px;
     height: auto;
-    
 }
 
 /* Social Links */
@@ -181,14 +180,12 @@
 }
 
 .social-icon:hover .icon {
-    color: #FF5B04;
+    color: #ff5b04;
 }
 
 .social-icon:nth-child(2):hover .icon {
-    color: #0077B5; /* LinkedIn blue */
+    color: #0077b5; /* LinkedIn blue */
 }
-
-
 
 /* Pointer Text Styles */
 .pointers {
@@ -199,7 +196,7 @@
 
 /* Optional: Add shine effects to buttons */
 .pointers-button::after {
-    content: '';
+    content: "";
     position: absolute;
     top: -50%;
     left: -50%;
@@ -226,7 +223,7 @@
 /* Down Arrow */
 .down-arrow-container {
     position: absolute;
-    bottom: 40px;
+    bottom: 25px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -249,22 +246,25 @@
 }
 
 .down-arrow:hover .arrow-icon {
-    color: #FF5B04;
+    color: #ff5b04;
     filter: drop-shadow(0 0 12px rgba(255, 91, 4, 0.8));
 }
 
 @keyframes shine {
-    0% { transform: translateX(-100%) rotate(30deg); }
-    100% { transform: translateX(100%) rotate(30deg); }
+    0% {
+        transform: translateX(-100%) rotate(30deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(30deg);
+    }
 }
-
 
 @media (max-width: 768px) {
     .home-links {
         flex-direction: column;
         gap: 1rem;
     }
-    
+
     .pointers-button {
         width: 100%;
     }
@@ -272,8 +272,12 @@
 
 /* Animations */
 @keyframes shine {
-    0% { transform: translateX(-100%) rotate(30deg); }
-    100% { transform: translateX(100%) rotate(30deg); }
+    0% {
+        transform: translateX(-100%) rotate(30deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(30deg);
+    }
 }
 
 /* Responsive Design */
@@ -282,19 +286,19 @@
         flex-direction: column;
         text-align: center;
     }
-    
+
     .name-section {
         padding-right: 0;
     }
-    
+
     .profile-image {
         max-width: 300px;
     }
-    
+
     .me {
         font-size: 3.5rem;
     }
-    
+
     .name {
         font-size: 2.5rem;
     }

@@ -1,11 +1,10 @@
 .companies-container {
     min-height: auto;
-    background: rgba(2, 12, 19, 0.3); /* Semi-transparent dark blue */
-    padding: 8rem 2rem;
+    background: rgba(2, 12, 19, 0.1); /* Semi-transparent dark blue */
+    padding: 4rem 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
     box-sizing: border-box;
     border-top: 1px solid rgba(255, 91, 4, 0.2);
     border-bottom: 1px solid rgba(255, 91, 4, 0.2);
@@ -18,12 +17,10 @@
 }
 
 .companies-title {
-    color: #E4EEF0;
-    font-size: 2rem;
-    margin-bottom: 3rem;
+    color: rgba(228, 238, 240, 0.9);
+    font-size: 1.5rem;
     text-align: center;
-    letter-spacing: 2px;
-    font-weight: 300;
+    font-weight: bold;
 }
 
 .companies-grid {
@@ -36,21 +33,19 @@
 }
 
 .company-card {
-    background: rgba(22, 35, 42, 0.5);
     border-radius: 10px;
-    padding: 2rem;
+    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 91, 4, 0.2);
     cursor: default; /* Changes cursor to default instead of pointer */
 }
 
 .company-logo {
     max-width: 100%;
     height: auto;
-    max-height: 80px;
+    max-height: 100px;
     filter: brightness(0) invert(1);
     transition: all 0.3s ease;
 }
