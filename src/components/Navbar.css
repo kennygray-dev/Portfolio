@@ -28,7 +28,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 5.5rem;
+  gap: 3.5rem;
 }
 
 .nav-links li a {
@@ -126,4 +126,20 @@
   .nav-links li a.active::after {
     bottom: 0;
   }
+}
+/* External link style */
+.external-link {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: rgba(228, 238, 240, 0.9);
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+}
+
+.external-link:hover {
+  color: #FF5B04;
 }

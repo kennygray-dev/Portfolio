@@ -9,321 +9,48 @@ body {
   font-family: roboto;
 }
 
-
-
-
-
-
-
-h3.project-title {
-  color: white;
-}
-
-p.project-details {
-  color: white;
-}
-
-
-/*ABOUT */
-
-.about-container {
-
-  display: flex;
-  border-bottom: 1px solid black;
-  padding-bottom: 2rem;
-  margin-top: 2rem;
-}
-
-.about {
-  font-size: 22px;
-  font-weight: 300;
-  padding-right: 5rem;
-}
-
-.mail-link {
-  color: teal;
-  text-decoration: none;
-  border-bottom: 1px solid black;
-  padding-bottom: 5px;
-  font-weight: normal;
-}
-
-.mail-link:hover{
-  color: rgb(183, 243, 243);
-  transform: scale(0.7);
-}
-
-.image-board {
-  display: flex;
-  justify-content: center;
-
-}
-
-.image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 350px;
-  height: 350px;
-  background-color: #f0f0f0;
-  background-image: url('/moii.jpg');
-  filter: grayscale(40%);
-  background-size: cover;
-  border-radius: 50%;
-  border: 1px solid white;
-  margin: 0px 4rem;
-}
-
-.skills {
-  font-weight: bold;
-  color: teal;
-}
-
-.tools-section {
-  margin-top: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-.tool-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10px;
-
-}
-
-.tools {
-  width: 50px;
-  height: 50px;
-  background-color: #ccc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 5px;
-  border-radius: 4;
-  opacity: 0.8;
-  filter: grayscale(35%);
- 
-}
-
-p.about {
-  color: white;
-}
-
-.tools:hover {
-  filter: none;
-  transform: scale(2.05);
-  transition: transform 0.5s ease;
-}
-
-.tools img {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-
-
-
-/* Project.css */
-
-.project-linkbox {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Ensure even spacing */
-  align-items: center;
-  height: auto; /* Allow it to grow naturally */
-  min-height: 30rem; /* Ensures a minimum height */
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  overflow: hidden; /* Prevent text overflow */
-  text-decoration: none;
-}
-
-.project-info {
-  flex-grow: 1; /* Allows text to take only required space */
-  padding: 1rem;
-  text-align: center;
-  text-decoration: none;
-}
-
-.project-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.project-details {
-  flex-grow: 1; /* Ensures it takes only the space it needs */
-  padding: 0.5rem;
-  
-}
-
-.project-image {
-  width: 100%; /* Ensures the image fits within its container */
-  max-height: 20rem; /* Prevents excessive stretching */
-  object-fit: cover; /* Ensures the image maintains aspect ratio */
-  border-radius: 5px;
-}
-
-
-
-
-
-
-
-.project-title {
-  font-size: 1.2em;
-  margin: 0;
-  color: #333;
-  padding: 0.6rem;
-  padding-bottom: 4px;
-  color: white;
-}
-
-
-.project-linkbox:hover {
-  background-color: #efefef4d;
-}
-
-
-.project-image:hover {
-  transform: scale(1.05);
-  opacity: 0.8;
-}
-
-
-.projects-container {
-  display: grid;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-
-
-
-/* ContactForm.css */
-
-.form-container {
-  border-radius: 20px;
-  display: flex;
-  gap: 30px;
-  box-shadow: -5px 0 10px -5px rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 0px 30px;
-  height: 29rem;
-}
-
-.soft-code {
-  padding-left: 25px;
-  padding-bottom: 2rem;
-  border-radius: 10px;
-  width: 25rem;
-}
-
-.phone {
-  padding-left: 20px;
-}
-
-.phone p {
-  font-weight: light;
-}
-
-.hard-code {
-  width: 50%;
-
-
-}
-
-
-.form-group {
-  margin-bottom: 6px;
-}
-
-.label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.input {
-  width: 100%;
-  background-color: transparent;
-  border: none;
-  border-bottom: 1.5px solid teal;
-  color: white;
-  border-radius: 0px;
-  padding-bottom: 2rem;
-}
-
-
-
-.textarea {
-  width: 100%;
-  padding: 8px;
-  min-height: 100px;
-  min-width: 100%;
-  margin-bottom: 2rem;
-}
-
-.button {
-  display: flex;
-  justify-content: center;
-  padding: 10px 20px;
-  color: #fff;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  background-color: teal;
-  width: 9rem;
-
-}
-
-.button:hover {
-  background-color: teal;
-
-}
-
-.button:active {
-  background-color: darkgrey;
-}
-
-.phone-contact-only {
-  display: none;
-}
-
-/* Contact.css */
-
-
-.form-container {
-  animation: slideDown 1.5s ease-in-out;
-  padding: 2rem 3rem;
-  color: white;
-}
-
-
-
-
-
-/*Footer */
 .footer {
-  background-color: transparent;
-  color: #333;
-  padding: 20px 0;
-  text-align: center;
-
-  width: 100%;
-  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  color: #fff;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(255, 91, 4, 0.2);
 }
 
-.footer-content {
-  font-size: 14px;
-  color: lightgray;
+.footer-left {
+  font-size: 0.9rem;
 }
 
-.project-category{
-  color: white;
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.social-icons a {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  transition: color 0.3s ease;
+  gap: 2rem;
+}
+
+.social-icons a:hover {
+  color: #ff5b04; /* Accent color */
+}
+
+.back-to-top {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px);
+  color: #ff5b04;
 }

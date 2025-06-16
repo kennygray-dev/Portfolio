@@ -1,0 +1,86 @@
+.contact-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+  background: transparent;
+  border-radius: 8px;
+  height: 70vh;
+}
+
+.contact-left, .contact-right {
+  flex: 1;
+  min-width: 300px;
+}
+
+.contact-head {
+  font-size: 2rem;
+  color: #16232a;
+  margin-bottom: 0.5rem;
+}
+
+.contact-description {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.contact-info h4 {
+  margin: 0.5rem 0 0.2rem;
+  color: #075056;
+}
+
+.contact-info p {
+  margin: 0;
+  color: #555;
+}
+
+.contact-subhead {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #16232a;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.input, .textarea {
+  padding: 0.7rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  resize: none;
+}
+
+.input:focus, .textarea:focus {
+  border-color: #075056;
+  outline: none;
+}
+
+.textarea {
+  height: 100px;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  background-color: #075056;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.button:hover {
+  background-color: #053e3f;
+}
