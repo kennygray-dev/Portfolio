@@ -1,6 +1,6 @@
 /* Root Container */
 .about-all {
-    padding: 4rem 2rem;
+    padding: 3rem 7rem;
     color: rgba(228, 238, 240, 0.9);
     min-height: 100vh;
     align-items: center;
@@ -26,7 +26,6 @@ h3 {
 /* Grid Layout */
 .about-grid {
     display: grid;
-
     grid-auto-rows: minmax(150px, auto);
     gap: 1.5rem;
 }
@@ -118,7 +117,7 @@ h3 {
 
 /* Divider */
 .story-divider {
-    width: 2px;
+    width: 0.5px;
     background-color: rgba(255, 255, 255, 0.25);
     height: 100%;
     min-height: 200px;
@@ -126,7 +125,7 @@ h3 {
 
 /* Paragraph Content */
 .story-content {
-    flex: 4;
+    flex: 5;
     font-size: 1.1rem;
     font-weight: 300;
     color: wheat;
@@ -157,7 +156,7 @@ h3 {
 }
 
 .modal-content a {
-    color: #ff5b04;
+    color: #bb5219;
     text-decoration: none;
 }
 .modal-content a:hover {
@@ -265,7 +264,6 @@ h3 {
 
 .experience-count span {
     font-size: 4rem;
-    font-family: fantasy;
     color: rgba(228, 238, 240, 0.9);
     text-shadow: 0 0 10px rgba(234, 239, 241, 0.233);
     display: flex;
@@ -274,58 +272,62 @@ h3 {
     line-height: 1;
 }
 .article-carousel {
-  display: flex;
-  overflow-x: auto;
-  gap: 1rem;
-  padding-top: 1rem;
-  scrollbar-width: none; /* Firefox */
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding-top: 1rem;
+    scrollbar-width: none; /* Firefox */
 }
 
 .article-carousel::-webkit-scrollbar {
-  display: none; /* Chrome */
+    display: none; /* Chrome */
 }
 
 .article-card {
-  min-width: 250px;
-  max-width: 300px;
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
-  transition: transform 0.3s ease;
-  flex-shrink: 0;
-  cursor: pointer;
+    min-width: 250px;
+    max-width: 300px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    cursor: pointer;
 }
 
 .article-image {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
 }
 
 .article-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 1rem;
-  color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: #fff;
 }
 
 .article-content h4 {
-  font-size: 1rem;
-  font-weight: 500;
-  margin: 0;
-  flex: 1;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+    flex: 1;
 }
 
 .article-arrow {
-  font-size: 1.2rem;
-  color: #ff5b04;
-  margin-left: 0.5rem;
+    font-size: 1.2rem;
+    color: #ff5b04;
+    margin-left: 0.5rem;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
+    .about-all {
+        padding: 1rem;
+    }
+
     .about-grid {
         grid-template-columns: 1fr;
     }
@@ -334,15 +336,12 @@ h3 {
     .about-box.left,
     .about-box.right {
         grid-column: span 1;
+        display: flex;
+        flex-direction: column;
     }
 
     .meet-heading {
         font-size: 2rem;
-    }
-
-    .my-story-row {
-        flex-direction: column;
-        align-items: flex-start;
     }
 
     .story-divider {
@@ -357,5 +356,31 @@ h3 {
 
     .about-profile-image {
         margin-bottom: 1rem;
+    }
+
+    .article-carousel {
+        display: grid;
+        overflow-x: auto;
+        gap: 1rem;
+        padding-top: 1rem;
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .tool-item {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        background: rgb(5, 53, 57);
+        backdrop-filter: blur(5px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: border 0.3s, transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        /* This causes the overlap */
+        margin: -1.5px;
+        z-index: 1;
     }
 }

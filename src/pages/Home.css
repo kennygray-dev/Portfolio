@@ -23,7 +23,7 @@
 
 .title {
     font-size: 4.5rem;
-    font-family: 'fantasy';
+    font-family: "fantasy";
     font-weight: 800;
     margin: 0;
     color: rgba(228, 238, 240, 0.9);
@@ -109,6 +109,7 @@
     width: 100%;
     max-width: 300px;
     height: auto;
+    transform: scaleX(-1);
 }
 
 /* Social Links */
@@ -282,24 +283,85 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .home-info {
-        flex-direction: column;
-        text-align: center;
-    }
+  .home-container {
+    width: 100%;
+    overflow-x: hidden;
+  }
 
-    .name-section {
-        padding-right: 0;
-    }
+  .home-info {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 2rem 1rem 1rem;
+    padding-top: 12rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
 
-    .profile-image {
-        max-width: 300px;
-    }
+  .title {
+    font-size: 2.5rem;
+    font-family: "fantasy";
+    font-weight: 800;
+    margin: 0;
+    color: rgba(228, 238, 240, 0.9);
+}
 
-    .me {
-        font-size: 3.5rem;
-    }
+.name {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 0rem;
+    color: #ff5b04;
+}
 
-    .name {
-        font-size: 2.5rem;
-    }
+.description {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    color: rgba(228, 238, 240, 0.9);
+    
+}
+
+
+  .image-social-section {
+    position: absolute;
+    top: 5rem;
+    right: 1rem;
+    z-index: 10;
+    margin-left: 0; 
+    align-items: flex-end;
+  }
+
+  @media (max-width: 768px) {
+  .social-links {
+    display: none !important;
+  }
+}
+
+
+  .profile-image {
+    max-width: 120px;
+    width: 100%;
+    height: auto;
+    
+  }
+
+  .name-section {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .home-links {
+    flex-direction: row;
+    
+  }
+
+  .pointers-button {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .down-arrow-container {
+    display: none;
+  }
 }

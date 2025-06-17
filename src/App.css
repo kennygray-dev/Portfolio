@@ -8,6 +8,17 @@ body {
 
   font-family: roboto;
 }
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
 
 .footer {
   display: flex;
@@ -53,4 +64,19 @@ body {
 .back-to-top:hover {
   transform: translateY(-3px);
   color: #ff5b04;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: row;
+   
+    text-align: center;
+  }
+
+
+  .social-icons {
+    display: none;
+  }
+
+  
 }

@@ -1,33 +1,54 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaTh, FaListUl } from "react-icons/fa";
 import "./Projects.css";
 
 const Projects = () => {
     const [viewType, setViewType] = useState("grid");
 
+    useEffect(() => {
+        // Force list view for mobile devices
+        const handleResize = () => {
+            if (window.innerWidth <= 768) {
+                setViewType("list");
+            }
+        };
+
+        handleResize(); // Check on mount
+        window.addEventListener("resize", handleResize); // Update on resize
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     const projectData = [
         {
-            links: "https://eventticketken.vercel.app/",
+            links: "#",
             image: "https://i.imgur.com/3TNFuz5.png",
             title: "Awa Source",
             details:
                 "AWA Source is a modern job-seeking platform that connects top-tier talents with clients across various industries. It streamlines the hiring process through curated matches, skill-based filtering, and a user-friendly interface tailored for both freelancers and businesses. ",
         },
         {
-            links: "https://eventticketken.vercel.app/",
+            links: "#",
             image: "https://i.imgur.com/2o8BlgL.png",
             title: "Taaleema",
             details:
                 "Taaleema is an AI-powered educational platform that supports African migrants by providing culturally-informed learning resources and guidance on Gulf country practices. From IELTS preparation to cultural integration, Taaleema equips users with the knowledge and skills needed for a smooth migration journey.",
         },
         {
-            links: "https://eventticketken.vercel.app/",
+            links: "#",
             image: "https://i.imgur.com/T4i7bZU.png",
             title: "Dakestel",
             details:
                 "Dakestel is a company specializing in the retail and personalization of home and car care resources. I developed a full-stack analytics dashboard for Dakestel that tracks user behavior and sales performance over time, providing insights into product trends, customer engagement, and revenue growth.",
         },
         /*{
+            links: "https://eventticketken.vercel.app/",
+            image: "https://i.imgur.com/T4i7bZU.png",
+            title: "Dakestel",
+            details:
+                "Dakestel is a company specializing in the retail and personalization of home and car care resources. I developed a full-stack analytics dashboard for Dakestel that tracks user behavior and sales performance over time, providing insights into product trends, customer engagement, and revenue growth.",
+        },
+        {
             links: "https://craft9ja.vercel.app/",
             image: "/Craft.jpg",
             title: "Craft9JA",

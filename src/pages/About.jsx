@@ -180,6 +180,10 @@ function About() {
                                 name: "Photoshop",
                                 src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg",
                             },
+                            {
+                                name: "Github",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+                            },
                         ].map((tool, idx) => (
                             <motion.span
                                 key={idx}

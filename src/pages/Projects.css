@@ -1,22 +1,25 @@
 .projects-wrapper {
-    padding: 1rem;
+    padding: 1rem 2rem;
     max-width: 1200px;
     margin: auto;
     text-align: center;
 }
 
+/* Portfolio Title */
 .portfolio-title {
     font-size: 2.5rem;
     font-weight: bold;
     color: rgba(228, 238, 240, 0.9);
-    font-family: fantasy;;
+    font-family: fantasy;
 }
 
+/* View Toggle Buttons */
 .view-toggle {
     display: flex;
     justify-content: center;
     gap: 1rem;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
 }
 
 .view-toggle button {
@@ -31,6 +34,7 @@
     gap: 0.5rem;
     padding: 0.7rem 2rem;
     border-radius: 60px;
+    transition: all 0.3s ease;
 }
 
 .view-toggle button.active {
@@ -39,75 +43,69 @@
     color: #ff5b04;
 }
 
+/* Grid View */
 .projects-container.grid-view {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
 }
 
-/* Apply blur and zoom out on hover */
 .grid-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  text-decoration: none;
-  color: inherit;
-  height: 100%;
-  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
 }
 
 .grid-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.4s ease, filter 0.4s ease;
-  
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease, filter 0.4s ease;
 }
 
 .grid-card:hover .grid-image {
-  transform: scale(1.1);
-  filter: blur(6px);
+    transform: scale(1.1);
+    filter: blur(6px);
 }
 
 .grid-text {
-  position: absolute;
-  top: 0;
-  right: -100%;
-  background-color: rgba(0, 0, 0, 0.85);
-  color: #fff;
-  width: 75%;
-  height: 100%;
-  padding: 0rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  transition: right 0.4s ease;
+    position: absolute;
+    top: 0;
+    right: -100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    width: 75%;
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    transition: right 0.4s ease;
 }
-
 
 .grid-card:hover .grid-text {
-  right: 0;
+    right: 0;
 }
 
-/* Style for the button inside the overlay */
 .grid-view-btn {
-  margin-top: 1rem;
-  color: #d94e03;
-  text-decoration: none;
-  border-radius: 5px;
-  display: inline-block;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+    margin-top: 1rem;
+    color: #d94e03;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-
+/* List View */
 .projects-container.list-view {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    
 }
 
 .project-card {
@@ -119,9 +117,7 @@
     border: 0.5px solid #ddd;
     padding: 1rem;
     border-radius: 10px;
-    
 }
-
 
 .text-side {
     flex: 2;
@@ -131,7 +127,6 @@
 
 .image-side {
     flex: 2;
-    
 }
 
 .image-side img {
@@ -148,20 +143,34 @@
     padding: 0.4rem 0.8rem;
     border-radius: 4px;
     text-decoration: none;
-    transition: background-color 0.3s;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
 }
 
 .view-btn:hover {
     background-color: #d94e03;
 }
 
+/* Responsive Design */
+/* Hide toggle buttons on mobile */
 @media (max-width: 768px) {
-    .projects-container.grid-view {
-        grid-template-columns: 1fr;
+    .view-toggle {
+        display: none;
+    }
+
+    /* Always show list view layout on mobile */
+    .projects-container {
+        display: flex !important;
+        flex-direction: column;
+        gap: 2rem;
     }
 
     .project-card {
         flex-direction: column;
+        text-align: center;
+    }
+
+    .text-side {
         text-align: center;
     }
 
@@ -170,8 +179,16 @@
         height: auto;
     }
 
-    .grid-text {
-        padding: 0.8rem;
-        font-size: 0.9rem;
+    .grid-card,
+    .grid-text,
+    .grid-image,
+    .grid-view-btn {
+        display: none !important;
     }
+    .portfolio-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: rgba(228, 238, 240, 0.9);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 }
