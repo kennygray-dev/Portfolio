@@ -35,7 +35,7 @@ function Navbar() {
                 <div className="mobile-social-icons">
                     <div className="social-icon">
                         <a
-                            href="https://github.com/yourprofile"
+                            href="https://github.com/kennygray-dev"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="icon-circle"
@@ -46,7 +46,7 @@ function Navbar() {
                     </div>
                     <div className="social-icon">
                         <a
-                            href="https://linkedin.com/in/yourprofile"
+                            href="https://www.linkedin.com/in/ken-agbapuonwu-3134bab5/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="icon-circle"
