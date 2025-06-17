@@ -1,0 +1,367 @@
+/* Home Container */
+.home-container {
+    display: grid;
+    color: white;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+.home-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 2rem;
+}
+
+/* Left Column */
+.name-section {
+    flex: 2;
+}
+
+.title {
+    font-size: 4.5rem;
+    font-family: "fantasy";
+    font-weight: 800;
+    margin: 0;
+    color: rgba(228, 238, 240, 0.9);
+}
+
+.name {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    color: #ff5b04;
+}
+
+.description {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    color: rgba(228, 238, 240, 0.9);
+}
+/* Button Styles */
+.home-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+/* Button Container */
+.home-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+/* Base Button Styles */
+.pointers-button {
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-weight: 200;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* About Button Specific Styles */
+.about-button {
+    background-color: #075056;
+    border: 0.5px solid #075056;
+}
+
+.about-button:hover {
+    background-color: transparent;
+    box-shadow: 0 0 15px rgba(7, 80, 86, 0.5);
+}
+
+/* Works Button Specific Styles */
+.works-button {
+    background-color: transparent;
+    border: 0.5px solid #075056;
+}
+
+.works-button:hover {
+    background-color: #075056;
+    box-shadow: 0 0 15px rgba(7, 80, 86, 0.5);
+}
+
+/* Right Column */
+.image-social-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-left: 9rem;
+    margin-bottom: 2rem;
+}
+
+.profile-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    transform: scaleX(-1);
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.social-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.icon-circle {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(7, 80, 86, 0.3);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 91, 4, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.icon {
+    font-size: 1.5rem;
+    color: white;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.3) 45%,
+        rgba(255, 255, 255, 0) 60%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+/* Hover Effects */
+.social-icon:hover .icon-circle {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 91, 4, 0.5);
+}
+
+.social-icon:hover .shine {
+    opacity: 1;
+    animation: shine 1.5s infinite;
+}
+
+.social-icon:hover .icon {
+    color: #ff5b04;
+}
+
+.social-icon:nth-child(2):hover .icon {
+    color: #0077b5; /* LinkedIn blue */
+}
+
+/* Pointer Text Styles */
+.pointers {
+    margin: 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* Optional: Add shine effects to buttons */
+.pointers-button::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.3) 45%,
+        rgba(255, 255, 255, 0) 60%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.pointers-button:hover::after {
+    opacity: 1;
+    animation: shine 1.2s infinite;
+}
+
+/* Down Arrow */
+.down-arrow-container {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.down-arrow {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.arrow-icon {
+    color: white;
+    font-size: 1rem;
+    filter: drop-shadow(0 0 8px rgba(255, 91, 4, 0.5));
+    transition: all 0.3s ease;
+}
+
+.down-arrow:hover .arrow-icon {
+    color: #ff5b04;
+    filter: drop-shadow(0 0 12px rgba(255, 91, 4, 0.8));
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(30deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(30deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .home-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .pointers-button {
+        width: 100%;
+    }
+}
+
+/* Animations */
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(30deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(30deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-container {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .home-info {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 2rem 1rem 1rem;
+    padding-top: 12rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    font-family: "fantasy";
+    font-weight: 800;
+    margin: 0;
+    color: rgba(228, 238, 240, 0.9);
+}
+
+.name {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 0rem;
+    color: #ff5b04;
+}
+
+.description {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    color: rgba(228, 238, 240, 0.9);
+    
+}
+
+
+  .image-social-section {
+    position: absolute;
+    top: 5rem;
+    right: 1rem;
+    z-index: 10;
+    margin-left: 0; 
+    align-items: flex-end;
+  }
+
+  @media (max-width: 768px) {
+  .social-links {
+    display: none !important;
+  }
+}
+
+
+  .profile-image {
+    max-width: 120px;
+    width: 100%;
+    height: auto;
+    
+  }
+
+  .name-section {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .home-links {
+    flex-direction: row;
+    
+  }
+
+  .pointers-button {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .down-arrow-container {
+    display: none;
+  }
+}
