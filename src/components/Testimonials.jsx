@@ -6,28 +6,22 @@ import './Testimonials.css';
 const testimonials = [
   {
     id: 1,
-    quote: "Working with this developer was an absolute pleasure. Their attention to detail and problem-solving skills helped us deliver our project ahead of schedule. The code quality was exceptional and their communication was top-notch throughout the entire process.",
-    name: "Sarah Johnson",
-    position: "CTO at TechSolutions Inc."
+    quote: "Working with this developer was an absolute pleasure. His attention to detail and problem-solving skills helped us deliver our project ahead of schedule. The code quality was exceptional and their communication was top-notch throughout the entire process.",
+    name: "Henry Dimobika",
+    position: "CTO at AWA SOURCE."
   },
   {
     id: 2,
-    quote: "One of the most talented developers I've had the privilege to work with. They took our vague ideas and turned them into a beautiful, functional application that exceeded all our expectations. Their ability to understand user needs and translate them into technical solutions is remarkable.",
-    name: "Michael Chen",
-    position: "Product Manager at DesignHub"
+    quote: "An amazing and talented developer. He took our  ideas and turned them into a beautiful, functional application that exceeded all our expectations. His ability to understand user needs and translate them into technical solutions is remarkable.",
+    name: "Annette",
+    position: "Founder Taaleema"
   },
   {
     id: 3,
-    quote: "The speed and quality of work was impressive. They implemented complex features with elegant solutions and were always willing to go the extra mile to ensure everything was perfect. I would recommend them without hesitation for any frontend development work.",
-    name: "Emily Rodriguez",
-    position: "Lead Developer at DigitalAgency"
+    quote: "The speed and quality of work was impressive. He implemented complex features with elegant and creative solutions and were always willing to go the extra mile to ensure everything was perfect.",
+    name: "Mr. Akugbe",
+    position: "Lead AI Engineer at Taaleema"
   },
-  {
-    id: 4,
-    quote: "Their design sensibility combined with technical expertise created a product that our users love. They were able to bridge the gap between design and development seamlessly, suggesting improvements that made the final product much stronger.",
-    name: "David Kim",
-    position: "UX Director at CreativeMinds"
-  }
 ];
 
 function Testimonials() {

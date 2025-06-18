@@ -74,7 +74,7 @@ function Home() {
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
                         <img
-                            src="https://i.imgur.com/p47VOyK.png"
+                            src="https://i.imgur.com/cxvks6I.png"
                             alt="Kennedy Agbapuonwu"
                             className="profile-image"
                         />
