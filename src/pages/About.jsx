@@ -221,20 +221,20 @@ function About() {
                     <div className="article-carousel">
                         {[
                             {
-                                title: "Building Accessible Interfaces with React",
-                                image: "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dGVjaHxlbnwwfHwwfHx8MA%3D%3D",
-                                link: "https://yourblog.com/article-1",
+                                title: "How I Build: My Journey and Workflow as a Frontend Developer",
+                                image: "https://images.unsplash.com/photo-1607743386760-88ac62b89b8a?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGdldHRpbmclMjBpbnRvJTIwdGVjaHxlbnwwfHwwfHx8MA%3D%3D",
+                                link: "https://kennygray.hashnode.dev/how-i-build-my-journey-and-workflow-as-a-frontend-developer",
                             },
                             {
-                                title: "Framer Motion for Smooth UI Transitions",
-                                image: "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dGVjaHxlbnwwfHwwfHx8MA%3D%3D",
-                                link: "https://yourblog.com/article-2",
+                                title: "The Beginning Wasn’t Code. It Was a Connection",
+                                image: "https://images.unsplash.com/photo-1732067606788-6b0661b7cdef?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG5ldHdvcmtpbmclMjBibGFjayUyMG1lbnxlbnwwfHwwfHx8MA%3D%3D",
+                                link: "https://kennygray.hashnode.dev/the-beginning-wasnt-code-it-was-a-connection",
                             },
-                            {
+                            /*{
                                 title: "Designing with Developer Empathy",
                                 image: "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dGVjaHxlbnwwfHwwfHx8MA%3D%3D",
                                 link: "https://yourblog.com/article-3",
-                            },
+                            },*/
                         ].map((article, index) => (
                             <motion.div
                                 key={index}
