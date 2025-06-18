@@ -11,16 +11,10 @@
 
 .meet-heading {
     text-align: center;
-    font-size: 2.5rem;
-    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-        "Lucida Sans", Arial, sans-serif;
+    font-size: 3.5rem;
     margin-bottom: 3rem;
     color: rgba(228, 238, 240, 0.9);
-    text-decoration: underline rgba(255, 91, 4, 0.8) 2px;
-}
-
-h3 {
-    font-family: "fantasy";
+    font-weight: 200;
 }
 
 /* Grid Layout */
@@ -80,20 +74,6 @@ h3 {
     gap: 1rem;
 }
 
-/* Modal Overlay */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-}
-
 /* My Story Layout */
 .my-story-row {
     display: flex;
@@ -141,41 +121,6 @@ h3 {
     text-decoration: underline;
 }
 
-/* Modal Content */
-.modal-content {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(14px) saturate(180%);
-    -webkit-backdrop-filter: blur(14px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.125);
-    padding: 30px;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 600px;
-    position: relative;
-    color: rgba(228, 238, 240, 0.95);
-}
-
-.modal-content a {
-    color: #bb5219;
-    text-decoration: none;
-}
-.modal-content a:hover {
-    text-decoration: underline;
-    color: #075056;
-}
-
-/* Modal Close */
-.close-btn {
-    position: absolute;
-    top: 12px;
-    right: 16px;
-    font-size: 1.5rem;
-    background: none;
-    color: rgba(255, 255, 255, 0.8);
-    border: none;
-    cursor: pointer;
-}
-
 /* Tools */
 .tools-wrapper {
     display: flex;
@@ -196,8 +141,6 @@ h3 {
     justify-content: center;
     transition: border 0.3s, transform 0.3s, box-shadow 0.3s;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-    /* This causes the overlap */
     margin: -1.5px;
     z-index: 1;
 }
@@ -208,7 +151,6 @@ h3 {
     object-fit: contain;
 }
 
-/* Metallic shine on hover */
 .tool-item:hover {
     z-index: 2;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
@@ -259,7 +201,7 @@ h3 {
 }
 
 .social-links a:hover {
-    color: #ff5b04; /* accent color or change as needed */
+    color: #ff5b04;
 }
 
 .experience-count span {
@@ -271,16 +213,18 @@ h3 {
     justify-content: center;
     line-height: 1;
 }
+
+/* Articles */
 .article-carousel {
     display: flex;
     overflow-x: auto;
     gap: 1rem;
     padding-top: 1rem;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
 }
 
 .article-carousel::-webkit-scrollbar {
-    display: none; /* Chrome */
+    display: none;
 }
 
 .article-card {
@@ -322,6 +266,109 @@ h3 {
     margin-left: 0.5rem;
 }
 
+/* Side Panel Styles */
+.side-panel-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+}
+
+.side-panel-content {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    height: 100%;
+    background: linear-gradient(135deg, #122e34, #0e1d21);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    overflow: hidden;
+}
+
+.close-panel-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.3s ease;
+}
+
+.close-panel-btn:hover {
+    color: #ff5b04;
+}
+
+.panel-navigation {
+    width: 260px;
+    padding: 2rem 1rem;
+    background: rgba(10, 10, 15, 0.8);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.nav-item {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 3.2rem;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 2rem 0;
+    transition: all 0.3s ease;
+}
+
+.nav-item.active {
+    color: #ff5b04;
+    font-weight: 400;
+}
+
+.nav-item:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.nav-item span {
+    letter-spacing: 2px;
+}
+
+.panel-content {
+    flex: 1;
+    padding: 3rem;
+    overflow-y: auto;
+}
+
+.panel-content h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #ff5b04;
+}
+
+.panel-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.panel-content ul {
+    padding-left: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.panel-content li {
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .about-all {
@@ -358,14 +405,6 @@ h3 {
         margin-bottom: 1rem;
     }
 
-    .article-carousel {
-        display: grid;
-        overflow-x: auto;
-        gap: 1rem;
-        padding-top: 1rem;
-        scrollbar-width: none; /* Firefox */
-    }
-
     .tool-item {
         width: 60px;
         height: 60px;
@@ -373,14 +412,37 @@ h3 {
         border: 1px solid rgba(255, 255, 255, 0.4);
         background: rgb(5, 53, 57);
         backdrop-filter: blur(5px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: border 0.3s, transform 0.3s, box-shadow 0.3s;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-        /* This causes the overlap */
         margin: -1.5px;
         z-index: 1;
     }
+
+    /* Side Panel Responsive */
+    .side-panel-content {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .panel-navigation {
+        width: 100%;
+        padding: 1rem;
+        flex-direction: row;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .nav-item {
+        writing-mode: horizontal-tb;
+        transform: none;
+        font-size: 1.4rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .panel-content {
+        padding: 1.5rem;
+    }
+
+    .article-carousel {
+    display: flex;
+    flex-direction: column;
+}
 }

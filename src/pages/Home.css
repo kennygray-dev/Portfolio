@@ -18,20 +18,20 @@
 
 /* Left Column */
 .name-section {
-    flex: 2;
+    flex: 2.7;
 }
 
 .title {
-    font-size: 4.5rem;
-    font-family: "fantasy";
-    font-weight: 800;
+    font-size: 5rem;
+    font-family: "DM Sans";
+    font-weight: 500;
     margin: 0;
     color: rgba(228, 238, 240, 0.9);
 }
 
 .name {
-    font-size: 1.5rem;
-    font-weight: 300;
+    font-size: 1.8rem;
+    font-weight: 100;
     margin-bottom: 2rem;
     color: #ff5b04;
 }
@@ -39,9 +39,11 @@
 .description {
     font-size: 20px;
     font-weight: 300;
-    line-height: 1.6;
+    line-height: 1.2;
     margin-bottom: 3rem;
     color: rgba(228, 238, 240, 0.9);
+    text-transform: uppercase;
+
 }
 /* Button Styles */
 .home-links {
@@ -231,8 +233,8 @@
 }
 
 .down-arrow {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -240,8 +242,8 @@
 }
 
 .arrow-icon {
-    color: white;
-    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 2.5rem;
     filter: drop-shadow(0 0 8px rgba(255, 91, 4, 0.5));
     transition: all 0.3s ease;
 }
@@ -300,7 +302,6 @@
 
   .title {
     font-size: 2.5rem;
-    font-family: "fantasy";
     font-weight: 800;
     margin: 0;
     color: rgba(228, 238, 240, 0.9);
@@ -340,7 +341,7 @@
 
 
   .profile-image {
-    max-width: 120px;
+    max-width: 150px;
     width: 100%;
     height: auto;
     

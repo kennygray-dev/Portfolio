@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { FiArrowRight, FiMapPin, FiMail } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiArrowRight, FiMapPin, FiMail, FiX } from "react-icons/fi";
 import { FaLinkedin, FaGithub, FaUserTie } from "react-icons/fa";
 import "./About.css";
 
 function About() {
-    const [showModal, setShowModal] = useState(false);
+    const [showSidePanel, setShowSidePanel] = useState(false);
+    const [activeTab, setActiveTab] = useState("me");
 
-    const handleModalToggle = () => setShowModal(!showModal);
+    const handlePanelToggle = () => setShowSidePanel(!showSidePanel);
+    const handleTabChange = (tab) => setActiveTab(tab);
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -20,13 +22,24 @@ function About() {
         },
     };
 
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1,
-            transition: { duration: 0.5 },
-        },
+    const variantsFromLeft = {
+        hidden: { x: -100, opacity: 0 },
+        visible: { x: 0, opacity: 1, transition: { duration: 1 } },
+    };
+
+    const variantsFromRight = {
+        hidden: { x: 100, opacity: 0 },
+        visible: { x: 0, opacity: 1, transition: { duration: 1 } },
+    };
+
+    const variantsFromTop = {
+        hidden: { y: -100, opacity: 0 },
+        visible: { y: 0, opacity: 1, transition: { duration: 1 } },
+    };
+
+    const variantsFromBottom = {
+        hidden: { y: 100, opacity: 0 },
+        visible: { y: 0, opacity: 1, transition: { duration: 1 } },
     };
 
     const toolVariants = {
@@ -34,7 +47,7 @@ function About() {
             scale: 1.1,
             filter: "none",
             opacity: 1,
-            transition: { type: "spring", stiffness: 300 },
+            transition: { type: "spring", stiffness: 400 },
         },
     };
 
@@ -65,40 +78,37 @@ function About() {
             >
                 <motion.div
                     className="about-box full my-story-row"
-                    variants={itemVariants}
+                    variants={variantsFromTop}
                 >
                     <div className="story-title">
                         <h3>My Story</h3>
                     </div>
-
                     <div className="story-divider"></div>
-
                     <div className="story-content">
                         <p>
                             With a background in Electrical and Information
                             Engineering, I evolved into a self-taught Frontend
                             Heavy Fullstack Software Engineer passionate about
                             creating clean, user-centric experiences.
-                            <br />
-                            <p>
-                                His implementations are usually classified as
-                                pixel-perfect & eye-candy due to his experience
-                                in his Artsy side through photography,he factors
-                                intuitive human-centered experiences with a well
-                                thought-out business logic.
-                            </p>
-                            <button
-                                className="read-more-btn"
-                                onClick={handleModalToggle}
-                            >
-                                Read more about me{" "}
-                                <FiArrowRight className="arrow-icon" />
-                            </button>
                         </p>
+                        <p>
+                            His implementations are usually classified as
+                            pixel-perfect & eye-candy due to his experience in
+                            his Artsy side through photography. He factors
+                            intuitive human-centered experiences with a well
+                            thought-out business logic.
+                        </p>
+                        <button
+                            className="read-more-btn"
+                            onClick={handlePanelToggle}
+                        >
+                            Read more about me{" "}
+                            <FiArrowRight className="article-arrow" />
+                        </button>
                     </div>
                 </motion.div>
 
-                <motion.div className="about-box left" variants={itemVariants}>
+                <motion.div className="about-box left" variants={variantsFromLeft}>
                     <div className="profile-highlight">
                         <img
                             src="https://i.imgur.com/7J5vEvM.jpeg"
@@ -140,7 +150,7 @@ function About() {
                     </div>
                 </motion.div>
 
-                <motion.div className="about-box right" variants={itemVariants}>
+                <motion.div className="about-box right" variants={variantsFromRight}>
                     <h3>Favorite Tools</h3>
                     <div className="tools-wrapper">
                         {[
@@ -198,14 +208,14 @@ function About() {
                     </div>
                 </motion.div>
 
-                <motion.div className="about-box left" variants={itemVariants}>
+                <motion.div className="about-box left" variants={variantsFromLeft}>
                     <p className="experience-count">
                         <span>{diffYears}+</span>
                     </p>
                     <p>Years of Experience</p>
                 </motion.div>
 
-                <motion.div className="about-box right" variants={itemVariants}>
+                <motion.div className="about-box right" variants={variantsFromRight}>
                     <h3>Something Cool</h3>
                     <p>
                         I write code like I compose a photo: balanced, detailed,
@@ -216,25 +226,20 @@ function About() {
                     </p>
                 </motion.div>
 
-                <motion.div className="about-box full" variants={itemVariants}>
+                <motion.div className="about-box full" variants={variantsFromBottom}>
                     <h3>Read My Articles</h3>
                     <div className="article-carousel">
                         {[
                             {
                                 title: "How I Build: My Journey and Workflow as a Frontend Developer",
-                                image: "https://images.unsplash.com/photo-1607743386760-88ac62b89b8a?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGdldHRpbmclMjBpbnRvJTIwdGVjaHxlbnwwfHwwfHx8MA%3D%3D",
+                                image: "https://images.unsplash.com/photo-1607743386760-88ac62b89b8a?w=1000&auto=format&fit=crop&q=60",
                                 link: "https://kennygray.hashnode.dev/how-i-build-my-journey-and-workflow-as-a-frontend-developer",
                             },
                             {
-                                title: "The Beginning Wasn’t Code. It Was a Connection",
-                                image: "https://images.unsplash.com/photo-1732067606788-6b0661b7cdef?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG5ldHdvcmtpbmclMjBibGFjayUyMG1lbnxlbnwwfHwwfHx8MA%3D%3D",
+                                title: "The Beginning Wasn't Code. It Was a Connection",
+                                image: "https://images.unsplash.com/photo-1732067606788-6b0661b7cdef?w=1000&auto=format&fit=crop&q=60",
                                 link: "https://kennygray.hashnode.dev/the-beginning-wasnt-code-it-was-a-connection",
                             },
-                            /*{
-                                title: "Designing with Developer Empathy",
-                                image: "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dGVjaHxlbnwwfHwwfHx8MA%3D%3D",
-                                link: "https://yourblog.com/article-3",
-                            },*/
                         ].map((article, index) => (
                             <motion.div
                                 key={index}
@@ -263,79 +268,102 @@ function About() {
                 </motion.div>
             </motion.div>
 
-            {/* Modal */}
-            {showModal && (
-                <div className="modal-overlay" onClick={handleModalToggle}>
-                    <div
-                        className="modal-content"
-                        onClick={(e) => e.stopPropagation()}
+            {/* Side Panel */}
+            <AnimatePresence>
+                {showSidePanel && (
+                    <motion.div 
+                        className="side-panel-overlay"
+                        onClick={handlePanelToggle}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
                     >
-                        <button
-                            className="close-btn"
-                            onClick={handleModalToggle}
+                        <motion.div 
+                            className="side-panel-content"
+                            onClick={(e) => e.stopPropagation()}
+                            initial={{ x: "-100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "-100%" }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
                         >
-                            ×
-                        </button>
-                        <h3>More About Me</h3>
-                        <p>
-                            I’m a frontend-focused fullstack developer with a
-                            background in Electrical and Information
-                            Engineering. My journey into tech has been anything
-                            but one-dimensional—shaped by a blend of freelance
-                            projects, impactful startups, and a creative lens
-                            from photography.
-                            <br />
-                            <br />
-                            I’ve worked with{" "}
-                            <a
-                                href="https://taaleema.com"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <button
+                                className="close-panel-btn"
+                                onClick={handlePanelToggle}
                             >
-                                Taaleema
-                            </a>
-                            , an EdTech platform helping bridge immigration gaps
-                            between Africa and the Gulf (GCC) countries. I also
-                            contributed to{" "}
-                            <a
-                                href="https://awasource.com"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                Awasource
-                            </a>
-                            , a job connection platform that empowers talent and
-                            clients alike.
-                            <br />
-                            <br />
-                            My freelance work includes projects like{" "}
-                            <a
-                                href="https://craft9ja.vercel.app"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                Craft9ja
-                            </a>
-                            , where I developed a product showcase site for
-                            handcrafted furniture and art, and{" "}
-                            <a
-                                href="https://dakestel-dashboard.vercel.app"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                Dakestel Dashboard
-                            </a>
-                            , a logistics and records system for a cleaning
-                            package retail company.
-                            <br />
-                            <br />
-                            Beyond development, I’m a photographer — a skill
-                            that helps me bring depth, perspective, and beauty
-                            into every interface I create.
-                        </p>
-                    </div>
-                </div>
-            )}
+                                <FiX />
+                            </button>
+                            
+                            <div className="panel-navigation">
+                                <motion.div
+                                    className={`nav-item ${activeTab === "me" ? "active" : ""}`}
+                                    onClick={() => handleTabChange("me")}
+                                    whileHover={{ scale: 1.05 }}
+                                >
+                                    <span>Me</span>
+                                </motion.div>
+                                <motion.div
+                                    className={`nav-item ${activeTab === "hobbies" ? "active" : ""}`}
+                                    onClick={() => handleTabChange("hobbies")}
+                                    whileHover={{ scale: 1.05 }}
+                                >
+                                    <span>Hobbies</span>
+                                </motion.div>
+                            </div>
+                            
+                            <div className="panel-content">
+                                {activeTab === "me" && (
+                                    <motion.div
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        <h3>About Me</h3>
+                                        <p>
+                                            I'm a frontend-focused fullstack developer with a background in 
+                                            Electrical and Information Engineering. My journey into software 
+                                            development began when I discovered my passion for creating 
+                                            intuitive user interfaces that solve real problems.
+                                        </p>
+                                        <p>
+                                            With over {diffYears} years of experience, I've worked on various
+                                            projects ranging from small business websites to complex web
+                                            applications. My engineering background gives me a unique
+                                            perspective on problem-solving and system design.
+                                        </p>
+                                        <p>
+                                            When approaching a project, I focus on creating solutions that
+                                            are not only technically sound but also deliver exceptional
+                                            user experiences. I believe the best products come from
+                                            combining technical excellence with thoughtful design.
+                                        </p>
+                                    </motion.div>
+                                )}
+                                
+                                {activeTab === "hobbies" && (
+                                    <motion.div
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        <h3>My Hobbies</h3>
+                                        <p>
+                                            When I'm not coding, you can find me:
+                                        </p>
+                                        <ul>
+                                            <li> Doing photography </li>
+                                            <li> Listening to and discovering new music</li>
+                                            <li>Writing about tech and creative processes</li>
+                                            <li>At the Gym</li>
+                                            <li>Reading books on design, psychology, and technology</li>
+                                        </ul>
+                                    </motion.div>
+                                )}
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.div>
     );
 }
