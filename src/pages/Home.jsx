@@ -8,6 +8,29 @@ import FeaturedProjects from "../components/FeaturedProjects";
 import Testimonials from "../components/Testimonials";
 import FourDs from "../components/FourDs";
 
+const containerVariants = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.3,
+        },
+    },
+};
+
+const iconVariants = {
+    hidden: { opacity: 0, x: -30, scale: 0.8 },
+    visible: {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        transition: {
+            type: "spring",
+            stiffness: 500,
+            damping: 200,
+        },
+    },
+};
+
 function Home() {
     const companiesRef = useRef(null);
 
@@ -24,18 +47,41 @@ function Home() {
                 <div className="home-info">
                     <motion.div
                         className="name-section"
-                        initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8 }}
+                        initial={{ opacity: 0, y: 100 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, ease: "easeOut" }}
                     >
-                        <h2 className="title">CHILL ENGINEER</h2>
-                        <h1 className="title">AND DESIGNER</h1>
-                        <h2 className="name">KEN AGBAPUONWU</h2>
+                        <motion.h2
+                            className="title"
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1, delay: 0.2 }}
+                        >
+                            CREATIVE ENGINEER
+                        </motion.h2>
+
+                        <motion.h1
+                            className="title"
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1, delay: 0.7 }}
+                        >
+                            AND DESIGNER
+                        </motion.h1>
+
+                        <motion.h2
+                            className="name"
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.8 }}
+                        >
+                            KEN AGBAPUONWU
+                        </motion.h2>
 
                         <p className="description">
-                            A front-end heavy fullstack Software engineer with
-                            over 2 years of experience converting challenges &
-                            ideas into intuitive and scalable solutions.
+                            A front-end heavy fullstack Software engineer, I
+                            support designers and agencies with creative
+                            development.
                         </p>
 
                         <div className="home-links">
@@ -79,41 +125,52 @@ function Home() {
                             className="profile-image"
                         />
 
-                        <div className="social-links">
-                            <a
+                        {/* Social Icons */}
+                        <motion.div
+                            className="social-links"
+                            variants={containerVariants}
+                            initial="hidden"
+                            animate="visible"
+                        >
+                            <motion.a
                                 href="https://github.com/kennygray-dev"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="social-icon"
+                                variants={iconVariants}
                             >
                                 <div className="icon-circle">
                                     <FaGithub className="icon" />
                                     <div className="shine"></div>
                                 </div>
-                            </a>
-                            <a
+                            </motion.a>
+
+                            <motion.a
                                 href="https://www.linkedin.com/in/ken-agbapuonwu-3134bab5/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="social-icon"
+                                variants={iconVariants}
                             >
                                 <div className="icon-circle">
                                     <FaLinkedin className="icon" />
                                     <div className="shine"></div>
                                 </div>
-                            </a>
-                            <a
+                            </motion.a>
+
+                            <motion.a
                                 href="mailto:kenagbapuonwu@gmail.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="social-icon"
+                                variants={iconVariants}
                             >
                                 <div className="icon-circle">
                                     <FaEnvelope className="icon" />
                                     <div className="shine"></div>
                                 </div>
-                            </a>
-                        </div>
+                            </motion.a>
+                        </motion.div>
                     </motion.div>
                 </div>
 
@@ -151,10 +208,10 @@ function Home() {
                 <FeaturedProjects />
             </div>
             <div className="testimonials-wrapper">
-              <Testimonials />
+                <Testimonials />
             </div>
             <div className="four-ds-wrapper">
-              <FourDs />
+                <FourDs />
             </div>
         </div>
     );
