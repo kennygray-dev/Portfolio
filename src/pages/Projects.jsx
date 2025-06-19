@@ -41,7 +41,7 @@ const Projects = () => {
             details:
                 "Dakestel is a company specializing in the retail and personalization of home and car care resources. I developed a full-stack analytics dashboard for Dakestel that tracks user behavior and sales performance over time, providing insights into product trends, customer engagement, and revenue growth.",
         },
-         {
+        {
             links: "https://grayshub.vercel.app/",
             image: "https://i.imgur.com/a67bQWT.jpeg",
             title: "Wallpaper/Inspo App",

@@ -1,82 +1,78 @@
 body {
-   background: linear-gradient(135deg, #182a2e, #000000);
+    background: linear-gradient(135deg, #182a2e, #000000);
 
-  p {
-    color: rgba(228, 238, 240, 0.9);
+    p {
+        color: rgba(228, 238, 240, 0.9);
+    }
 
-  }
-
-  font-family: "DM Sans";
+    font-family: "DM Sans";
 }
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-body, html {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  width: 100%;
+body,
+html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100%;
 }
-
 
 .footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  color: #fff;
-  flex-wrap: wrap;
-  border-top: 1px solid rgba(255, 91, 4, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    color: #fff;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255, 91, 4, 0.2);
 }
 
 .footer-left {
-  font-size: 0.9rem;
+    font-size: 0.9rem;
 }
 
 .footer-right {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
 
 .social-icons a {
-  color: #fff;
-  font-size: 1.2rem;
-  margin-right: 0.5rem;
-  transition: color 0.3s ease;
-  gap: 2rem;
+    color: #fff;
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    transition: color 0.3s ease;
+    gap: 2rem;
 }
 
 .social-icons a:hover {
-  color: #ff5b04; /* Accent color */
+    color: #ff5b04; /* Accent color */
 }
 
 .back-to-top {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 .back-to-top:hover {
-  transform: translateY(-3px);
-  color: #ff5b04;
+    transform: translateY(-3px);
+    color: #ff5b04;
 }
 
 @media (max-width: 768px) {
-  .footer {
-    flex-direction: row;
-   
-    text-align: center;
-  }
+    .footer {
+        flex-direction: row;
 
+        text-align: center;
+    }
 
-  .social-icons {
-    display: none;
-  }
-
-  
+    .social-icons {
+        display: none;
+    }
 }

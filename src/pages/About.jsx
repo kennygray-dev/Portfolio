@@ -108,7 +108,10 @@ function About() {
                     </div>
                 </motion.div>
 
-                <motion.div className="about-box left" variants={variantsFromLeft}>
+                <motion.div
+                    className="about-box left"
+                    variants={variantsFromLeft}
+                >
                     <div className="profile-highlight">
                         <img
                             src="https://i.imgur.com/7J5vEvM.jpeg"
@@ -150,7 +153,10 @@ function About() {
                     </div>
                 </motion.div>
 
-                <motion.div className="about-box right" variants={variantsFromRight}>
+                <motion.div
+                    className="about-box right"
+                    variants={variantsFromRight}
+                >
                     <h3>Favorite Tools</h3>
                     <div className="tools-wrapper">
                         {[
@@ -208,14 +214,20 @@ function About() {
                     </div>
                 </motion.div>
 
-                <motion.div className="about-box left" variants={variantsFromLeft}>
+                <motion.div
+                    className="about-box left"
+                    variants={variantsFromLeft}
+                >
                     <p className="experience-count">
                         <span>{diffYears}+</span>
                     </p>
                     <p>Years of Experience</p>
                 </motion.div>
 
-                <motion.div className="about-box right" variants={variantsFromRight}>
+                <motion.div
+                    className="about-box right"
+                    variants={variantsFromRight}
+                >
                     <h3>Something Cool</h3>
                     <p>
                         I write code like I compose a photo: balanced, detailed,
@@ -226,7 +238,10 @@ function About() {
                     </p>
                 </motion.div>
 
-                <motion.div className="about-box full" variants={variantsFromBottom}>
+                <motion.div
+                    className="about-box full"
+                    variants={variantsFromBottom}
+                >
                     <h3>Read My Articles</h3>
                     <div className="article-carousel">
                         {[
@@ -271,7 +286,7 @@ function About() {
             {/* Side Panel */}
             <AnimatePresence>
                 {showSidePanel && (
-                    <motion.div 
+                    <motion.div
                         className="side-panel-overlay"
                         onClick={handlePanelToggle}
                         initial={{ opacity: 0 }}
@@ -279,13 +294,17 @@ function About() {
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
                     >
-                        <motion.div 
+                        <motion.div
                             className="side-panel-content"
                             onClick={(e) => e.stopPropagation()}
                             initial={{ x: "-100%" }}
                             animate={{ x: 0 }}
                             exit={{ x: "-100%" }}
-                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 300,
+                                damping: 30,
+                            }}
                         >
                             <button
                                 className="close-panel-btn"
@@ -293,24 +312,28 @@ function About() {
                             >
                                 <FiX />
                             </button>
-                            
+
                             <div className="panel-navigation">
                                 <motion.div
-                                    className={`nav-item ${activeTab === "me" ? "active" : ""}`}
+                                    className={`nav-item ${
+                                        activeTab === "me" ? "active" : ""
+                                    }`}
                                     onClick={() => handleTabChange("me")}
                                     whileHover={{ scale: 1.05 }}
                                 >
                                     <span>Me</span>
                                 </motion.div>
                                 <motion.div
-                                    className={`nav-item ${activeTab === "hobbies" ? "active" : ""}`}
+                                    className={`nav-item ${
+                                        activeTab === "hobbies" ? "active" : ""
+                                    }`}
                                     onClick={() => handleTabChange("hobbies")}
                                     whileHover={{ scale: 1.05 }}
                                 >
                                     <span>Hobbies</span>
                                 </motion.div>
                             </div>
-                            
+
                             <div className="panel-content">
                                 {activeTab === "me" && (
                                     <motion.div
@@ -320,26 +343,38 @@ function About() {
                                     >
                                         <h3>About Me</h3>
                                         <p>
-                                            I'm a frontend-focused fullstack developer with a background in 
-                                            Electrical and Information Engineering. My journey into software 
-                                            development began when I discovered my passion for creating 
-                                            intuitive user interfaces that solve real problems.
+                                            I'm a frontend-focused fullstack
+                                            developer with a background in
+                                            Electrical and Information
+                                            Engineering. My journey into
+                                            software development began when I
+                                            discovered my passion for creating
+                                            intuitive user interfaces that solve
+                                            real problems.
                                         </p>
                                         <p>
-                                            With over {diffYears} years of experience, I've worked on various
-                                            projects ranging from small business websites to complex web
-                                            applications. My engineering background gives me a unique
-                                            perspective on problem-solving and system design.
+                                            With over {diffYears} years of
+                                            experience, I've worked on various
+                                            projects ranging from small business
+                                            websites to complex web
+                                            applications. My engineering
+                                            background gives me a unique
+                                            perspective on problem-solving and
+                                            system design.
                                         </p>
                                         <p>
-                                            When approaching a project, I focus on creating solutions that
-                                            are not only technically sound but also deliver exceptional
-                                            user experiences. I believe the best products come from
-                                            combining technical excellence with thoughtful design.
+                                            When approaching a project, I focus
+                                            on creating solutions that are not
+                                            only technically sound but also
+                                            deliver exceptional user
+                                            experiences. I believe the best
+                                            products come from combining
+                                            technical excellence with thoughtful
+                                            design.
                                         </p>
                                     </motion.div>
                                 )}
-                                
+
                                 {activeTab === "hobbies" && (
                                     <motion.div
                                         initial={{ opacity: 0 }}
@@ -348,14 +383,25 @@ function About() {
                                     >
                                         <h3>My Hobbies</h3>
                                         <p>
-                                            When I'm not coding, you can find me:
+                                            When I'm not coding, you can find
+                                            me:
                                         </p>
                                         <ul>
                                             <li> Doing photography </li>
-                                            <li> Listening to and discovering new music</li>
-                                            <li>Writing about tech and creative processes</li>
+                                            <li>
+                                                {" "}
+                                                Listening to and discovering new
+                                                music
+                                            </li>
+                                            <li>
+                                                Writing about tech and creative
+                                                processes
+                                            </li>
                                             <li>At the Gym</li>
-                                            <li>Reading books on design, psychology, and technology</li>
+                                            <li>
+                                                Reading books on design,
+                                                psychology, and technology
+                                            </li>
                                         </ul>
                                     </motion.div>
                                 )}
