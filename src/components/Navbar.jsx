@@ -43,10 +43,7 @@ function Navbar() {
     }, []);
 
     return (
-        <nav
-            className={`navbar ${showNavbar ? "show-nav" : "hide-nav"}`}
-            ref={navRef}
-        >
+        <nav className="navbar" ref={navRef}>
             <div className="nav-header">
                 {/* Desktop Logo */}
                 <Link to="/" className="logo desktop-logo" onClick={closeMenu}>

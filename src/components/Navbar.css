@@ -1,25 +1,16 @@
 .navbar {
-  background: transparent;
-  padding: 1rem 2%;
-  overflow-x: hidden;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-sizing: border-box;
-  margin: 0;
-  position: relative;
+    background: transparent;
+    padding: 1rem 2%;
+    overflow-x: hidden;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 0;
+    position: relative;
 }
-
-.show-nav {
-    transform: translateY(0);
-}
-
-.hide-nav {
-    transform: translateY(-100%);
-}
-
 
 /* Logo */
 .logo-image {

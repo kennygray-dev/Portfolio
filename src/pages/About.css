@@ -442,7 +442,12 @@
     }
 
     .article-carousel {
-    display: flex;
-    flex-direction: column;
-}
+        display: flex;
+        flex-direction: column;
+    }
+    .close-panel-btn {
+        color: #000000;
+        display: flex;
+        justify-self: end;
+    }
 }
