@@ -77,7 +77,6 @@ function Home() {
                             AND DESIGNER.
                         </motion.h1>
 
-
                         <p className="description">
                             A front-end heavy fullstack Software engineer, I
                             support designers and agencies with creative
@@ -120,24 +119,23 @@ function Home() {
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
                         <motion.div
-    className="hologram-wrapper"
-    animate={{ y: [0, -10, 0] }}
-    transition={{
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut",
-    }}
-    whileHover={{
-        filter: "drop-shadow(0 0 15px rgba(0, 255, 255, 0.4)) brightness(1.1)",
-    }}
->
-    <img
-        src="https://i.imgur.com/cxvks6I.png"
-        alt="Kennedy Agbapuonwu"
-        className="profile-image"
-    />
-</motion.div>
-
+                            className="hologram-wrapper"
+                            animate={{ y: [0, -10, 0] }}
+                            transition={{
+                                duration: 4,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                            }}
+                            whileHover={{
+                                filter: "drop-shadow(0 0 15px rgba(0, 255, 255, 0.4)) brightness(1.1)",
+                            }}
+                        >
+                            <img
+                                src="https://i.imgur.com/cxvks6I.png"
+                                alt="Kennedy Agbapuonwu"
+                                className="profile-image"
+                            />
+                        </motion.div>
 
                         {/* Social Icons */}
                         <motion.div
