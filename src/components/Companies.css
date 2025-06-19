@@ -17,7 +17,7 @@
 
 .companies-title {
     color: rgba(228, 238, 240, 0.9);
-    font-size: 2rem;
+    font-size: 1rem;
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
@@ -44,6 +44,11 @@
     transition: all 0.3s ease;
 }
 
+.company-logo:hover {
+  transform: scale(1.05) rotate(-2deg);
+  filter:drop-shadow(0 0 8px rgba(255, 91, 4, 0.6));
+  cursor: pointer;
+}
 
 
 .back-link {

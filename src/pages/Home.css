@@ -33,7 +33,6 @@
     font-size: 1.8rem;
     font-weight: 100;
     margin-bottom: 2rem;
-    color: #ff5b04;
 }
 
 .description {
@@ -42,7 +41,6 @@
     line-height: 1.2;
     margin-bottom: 3rem;
     color: rgba(228, 238, 240, 0.9);
-    text-transform: uppercase;
 
 }
 /* Button Styles */
@@ -76,8 +74,8 @@
 
 /* About Button Specific Styles */
 .about-button {
-    background-color: #075056;
-    border: 0.5px solid #075056;
+    background-color: #ff5b04;
+    border: 0.5px solid #ff5b04;
 }
 
 .about-button:hover {
@@ -88,11 +86,11 @@
 /* Works Button Specific Styles */
 .works-button {
     background-color: transparent;
-    border: 0.5px solid #075056;
+    border: 0.5px solid #ff5b04;
 }
 
 .works-button:hover {
-    background-color: #075056;
+    background-color: #ff5b04;
     box-shadow: 0 0 15px rgba(7, 80, 86, 0.5);
 }
 
@@ -111,8 +109,14 @@
     width: 100%;
     max-width: 300px;
     height: auto;
-    transform: scaleX(-1);
+    transform: scaleX(-1); /* keeps flipped appearance */
 }
+
+.hologram-wrapper {
+    display: inline-block;
+    transition: filter 0.4s ease;
+}
+
 
 /* Social Links */
 .social-links {
@@ -244,13 +248,13 @@
 .arrow-icon {
     color: rgba(255, 255, 255, 0.9);
     font-size: 2.5rem;
-    filter: drop-shadow(0 0 8px rgba(255, 91, 4, 0.5));
+    filter: drop-shadow(0 0 8px rgb(255, 92, 4));
     transition: all 0.3s ease;
 }
 
 .down-arrow:hover .arrow-icon {
     color: #ff5b04;
-    filter: drop-shadow(0 0 12px rgba(255, 91, 4, 0.8));
+    filter: drop-shadow(0 0 12px rgb(255, 92, 4));
 }
 
 @keyframes shine {

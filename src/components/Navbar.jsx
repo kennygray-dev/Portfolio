@@ -17,6 +17,25 @@ function Navbar() {
             closeMenu();
         }
     };
+    const [showNavbar, setShowNavbar] = useState(true);
+    const lastScrollY = useRef(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY < lastScrollY.current) {
+                setShowNavbar(true); // scrolling up
+            } else {
+                setShowNavbar(false); // scrolling down
+            }
+
+            lastScrollY.current = currentScrollY;
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     useEffect(() => {
         document.addEventListener("click", handleClickOutside);
@@ -85,7 +104,11 @@ function Navbar() {
                 {/* Mobile Logo */}
                 <li className="mobile-logo">
                     <Link to="/" onClick={closeMenu}>
-                        <img src="/logo.png" alt="Logo" className="logo-image" />
+                        <img
+                            src="/logo.png"
+                            alt="Logo"
+                            className="logo-image"
+                        />
                     </Link>
                 </li>
                 <li>
@@ -101,7 +124,9 @@ function Navbar() {
                     <Link
                         to="/about"
                         onClick={closeMenu}
-                        className={location.pathname === "/about" ? "active" : ""}
+                        className={
+                            location.pathname === "/about" ? "active" : ""
+                        }
                     >
                         About Me
                     </Link>
@@ -110,7 +135,9 @@ function Navbar() {
                     <Link
                         to="/projects"
                         onClick={closeMenu}
-                        className={location.pathname === "/projects" ? "active" : ""}
+                        className={
+                            location.pathname === "/projects" ? "active" : ""
+                        }
                     >
                         Portfolio
                     </Link>

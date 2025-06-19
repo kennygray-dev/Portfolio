@@ -52,6 +52,14 @@ function Home() {
                         transition={{ duration: 1, ease: "easeOut" }}
                     >
                         <motion.h2
+                            className="name"
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.8 }}
+                        >
+                            KEN AGBAPUONWU
+                        </motion.h2>
+                        <motion.h2
                             className="title"
                             initial={{ opacity: 0, y: 40 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -66,17 +74,9 @@ function Home() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, delay: 0.7 }}
                         >
-                            AND DESIGNER
+                            AND DESIGNER.
                         </motion.h1>
 
-                        <motion.h2
-                            className="name"
-                            initial={{ opacity: 0, y: 40 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.8 }}
-                        >
-                            KEN AGBAPUONWU
-                        </motion.h2>
 
                         <p className="description">
                             A front-end heavy fullstack Software engineer, I
@@ -119,11 +119,25 @@ function Home() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
-                        <img
-                            src="https://i.imgur.com/cxvks6I.png"
-                            alt="Kennedy Agbapuonwu"
-                            className="profile-image"
-                        />
+                        <motion.div
+    className="hologram-wrapper"
+    animate={{ y: [0, -10, 0] }}
+    transition={{
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut",
+    }}
+    whileHover={{
+        filter: "drop-shadow(0 0 15px rgba(0, 255, 255, 0.4)) brightness(1.1)",
+    }}
+>
+    <img
+        src="https://i.imgur.com/cxvks6I.png"
+        alt="Kennedy Agbapuonwu"
+        className="profile-image"
+    />
+</motion.div>
+
 
                         {/* Social Icons */}
                         <motion.div

@@ -15,7 +15,7 @@ function Companies() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
         >
-            <h1 className="companies-title">Some companies I have worked with</h1>
+            <h1 className="companies-title">Some companies I've helped shape</h1>
 
             <div className="companies-grid">
                 {companies.map((company, index) => (
