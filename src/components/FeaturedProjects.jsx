@@ -1,35 +1,30 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import {
-    FiClock,
-    FiChevronDown,
-    FiChevronUp,
-    FiArrowRight,
-} from "react-icons/fi";
+import { useState, useRef } from "react";
+import { FiClock, FiArrowRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import "./FeaturedProjects.css";
 
 const projects = [
     {
-        title: "Taaleema",
-        description:
-            "Taaleema is an AI-powered educational platform that supports African migrants by providing culturally-informed learning resources and guidance on Gulf country practices. From IELTS preparation to cultural integration, Taaleema equips users with the knowledge and skills needed for a smooth migration journey.",
-        readTime: "1 min read",
-        image: "https://i.imgur.com/2o8BlgL.png",
-        link: "#",
-    },
-    {
         title: "Awa Source",
         description:
-            "AWA Source is a modern job-seeking platform that connects top-tier talents with clients across various industries. It streamlines the hiring process through curated matches, skill-based filtering, and a user-friendly interface tailored for both freelancers and businesses",
+            "AWA Source is a modern job-seeking platform that connects top-tier talents with clients across various industries.",
         readTime: "1 min read",
         image: "https://i.imgur.com/3TNFuz5.png",
         link: "#",
     },
     {
+        title: "Taaleema",
+        description:
+            "Taaleema is an AI-powered educational platform that supports African migrants by providing culturally-informed learning resources and guidance on Gulf country practices.",
+        readTime: "1 min read",
+        image: "https://i.imgur.com/2o8BlgL.png",
+        link: "#",
+    },
+    {
         title: "Dakestel",
         description:
-            "Dakestel is a company specializing in the retail and personalization of home and car care resources. I developed a full-stack analytics dashboard for Dakestel that tracks user behavior and sales performance over time, providing insights into product trends, customer engagement, and revenue growth.",
+            "Dakestel specializes in the retail and personalization of home and car care resources.",
         readTime: "1 min read",
         image: "https://i.imgur.com/T4i7bZU.png",
         link: "#",
@@ -37,11 +32,21 @@ const projects = [
 ];
 
 function FeaturedProjects() {
-    const [lockedIndex, setLockedIndex] = useState(0);
-    const [hoverIndex, setHoverIndex] = useState(null);
+    const [activeIndex, setActiveIndex] = useState(null);
+    const [hoveringIndex, setHoveringIndex] = useState(null);
+    const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
-    const toggleLock = (index) => {
-        setLockedIndex(lockedIndex === index ? null : index);
+    const handleDoubleClick = (index) => {
+        setActiveIndex((prev) => (prev === index ? null : index));
+    };
+
+    const handleMouseMove = (e, cardRef) => {
+        if (!cardRef.current) return;
+        const rect = cardRef.current.getBoundingClientRect();
+        setCursorPos({
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top,
+        });
     };
 
     return (
@@ -50,43 +55,68 @@ function FeaturedProjects() {
 
             <div className="projects-stack">
                 {projects.map((project, index) => {
-                    const isOpen =
-                        lockedIndex === index ||
-                        (lockedIndex === null && hoverIndex === index);
+                    const isActive = activeIndex === index;
+                    const cardRef = useRef(null);
 
                     return (
-                        <motion.div
+                        <div
                             key={index}
-                            className={`project-card ${isOpen ? "active" : ""}`}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{
-                                opacity: 1,
-                                y: 0,
-                                transition: { delay: index * 0.1 },
-                            }}
+                            className="project-card"
+                            onMouseEnter={() => setHoveringIndex(index)}
+                            onMouseLeave={() => setHoveringIndex(null)}
                         >
-                            <div
-                                className="project-header"
-                                onClick={() => toggleLock(index)}
+                            <motion.h3
+                                className="project-title"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: index * 0.2 }}
+                                viewport={{ once: true, amount: 0.3 }}
                             >
-                                <h3 className="project-title">
-                                    {project.title}
-                                </h3>
-                                {isOpen ? (
-                                    <FiChevronUp className="expand-icon" />
-                                ) : (
-                                    <FiChevronDown className="expand-icon" />
+                                {project.title}
+                            </motion.h3>
+
+                            <div
+                                ref={cardRef}
+                                className={`project-image-container ${
+                                    hoveringIndex === index && !isActive
+                                        ? "custom-cursor"
+                                        : ""
+                                }`}
+                                onDoubleClick={() => handleDoubleClick(index)}
+                                onMouseMove={(e) => handleMouseMove(e, cardRef)}
+                            >
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="project-image"
+                                />
+
+                                {hoveringIndex === index && !isActive && (
+                                    <div
+                                        className="drag-hint-circle"
+                                        style={{
+                                            left: `${cursorPos.x}px`,
+                                            top: `${cursorPos.y}px`,
+                                        }}
+                                    >
+                                        Double Click for More
+                                    </div>
                                 )}
                             </div>
 
-                            {isOpen && (
+                            {isActive && (
                                 <motion.div
-                                    className="project-content"
-                                    initial={{ opacity: 0, height: 0 }}
-                                    animate={{ opacity: 1, height: "auto" }}
-                                    transition={{ duration: 0.3 }}
+                                    className="project-info-drawer"
+                                    initial={{ opacity: 0, x: "100%" }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: "100%" }}
+                                    transition={{
+                                        type: "spring",
+                                        stiffness: 300,
+                                        damping: 30,
+                                    }}
                                 >
-                                    <div className="project-info">
+                                    <div className="project-info-content">
                                         <div className="read-time">
                                             <FiClock className="clock-icon" />
                                             <span>{project.readTime}</span>
@@ -94,32 +124,29 @@ function FeaturedProjects() {
                                         <p className="project-description">
                                             {project.description}
                                         </p>
-
                                         <motion.a
                                             href={project.link}
                                             className="project-link"
                                             whileHover={{ scale: 1.05 }}
                                             whileTap={{ scale: 0.95 }}
                                         >
-                                            View Project{" "}
+                                        {" "}
                                             <FiArrowRight className="arrow-icon" />
                                         </motion.a>
                                     </div>
-                                    <div className="project-image-container">
-                                        <img
-                                            src={project.image}
-                                            alt={project.title}
-                                            className="project-image"
-                                        />
-                                    </div>
+                                    <button
+                                        className="close-drawer"
+                                        onClick={() => setActiveIndex(null)}
+                                    >
+                                        &times;
+                                    </button>
                                 </motion.div>
                             )}
-                        </motion.div>
+                        </div>
                     );
                 })}
             </div>
 
-            {/* View More Projects Button */}
             <motion.div
                 className="view-more-container"
                 initial={{ opacity: 0 }}
