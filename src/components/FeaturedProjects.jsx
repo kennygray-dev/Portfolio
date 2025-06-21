@@ -65,16 +65,6 @@ function FeaturedProjects() {
                             onMouseEnter={() => setHoveringIndex(index)}
                             onMouseLeave={() => setHoveringIndex(null)}
                         >
-                            <motion.h3
-                                className="project-title"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: index * 0.2 }}
-                                viewport={{ once: true, amount: 0.3 }}
-                            >
-                                {project.title}
-                            </motion.h3>
-
                             <div
                                 ref={cardRef}
                                 className={`project-image-container ${
@@ -116,6 +106,18 @@ function FeaturedProjects() {
                                         damping: 30,
                                     }}
                                 >
+                                    <motion.h3
+                                        className="project-title"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{
+                                            duration: 0.5,
+                                            delay: index * 0.2,
+                                        }}
+                                        viewport={{ once: true, amount: 0.3 }}
+                                    >
+                                        {project.title}
+                                    </motion.h3>
                                     <div className="project-info-content">
                                         <div className="read-time">
                                             <FiClock className="clock-icon" />
@@ -130,7 +132,7 @@ function FeaturedProjects() {
                                             whileHover={{ scale: 1.05 }}
                                             whileTap={{ scale: 0.95 }}
                                         >
-                                        {" "}
+                                            {" "}
                                             <FiArrowRight className="arrow-icon" />
                                         </motion.a>
                                     </div>
