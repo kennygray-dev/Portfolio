@@ -160,7 +160,7 @@
     color: white;
 }
 
-/* Responsive Design */
+
 /* Hide toggle buttons on mobile */
 @media (max-width: 768px) {
     .view-toggle {
