@@ -126,14 +126,16 @@
 /* Tools */
 .tools-wrapper {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     margin-top: 1rem;
+    
 }
 
 .tool-item {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.4);
     background: rgba(7, 80, 86, 0.3);
@@ -163,6 +165,7 @@
 /* Profile Section */
 .profile-highlight {
     display: flex;
+    flex-direction: column;
     gap: 1.5rem;
     align-items: center;
     justify-content: start;
@@ -180,6 +183,8 @@
 
 .profile-details {
     font-size: 1rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .profile-details p {
