@@ -273,7 +273,7 @@
     .pointers-button {
         width: 100%;
     }
-}
+
 
 /* Animations */
 @keyframes shine {
@@ -286,7 +286,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+
     .home-container {
         width: 100%;
         overflow-x: hidden;
@@ -333,11 +333,11 @@
         align-items: flex-end;
     }
 
-    @media (max-width: 768px) {
+    
         .social-links {
             display: none !important;
         }
-    }
+    
 
     .profile-image {
         max-width: 150px;
@@ -361,5 +361,7 @@
 
     .down-arrow-container {
         display: none;
-    }
+    
+}
+
 }

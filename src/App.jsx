@@ -6,7 +6,6 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
-import Contact from "./pages/Contact";
 import Footer from "./components/Footer";
 
 function App() {
@@ -15,19 +14,18 @@ function App() {
     return (
         <div className="App">
             <BrowserRouter>
-                {showSplash ? (
-                    <SplashScreen onComplete={() => setShowSplash(false)} />
-                ) : (
-                    <>
-                        <Navbar />
-                        <Routes>
-                            <Route path="/" element={<Home />} />
-                            <Route path="/about" element={<About />} />
-                            <Route path="/projects" element={<Projects />} />
-                            <Route path="/contact" element={<Contact />} />
-                        </Routes>
-                        <Footer />
-                    </>
+                <Navbar />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/projects" element={<Projects />} />
+                </Routes>
+                <Footer />
+
+                {showSplash && (
+                    <div className="splash-overlay">
+                        <SplashScreen onComplete={() => setShowSplash(false)} />
+                    </div>
                 )}
             </BrowserRouter>
         </div>
