@@ -14,7 +14,6 @@
     color: #494949;
 }
 
-
 .projects-stack {
     margin: 0 auto;
     max-width: 1000px;
@@ -204,7 +203,7 @@
     background: #ccc;
 }
 
-/* Responsive */
+/* ✅ Responsive */
 @media (max-width: 768px) {
     .project-info-drawer {
         width: 70%;
@@ -218,8 +217,7 @@
     .project-title {
         font-size: 1.6rem;
     }
-
-
+} /* 👈✅ this closing brace was missing before */
 
 @media (max-width: 480px) {
     .project-info-drawer {
