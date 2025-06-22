@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope, FaArrowDown } from "react-icons/fa";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import Companies from "../components/Companies";
@@ -31,8 +31,15 @@ const iconVariants = {
     },
 };
 
-function Home() {
+function Home({ splashComplete }) {
     const companiesRef = useRef(null);
+    const [animationsEnabled, setAnimationsEnabled] = useState(false);
+
+    useEffect(() => {
+        if (splashComplete) {
+            setAnimationsEnabled(true);
+        }
+    }, [splashComplete]);
 
     const scrollToCompanies = () => {
         companiesRef.current?.scrollIntoView({
@@ -48,13 +55,15 @@ function Home() {
                     <motion.div
                         className="name-section"
                         initial={{ opacity: 0, y: 100 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        animate={animationsEnabled ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 1, ease: "easeOut" }}
                     >
                         <motion.h2
                             className="name"
                             initial={{ opacity: 0, y: 40 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            animate={
+                                animationsEnabled ? { opacity: 1, y: 0 } : {}
+                            }
                             transition={{ duration: 0.6, delay: 0.8 }}
                         >
                             KEN AGBAPUONWU
@@ -62,7 +71,9 @@ function Home() {
                         <motion.h2
                             className="title"
                             initial={{ opacity: 0, y: 40 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            animate={
+                                animationsEnabled ? { opacity: 1, y: 0 } : {}
+                            }
                             transition={{ duration: 1, delay: 0.2 }}
                         >
                             CREATIVE ENGINEER
@@ -71,7 +82,9 @@ function Home() {
                         <motion.h1
                             className="title"
                             initial={{ opacity: 0, y: 40 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            animate={
+                                animationsEnabled ? { opacity: 1, y: 0 } : {}
+                            }
                             transition={{ duration: 1, delay: 0.7 }}
                         >
                             AND DESIGNER.
@@ -90,8 +103,12 @@ function Home() {
                             >
                                 <motion.button
                                     className="pointers-button about-button"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
+                                    whileHover={
+                                        animationsEnabled ? { scale: 1.05 } : {}
+                                    }
+                                    whileTap={
+                                        animationsEnabled ? { scale: 0.95 } : {}
+                                    }
                                 >
                                     <h3 className="pointers">ABOUT ME</h3>
                                 </motion.button>
@@ -103,8 +120,12 @@ function Home() {
                             >
                                 <motion.button
                                     className="pointers-button works-button"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
+                                    whileHover={
+                                        animationsEnabled ? { scale: 1.05 } : {}
+                                    }
+                                    whileTap={
+                                        animationsEnabled ? { scale: 0.95 } : {}
+                                    }
                                 >
                                     <h3 className="pointers">MY WORKS</h3>
                                 </motion.button>
@@ -115,20 +136,26 @@ function Home() {
                     <motion.div
                         className="image-social-section"
                         initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
+                        animate={animationsEnabled ? { opacity: 1, x: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
                         <motion.div
                             className="hologram-wrapper"
-                            animate={{ y: [0, -10, 0] }}
+                            animate={
+                                animationsEnabled ? { y: [0, -10, 0] } : {}
+                            }
                             transition={{
                                 duration: 4,
                                 repeat: Infinity,
                                 ease: "easeInOut",
                             }}
-                            whileHover={{
-                                filter: "drop-shadow(0 0 15px rgba(0, 255, 255, 0.4)) brightness(1.1)",
-                            }}
+                            whileHover={
+                                animationsEnabled
+                                    ? {
+                                          filter: "drop-shadow(0 0 15px rgba(0, 255, 255, 0.4)) brightness(1.1)",
+                                      }
+                                    : {}
+                            }
                         >
                             <img
                                 src="https://i.imgur.com/cxvks6I.png"
@@ -142,7 +169,7 @@ function Home() {
                             className="social-links"
                             variants={containerVariants}
                             initial="hidden"
-                            animate="visible"
+                            animate={animationsEnabled ? "visible" : "hidden"}
                         >
                             <motion.a
                                 href="https://github.com/kennygray-dev"
@@ -186,30 +213,32 @@ function Home() {
                     </motion.div>
                 </div>
 
-                {/* Pulsing Arrow */}
-                <motion.div
-                    className="down-arrow-container"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.5 }}
-                >
+                {/* Pulsing Arrow - Only renders when animations are enabled */}
+                {animationsEnabled && (
                     <motion.div
-                        className="down-arrow"
-                        onClick={scrollToCompanies}
-                        animate={{
-                            y: [0, 10, 0],
-                            scale: [1, 1.1, 1],
-                        }}
-                        transition={{
-                            duration: 1,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                        }}
-                        whileHover={{ scale: 1.2 }}
+                        className="down-arrow-container"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 1.5 }}
                     >
-                        <FaArrowDown className="arrow-icon" />
+                        <motion.div
+                            className="down-arrow"
+                            onClick={scrollToCompanies}
+                            animate={{
+                                y: [0, 10, 0],
+                                scale: [1, 1.1, 1],
+                            }}
+                            transition={{
+                                duration: 1,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                            }}
+                            whileHover={{ scale: 1.2 }}
+                        >
+                            <FaArrowDown className="arrow-icon" />
+                        </motion.div>
                     </motion.div>
-                </motion.div>
+                )}
             </div>
 
             {/* Companies Section */}
