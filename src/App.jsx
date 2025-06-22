@@ -9,27 +9,31 @@ import Projects from "./pages/Projects";
 import Footer from "./components/Footer";
 
 function App() {
-    const [showSplash, setShowSplash] = useState(true);
+  const [splashComplete, setSplashComplete] = useState(false);
 
-    return (
-        <div className="App">
-            <BrowserRouter>
-                <Navbar />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/projects" element={<Projects />} />
-                </Routes>
-                <Footer />
+  return (
+    <div className="App">
+      <BrowserRouter>
+        {!splashComplete && (
+          <div className="splash-container">
+            <SplashScreen onComplete={() => setSplashComplete(true)} />
+          </div>
+        )}
 
-                {showSplash && (
-                    <div className="splash-overlay">
-                        <SplashScreen onComplete={() => setShowSplash(false)} />
-                    </div>
-                )}
-            </BrowserRouter>
+        <div className="main-content">
+          <Navbar />
+          <Routes>
+            <Route 
+              path="/" 
+              element={<Home splashComplete={splashComplete} />} 
+            />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+          </Routes>
+          <Footer />
         </div>
-    );
+      </BrowserRouter>
+    </div>
+  );
 }
-
 export default App;

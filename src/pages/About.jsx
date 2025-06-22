@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiArrowRight, FiMapPin, FiMail, FiX } from "react-icons/fi";
+import {
+    FiArrowRight,
+    FiMapPin,
+    FiMail,
+    FiX,
+    FiExternalLink,
+} from "react-icons/fi";
 import { FaLinkedin, FaGithub, FaUserTie } from "react-icons/fa";
 import "./About.css";
 
@@ -274,7 +280,7 @@ function About() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        <FiArrowRight className="article-arrow" />
+                                        <FiExternalLink className="article-arrow" />
                                     </a>
                                 </div>
                             </motion.div>

@@ -91,7 +91,7 @@
     height: 120px;
     background: rgba(255, 254, 254, 0.95);
     font-weight: bold;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -155,8 +155,10 @@
     font-size: 1.05rem;
 }
 
-.arrow-icon {
+.arrow-icon-featured{
+    color: #182a2e;
     transition: transform 0.3s ease;
+    font-size: 2rem;
 }
 
 .project-link:hover .arrow-icon {
@@ -189,7 +191,7 @@
     background: #ff5b04;
     color: white;
     border: none;
-    padding: 0.8rem 1.5rem;
+    padding: 0.8rem 1rem;
     border-radius: 50px;
     font-size: 1rem;
     cursor: pointer;
@@ -201,6 +203,7 @@
 
 .view-more-button:hover {
     background: #ccc;
+    color: #182a2e;
 }
 
 /* ✅ Responsive */

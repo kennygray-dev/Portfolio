@@ -133,7 +133,7 @@ function FeaturedProjects() {
                                             whileTap={{ scale: 0.95 }}
                                         >
                                             {" "}
-                                            <FiArrowRight className="arrow-icon" />
+                                            <FiArrowRight className="arrow-icon-featured" />
                                         </motion.a>
                                     </div>
                                     <button
