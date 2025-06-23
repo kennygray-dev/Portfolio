@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope, FaArrowDown } from "react-icons/fa";
 import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import GitHubCalendar from "react-github-calendar";
+import { parseISO, isAfter } from "date-fns";
 import "./Home.css";
 import Companies from "../components/Companies";
 import FeaturedProjects from "../components/FeaturedProjects";
@@ -34,6 +36,7 @@ const iconVariants = {
 function Home({ splashComplete }) {
     const companiesRef = useRef(null);
     const [animationsEnabled, setAnimationsEnabled] = useState(false);
+    const [showCalendar, setShowCalendar] = useState(false);
 
     useEffect(() => {
         if (splashComplete) {
@@ -42,14 +45,11 @@ function Home({ splashComplete }) {
     }, [splashComplete]);
 
     const scrollToCompanies = () => {
-        companiesRef.current?.scrollIntoView({
-            behavior: "smooth",
-        });
+        companiesRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
     return (
         <div className="home-container">
-            {/* Main Home Content */}
             <div className="home-content">
                 <div className="home-info">
                     <motion.div
@@ -78,7 +78,6 @@ function Home({ splashComplete }) {
                         >
                             CREATIVE ENGINEER
                         </motion.h2>
-
                         <motion.h1
                             className="title"
                             initial={{ opacity: 0, y: 40 }}
@@ -89,7 +88,6 @@ function Home({ splashComplete }) {
                         >
                             AND DESIGNER.
                         </motion.h1>
-
                         <p className="description">
                             A front-end heavy fullstack Software engineer, I
                             support designers and agencies with creative
@@ -103,12 +101,8 @@ function Home({ splashComplete }) {
                             >
                                 <motion.button
                                     className="pointers-button about-button"
-                                    whileHover={
-                                        animationsEnabled ? { scale: 1.05 } : {}
-                                    }
-                                    whileTap={
-                                        animationsEnabled ? { scale: 0.95 } : {}
-                                    }
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
                                 >
                                     <h3 className="pointers">ABOUT ME</h3>
                                 </motion.button>
@@ -120,12 +114,8 @@ function Home({ splashComplete }) {
                             >
                                 <motion.button
                                     className="pointers-button works-button"
-                                    whileHover={
-                                        animationsEnabled ? { scale: 1.05 } : {}
-                                    }
-                                    whileTap={
-                                        animationsEnabled ? { scale: 0.95 } : {}
-                                    }
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
                                 >
                                     <h3 className="pointers">MY WORKS</h3>
                                 </motion.button>
@@ -149,13 +139,9 @@ function Home({ splashComplete }) {
                                 repeat: Infinity,
                                 ease: "easeInOut",
                             }}
-                            whileHover={
-                                animationsEnabled
-                                    ? {
-                                          filter: "drop-shadow(0 0 15px rgba(0, 255, 255, 0.4)) brightness(1.1)",
-                                      }
-                                    : {}
-                            }
+                            whileHover={{
+                                filter: "drop-shadow(0 0 15px rgba(0, 255, 255, 0.4)) brightness(1.1)",
+                            }}
                         >
                             <img
                                 src="https://i.imgur.com/cxvks6I.png"
@@ -171,18 +157,64 @@ function Home({ splashComplete }) {
                             initial="hidden"
                             animate={animationsEnabled ? "visible" : "hidden"}
                         >
-                            <motion.a
-                                href="https://github.com/kennygray-dev"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="social-icon"
-                                variants={iconVariants}
+                            <motion.div
+                                className="github-preview-wrapper"
+                                onMouseEnter={() => setShowCalendar(true)}
+                                onMouseLeave={() => setShowCalendar(false)}
                             >
-                                <div className="icon-circle">
-                                    <FaGithub className="icon" />
-                                    <div className="shine"></div>
-                                </div>
-                            </motion.a>
+                                <motion.a
+                                    href="https://github.com/kennygray-dev"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="social-icon"
+                                    variants={iconVariants}
+                                >
+                                    <div className="icon-circle">
+                                        <FaGithub className="icon" />
+                                        <div className="shine"></div>
+                                    </div>
+                                </motion.a>
+
+                                {showCalendar && (
+                                    <motion.div
+                                        className="calendar-preview"
+                                        initial={{
+                                            opacity: 0,
+                                            scale: 0.95,
+                                            y: -10,
+                                        }}
+                                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                                        exit={{
+                                            opacity: 0,
+                                            scale: 0.95,
+                                            y: -10,
+                                        }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        <GitHubCalendar
+                                            username="kennygray-dev"
+                                            blockSize={10}
+                                            blockMargin={4}
+                                            color="#ff5b04"
+                                            fontSize={14}
+                                            fullYear={false}
+                                            weeks={17}
+                                            transformData={(contributions) => {
+                                                const marchStart = new Date(
+                                                    new Date().getFullYear(),
+                                                    2,
+                                                    1
+                                                ); // March 1
+                                                return contributions.filter(
+                                                    (day) =>
+                                                        parseISO(day.date) >=
+                                                        marchStart
+                                                );
+                                            }}
+                                        />
+                                    </motion.div>
+                                )}
+                            </motion.div>
 
                             <motion.a
                                 href="https://www.linkedin.com/in/ken-agbapuonwu-3134bab5/"
@@ -213,7 +245,6 @@ function Home({ splashComplete }) {
                     </motion.div>
                 </div>
 
-                {/* Pulsing Arrow - Only renders when animations are enabled */}
                 {animationsEnabled && (
                     <motion.div
                         className="down-arrow-container"
@@ -224,10 +255,7 @@ function Home({ splashComplete }) {
                         <motion.div
                             className="down-arrow"
                             onClick={scrollToCompanies}
-                            animate={{
-                                y: [0, 10, 0],
-                                scale: [1, 1.1, 1],
-                            }}
+                            animate={{ y: [0, 10, 0], scale: [1, 1.1, 1] }}
                             transition={{
                                 duration: 1,
                                 repeat: Infinity,
@@ -241,7 +269,6 @@ function Home({ splashComplete }) {
                 )}
             </div>
 
-            {/* Companies Section */}
             <div ref={companiesRef} className="companies-wrapper">
                 <Companies />
             </div>
