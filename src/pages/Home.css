@@ -192,6 +192,48 @@
     color: #0077b5; /* LinkedIn blue */
 }
 
+.github-preview-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.calendar-preview {
+    position: absolute;
+    top: 0;
+    right: 120%;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 12px;
+    padding: 1rem;
+    z-index: 100;
+    max-width: 320px;
+    width: max-content;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    max-height: 270px;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE */
+}
+
+.calendar-preview::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.calendar-preview {
+    top: 50%;
+    transform: translateY(-50%);
+    right: 130%;
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Optional: style the GitHub calendar text if needed */
+.calendar-preview text {
+    fill: #ccc !important;
+}
+
 /* Pointer Text Styles */
 .pointers {
     margin: 0;
@@ -274,18 +316,17 @@
         width: 100%;
     }
 
-
-/* Animations */
-@keyframes shine {
-    0% {
-        transform: translateX(-100%) rotate(30deg);
+    /* Animations */
+    @keyframes shine {
+        0% {
+            transform: translateX(-100%) rotate(30deg);
+        }
+        100% {
+            transform: translateX(100%) rotate(30deg);
+        }
     }
-    100% {
-        transform: translateX(100%) rotate(30deg);
-    }
-}
 
-/* Responsive Design */
+    /* Responsive Design */
 
     .home-container {
         width: 100%;
@@ -333,11 +374,9 @@
         align-items: flex-end;
     }
 
-    
-        .social-links {
-            display: none !important;
-        }
-    
+    .social-links {
+        display: none !important;
+    }
 
     .profile-image {
         max-width: 150px;
@@ -361,7 +400,5 @@
 
     .down-arrow-container {
         display: none;
-    
-}
-
+    }
 }

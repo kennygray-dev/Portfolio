@@ -4,6 +4,7 @@ import "./Companies.css";
 const companies = [
     { name: "Company 1", logo: "https://i.imgur.com/KH6WYl4.png" },
     { name: "Company 2", logo: "https://i.imgur.com/1xxQz08.png" },
+    { name: "Company 3", logo: "https://i.imgur.com/lnDfe58.png" },
 ];
 
 function Companies() {

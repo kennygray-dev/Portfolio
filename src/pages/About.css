@@ -127,9 +127,10 @@
 .tools-wrapper {
     display: flex;
     align-items: center;
+    place-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 1rem;
+    
     
 }
 
@@ -145,7 +146,6 @@
     justify-content: center;
     transition: border 0.3s, transform 0.3s, box-shadow 0.3s;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: -1.5px;
     z-index: 1;
 }
 

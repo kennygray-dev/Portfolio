@@ -10,6 +10,8 @@ function Navbar() {
     const navRef = useRef(null);
     const [activeLinkReady, setActiveLinkReady] = useState(false);
     const [lettersVisible, setLettersVisible] = useState(0);
+    const [showNavbar, setShowNavbar] = useState(true);
+    const lastScrollY = useRef(0);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -42,9 +44,6 @@ function Navbar() {
             closeMenu();
         }
     };
-
-    const [showNavbar, setShowNavbar] = useState(true);
-    const lastScrollY = useRef(0);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -127,7 +126,7 @@ function Navbar() {
                         onClick={closeMenu}
                         className={`${location.pathname === "/" ? "active" : ""} ${activeLinkReady ? "ready" : ""}`}
                     >
-                        {renderAnimatedText("Home")}
+                        {isOpen ? renderAnimatedText("Home") : "Home"}
                     </Link>
                 </li>
                 <li className="main-nav-link">
@@ -136,7 +135,7 @@ function Navbar() {
                         onClick={closeMenu}
                         className={`${location.pathname === "/about" ? "active" : ""} ${activeLinkReady ? "ready" : ""}`}
                     >
-                        {renderAnimatedText("About Me")}
+                        {isOpen ? renderAnimatedText("About Me") : "About Me"}
                     </Link>
                 </li>
                 <li className="main-nav-link">
@@ -145,7 +144,7 @@ function Navbar() {
                         onClick={closeMenu}
                         className={`${location.pathname === "/projects" ? "active" : ""} ${activeLinkReady ? "ready" : ""}`}
                     >
-                        {renderAnimatedText("Portfolio")}
+                        {isOpen ? renderAnimatedText("Portfolio") : "Portfolio"}
                     </Link>
                 </li>
                 <li className="external-nav-link">
