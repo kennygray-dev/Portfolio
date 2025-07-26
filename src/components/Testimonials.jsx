@@ -60,7 +60,7 @@ function Testimonials() {
 
     return (
         <div className="testimonials-container">
-            <h2 className="testimonials-title">WHAT PEOPLE SAY ABOUT ME</h2>
+            <h2 className="testimonials-title">What People Say About Me</h2>
 
             <div className="testimonials-carousel-wrapper">
                 <div className="testimonials-carousel">

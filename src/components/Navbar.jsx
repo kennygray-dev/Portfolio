@@ -13,12 +13,16 @@ function Navbar() {
     const [showNavbar, setShowNavbar] = useState(true);
     const lastScrollY = useRef(0);
 
+    // Sound control states
+    const [isPlaying, setIsPlaying] = useState(false);
+    const audioRef = useRef(null);
+
     const toggleMenu = () => {
         setIsOpen(!isOpen);
         if (!isOpen) {
             setLettersVisible(0);
             const interval = setInterval(() => {
-                setLettersVisible(prev => {
+                setLettersVisible((prev) => {
                     if (prev >= 20) {
                         clearInterval(interval);
                         return prev;
@@ -45,6 +49,26 @@ function Navbar() {
         }
     };
 
+    // Sound control function
+    const toggleSound = () => {
+        if (!audioRef.current) {
+            // Use local audio file - place your downloaded MP3 in public/sounds/
+            audioRef.current = new Audio("/sounds/rainy-lofi-city.mp3");
+            audioRef.current.loop = true;
+            audioRef.current.volume = 0.2; // Lower volume for background ambience
+        }
+
+        if (isPlaying) {
+            audioRef.current.pause();
+            setIsPlaying(false);
+        } else {
+            audioRef.current
+                .play()
+                .catch((e) => console.log("Audio play failed:", e));
+            setIsPlaying(true);
+        }
+    };
+
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
@@ -65,19 +89,44 @@ function Navbar() {
         return () => document.removeEventListener("click", handleClickOutside);
     }, []);
 
+    // Cleanup audio on unmount
+    useEffect(() => {
+        return () => {
+            if (audioRef.current) {
+                audioRef.current.pause();
+                audioRef.current = null;
+            }
+        };
+    }, []);
+
     const renderAnimatedText = (text) => {
-        return text.split('').map((letter, index) => (
-            <span 
-                key={index} 
-                style={{ 
+        return text.split("").map((letter, index) => (
+            <span
+                key={index}
+                style={{
                     opacity: index < lettersVisible ? 1 : 0,
-                    transition: `opacity 0.1s ${index * 0.05}s ease-in`
+                    transition: `opacity 0.1s ${index * 0.05}s ease-in`,
                 }}
             >
                 {letter}
             </span>
         ));
     };
+
+    // Waveform component
+    const SoundWaveform = () => (
+        <div className="sound-control" onClick={toggleSound}>
+            <div className="waveform">
+                {[...Array(8)].map((_, i) => (
+                    <div
+                        key={i}
+                        className={`wave-bar ${isPlaying ? "active" : ""}`}
+                        style={{ animationDelay: `${i * 0.1}s` }}
+                    />
+                ))}
+            </div>
+        </div>
+    );
 
     return (
         <nav className="navbar" ref={navRef}>
@@ -88,26 +137,45 @@ function Navbar() {
 
                 <div className="mobile-social-icons">
                     <div className="social-icon">
-                        <a href="https://github.com/kennygray-dev" target="_blank" rel="noopener noreferrer" className="icon-circle">
+                        <a
+                            href="https://github.com/kennygray-dev"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="icon-circle"
+                        >
                             <FaGithub className="icon" />
                             <div className="shine"></div>
                         </a>
                     </div>
                     <div className="social-icon">
-                        <a href="https://www.linkedin.com/in/ken-agbapuonwu-3134bab5/" target="_blank" rel="noopener noreferrer" className="icon-circle">
+                        <a
+                            href="https://www.linkedin.com/in/ken-agbapuonwu-3134bab5/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="icon-circle"
+                        >
                             <FaLinkedin className="icon" />
                             <div className="shine"></div>
                         </a>
                     </div>
                     <div className="social-icon">
-                        <a href="mailto:kenagbapuonwu@gmail.com" target="_blank" rel="noopener noreferrer" className="icon-circle">
+                        <a
+                            href="mailto:kenagbapuonwu@gmail.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="icon-circle"
+                        >
                             <FaEnvelope className="icon" />
                             <div className="shine"></div>
                         </a>
                     </div>
                 </div>
 
-                <button className="hamburger-menu" onClick={toggleMenu} aria-label="Menu">
+                <button
+                    className="hamburger-menu"
+                    onClick={toggleMenu}
+                    aria-label="Menu"
+                >
                     <div className={`line ${isOpen ? "open" : ""}`}></div>
                     <div className={`line ${isOpen ? "open" : ""}`}></div>
                     <div className={`line ${isOpen ? "open" : ""}`}></div>
@@ -117,14 +185,23 @@ function Navbar() {
             <ul className={`nav-links ${isOpen ? "open" : ""}`}>
                 <li className="mobile-logo">
                     <Link to="/" onClick={closeMenu}>
-                        <img src="/logo.png" alt="Logo" className="logo-image" />
+                        <img
+                            src="/logo.png"
+                            alt="Logo"
+                            className="logo-image"
+                        />
                     </Link>
+                </li>
+                <li className="sound-nav-item">
+                    <SoundWaveform />
                 </li>
                 <li className="main-nav-link">
                     <Link
                         to="/"
                         onClick={closeMenu}
-                        className={`${location.pathname === "/" ? "active" : ""} ${activeLinkReady ? "ready" : ""}`}
+                        className={`${
+                            location.pathname === "/" ? "active" : ""
+                        } ${activeLinkReady ? "ready" : ""}`}
                     >
                         {isOpen ? renderAnimatedText("Home") : "Home"}
                     </Link>
@@ -133,7 +210,9 @@ function Navbar() {
                     <Link
                         to="/about"
                         onClick={closeMenu}
-                        className={`${location.pathname === "/about" ? "active" : ""} ${activeLinkReady ? "ready" : ""}`}
+                        className={`${
+                            location.pathname === "/about" ? "active" : ""
+                        } ${activeLinkReady ? "ready" : ""}`}
                     >
                         {isOpen ? renderAnimatedText("About Me") : "About Me"}
                     </Link>
@@ -142,7 +221,9 @@ function Navbar() {
                     <Link
                         to="/projects"
                         onClick={closeMenu}
-                        className={`${location.pathname === "/projects" ? "active" : ""} ${activeLinkReady ? "ready" : ""}`}
+                        className={`${
+                            location.pathname === "/projects" ? "active" : ""
+                        } ${activeLinkReady ? "ready" : ""}`}
                     >
                         {isOpen ? renderAnimatedText("Portfolio") : "Portfolio"}
                     </Link>

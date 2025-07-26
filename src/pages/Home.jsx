@@ -66,7 +66,7 @@ function Home({ splashComplete }) {
                             }
                             transition={{ duration: 0.6, delay: 0.8 }}
                         >
-                            KEN AGBAPUONWU
+                            Ken Agbapuonwu.
                         </motion.h2>
                         <motion.h2
                             className="title"
@@ -76,7 +76,7 @@ function Home({ splashComplete }) {
                             }
                             transition={{ duration: 1, delay: 0.2 }}
                         >
-                            CREATIVE ENGINEER
+                            Creative Engineer
                         </motion.h2>
                         <motion.h1
                             className="title"
@@ -86,7 +86,7 @@ function Home({ splashComplete }) {
                             }
                             transition={{ duration: 1, delay: 0.7 }}
                         >
-                            AND DESIGNER.
+                            & Designer.
                         </motion.h1>
                         <p className="description">
                             A front-end heavy fullstack Software engineer, I
@@ -250,14 +250,14 @@ function Home({ splashComplete }) {
                         className="down-arrow-container"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ delay: 1.5 }}
+                        transition={{ delay: 0.5 }}
                     >
                         <motion.div
                             className="down-arrow"
                             onClick={scrollToCompanies}
                             animate={{ y: [0, 10, 0], scale: [1, 1.1, 1] }}
                             transition={{
-                                duration: 1,
+                                duration: 3.5,
                                 repeat: Infinity,
                                 ease: "easeInOut",
                             }}
