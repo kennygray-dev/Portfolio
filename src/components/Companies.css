@@ -1,6 +1,5 @@
 .companies-container {
     min-height: auto;
-    background: rgba(2, 12, 19, 0.1); /* Semi-transparent dark blue */
     padding: 0rem 2rem;
     display: flex;
     flex-direction: column;
@@ -20,8 +19,9 @@
     font-size: 1rem;
     text-align: center;
     font-weight: bold;
-    text-transform: uppercase;
-
+    border: 0.2px solid #E4EEF0;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
 }
 
 .companies-grid {

@@ -11,12 +11,10 @@
 
 .testimonials-title {
     color: #e4eef0;
-    font-size: 1.5rem;
     margin-bottom: 2rem;
     text-align: center;
-    text-transform: uppercase;
     letter-spacing: 1px;
-    padding: 0 1rem;
+    padding: 0 1rem;   
 }
 
 .testimonials-carousel-wrapper {

@@ -97,7 +97,7 @@ function FeaturedProjects() {
 
     return (
         <div className="featured-projects-container">
-            <h2 className="featured-projects-title">FEATURED PROJECTS</h2>
+            <h2 className="featured-projects-title">Featured Projects.</h2>
 
             <div className="projects-stack">
                 {projects.map((project, index) => {
