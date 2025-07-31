@@ -1,7 +1,7 @@
 // Adjusted FeaturedProjects.js with better alignment, categorized stacks in badges, improved paragraph structure, and scrollable info
 import { motion } from "framer-motion";
 import { useState, useRef } from "react";
-import { FiClock, FiArrowRight } from "react-icons/fi";
+import { FiClock, FiArrowRight, FiLock } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import "./FeaturedProjects.css";
 
@@ -26,6 +26,28 @@ const projects = [
         image: "https://i.imgur.com/3TNFuz5.png",
         link: "#",
     },
+    {
+        title: "BEN Church Resource Center",
+        shortDescription:
+            "Digital platform for accessing sermons, Bible, prayer requests, birthdays, and meeting resources.",
+        fullDescription: {
+            role: "Fullstack Developer",
+            stack: ["Next.js", "Firebase", "Tailwind CSS", "REST APIs"],
+            description:
+                "Built an all-in-one church platform that allows members to access sermon recordings, Bible content, submit prayer requests, view meeting schedules, and celebrate birthdays. Implemented Firebase Auth for user login, Firestore for dynamic content management, and a Bible API for scripture access.",
+            highlights: [
+                "Integrated Bible API for seamless scripture access inside the app",
+                "Created a prayer request form that stores and displays submissions for admins",
+                "Designed user-friendly meeting schedule and birthday calendar",
+                "Built dynamic video playback for sermon content using Firebase Storage",
+            ],
+        },
+        readTime: "1 min read",
+        video: "/videos/ben-demo.mp4",
+        isVideo: true,
+        link: "https://ben-resources.vercel.app/",
+    },
+
     {
         title: "Taaleema",
         shortDescription:
@@ -121,11 +143,22 @@ function FeaturedProjects() {
                                 onDoubleClick={() => handleDoubleClick(index)}
                                 onMouseMove={(e) => handleMouseMove(e, cardRef)}
                             >
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="project-image"
-                                />
+                                {project.isVideo ? (
+                                    <video
+                                        className="project-image"
+                                        src={project.video}
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                    />
+                                ) : (
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        className="project-image"
+                                    />
+                                )}
 
                                 {hoveringIndex === index && !isActive && (
                                     <div
@@ -185,6 +218,28 @@ function FeaturedProjects() {
                                                 )
                                             )}
                                         </div>
+                                        <div className="project-link-wrapper">
+                                            {project.link &&
+                                            project.link !== "#" ? (
+                                                <motion.a
+                                                    href={project.link}
+                                                    className="project-link"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    whileHover={{ scale: 1.05 }}
+                                                    whileTap={{ scale: 0.95 }}
+                                                >
+                                                    Link to Project
+                                                </motion.a>
+                                            ) : (
+                                                <div className="project-link-disabled">
+                                                    <FiLock className="lock-icon" />
+                                                    <span>
+                                                        
+                                                    </span>
+                                                </div>
+                                            )}
+                                        </div>
                                         <p className="project-description">
                                             {
                                                 project.fullDescription
@@ -198,14 +253,7 @@ function FeaturedProjects() {
                                                 )
                                             )}
                                         </ul>
-                                        <motion.a
-                                            href={project.link}
-                                            className="project-link"
-                                            whileHover={{ scale: 1.05 }}
-                                            whileTap={{ scale: 0.95 }}
-                                        >
-                                            <FiArrowRight className="arrow-icon-featured" />
-                                        </motion.a>
+                                        
                                     </div>
                                     <button
                                         className="close-drawer"
