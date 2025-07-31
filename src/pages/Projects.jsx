@@ -28,6 +28,14 @@ const Projects = () => {
                 "AWA Source is a modern job-seeking platform that connects top-tier talents with clients across various industries. It streamlines the hiring process through curated matches, skill-based filtering, and a user-friendly interface tailored for both freelancers and businesses.",
         },
         {
+            links: "https://ben-resources.vercel.app/",
+            image: "/ben-demo-thumbnail.jpg",
+            title: "BEN Church Resource Center",
+            details:
+                "A digital church platform offering sermon recordings, Bible access, prayer requests, birthdays, and meeting resources. Built with Firebase and integrated with a live Bible API for scripture access.",
+            tags: ["Next.js", "Firebase", "Church", "Fullstack"],
+        },
+        {
             links: "#",
             image: "https://i.imgur.com/2o8BlgL.png",
             title: "Taaleema",
