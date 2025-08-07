@@ -296,24 +296,6 @@ function FeaturedProjects() {
                                     <p className="mobile-project-description">
                                         {project.shortDescription}
                                     </p>
-                                    
-                                    {isMobile && (
-                                        <div className="mobile-stack-preview">
-                                            {project.fullDescription.stack.slice(0, 3).map((tech, i) => (
-                                                <span
-                                                    key={i}
-                                                    className="stack-badge-mobile"
-                                                >
-                                                    {tech}
-                                                </span>
-                                            ))}
-                                            {project.fullDescription.stack.length > 3 && (
-                                                <span className="stack-more-indicator">
-                                                    +{project.fullDescription.stack.length - 3} more
-                                                </span>
-                                            )}
-                                        </div>
-                                    )}
                                 </div>
                             </div>
 
