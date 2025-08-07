@@ -41,7 +41,7 @@ const Projects = () => {
             image: "/ben-demo-thumbnail.jpg",
             title: "BEN Church Resource Center",
             details:
-                "A digital church platform offering sermon recordings, Bible access, prayer requests, birthdays, and meeting resources. Built with Firebase and integrated with a live Bible API for scripture access.",
+                "A digital church platform offering sermon recordings, Bible access, prayer requests, birthdays, and meeting resources. Built with Firebase and integrated with a live Bible API for scripture access. ",
             shortDescription: "Digital platform for accessing sermons, Bible, prayer requests, and church resources.",
             tags: ["Next.js", "Firebase", "Tailwind CSS", "Rest APIs"],
         },
