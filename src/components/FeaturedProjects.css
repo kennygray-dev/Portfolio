@@ -97,6 +97,8 @@
 /* Mobile expand icon */
 .mobile-expand-icon {
     position: absolute;
+    height: 35px;
+    width: 35px;
     bottom: 16px;
     left: 16px;
     background: rgba(0, 0, 0, 0.7);

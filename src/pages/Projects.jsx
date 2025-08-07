@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { FaTh, FaListUl } from "react-icons/fa";
+import { FaTh, FaListUl, FaChevronDown } from "react-icons/fa";
 import "./Projects.css";
 
 const Projects = () => {
     const [viewType, setViewType] = useState("grid");
     const [isMobile, setIsMobile] = useState(false);
+    const [activeIndex, setActiveIndex] = useState(null);
 
     useEffect(() => {
         const handleResize = () => {
@@ -19,6 +20,12 @@ const Projects = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    const handleMobileCardClick = (index) => {
+        if (isMobile) {
+            setActiveIndex((prev) => (prev === index ? null : index));
+        }
+    };
+
     const projectData = [
         {
             links: "#",
@@ -26,6 +33,8 @@ const Projects = () => {
             title: "Awa Source",
             details:
                 "AWA Source is a modern job-seeking platform that connects top-tier talents with clients across various industries. It streamlines the hiring process through curated matches, skill-based filtering, and a user-friendly interface tailored for both freelancers and businesses.",
+            shortDescription: "Modern job-seeking platform connecting talents with clients across industries.",
+            tags: ["React.js", "TypeScript", "Tailwind CSS", "REST APIs"],
         },
         {
             links: "https://ben-resources.vercel.app/",
@@ -33,6 +42,7 @@ const Projects = () => {
             title: "BEN Church Resource Center",
             details:
                 "A digital church platform offering sermon recordings, Bible access, prayer requests, birthdays, and meeting resources. Built with Firebase and integrated with a live Bible API for scripture access.",
+            shortDescription: "Digital platform for accessing sermons, Bible, prayer requests, and church resources.",
             tags: ["Next.js", "Firebase", "Church", "Fullstack"],
         },
         {
@@ -41,7 +51,8 @@ const Projects = () => {
             title: "Taaleema",
             details:
                 "AI-powered educational platform supporting African migrants with culturally-informed learning resources.",
-            tags: ["AI", "Education", "React"],
+            shortDescription: "AI-powered learning platform for African migrants with cultural adaptation.",
+            tags: ["AI", "Education", "React", "Localization"],
         },
         {
             links: "#",
@@ -49,7 +60,8 @@ const Projects = () => {
             title: "Dakestel",
             details:
                 "Full-stack analytics dashboard for tracking user behavior and sales performance.",
-            tags: ["Dashboard", "Analytics", "Fullstack"],
+            shortDescription: "Full-stack analytics dashboard for tracking user behavior and sales.",
+            tags: ["Dashboard", "Analytics", "Fullstack", "MongoDB"],
         },
         {
             links: "https://grayshub.vercel.app/",
@@ -57,7 +69,8 @@ const Projects = () => {
             title: "Wallpaper App",
             details:
                 "A wallpaper and inspiration app with system-based light/dark mode.",
-            tags: ["React", "UI/UX", "Responsive"],
+            shortDescription: "Wallpaper and inspiration app with system-based theming.",
+            tags: ["React", "UI/UX", "Responsive", "Theme"],
         },
     ];
 
@@ -109,26 +122,77 @@ const Projects = () => {
                             </div>
                         </div>
                     ) : (
-                        <div key={index} className="list-card">
-                            <div className="list-image-container">
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="list-image"
-                                />
+                        <div key={index} className="project-wrapper">
+                            <div className="list-card" onClick={() => handleMobileCardClick(index)}>
+                                <div className="list-image-container">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        className="list-image"
+                                    />
+                                    {/* Mobile expand icon */}
+                                    {isMobile && (
+                                        <div className={`mobile-expand-icon ${activeIndex === index ? 'rotated' : ''}`}>
+                                            <FaChevronDown size={16} />
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="list-content">
+                                    <h3>{project.title}</h3>
+                                    <p className="project-description">
+                                        {isMobile ? project.shortDescription : project.details}
+                                    </p>
+                    
+
+                                    {!isMobile && (
+                                        <a
+                                            href={project.links}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="view-button"
+                                            onClick={(e) => e.stopPropagation()}
+                                        >
+                                            View Project →
+                                        </a>
+                                    )}
+                                </div>
                             </div>
-                            <div className="list-content">
-                                <h3>{project.title}</h3>
-                                <p>{project.details}</p>
-                                <a
-                                    href={project.links}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="view-button"
-                                >
-                                    View Project →
-                                </a>
-                            </div>
+
+                            {/* Mobile expanded content */}
+                            {isMobile && activeIndex === index && (
+                                <div className="mobile-expanded-content">
+                                    <div className="mobile-expanded-inner">
+                                        <div className="project-stack">
+                                            {project.tags.map((tag, i) => (
+                                                <span key={i} className="stack-badge">
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                        
+                                        <div className="project-link-wrapper">
+                                            {project.links && project.links !== "#" ? (
+                                                <a
+                                                    href={project.links}
+                                                    className="project-link"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    Link to Project
+                                                </a>
+                                            ) : (
+                                                <div className="project-link-disabled">
+                                                    <span>🔒 Private Project</span>
+                                                </div>
+                                            )}
+                                        </div>
+                                        
+                                        <p className="full-project-description">
+                                            {project.details}
+                                        </p>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     )
                 )}
