@@ -23,7 +23,6 @@ function Companies() {
                 {companies.map((company, index) => (
                     <motion.div
                         key={index}
-                        className="company-card"
                     >
                         <img
                             src={company.logo}
