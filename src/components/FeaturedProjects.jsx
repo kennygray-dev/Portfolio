@@ -1,7 +1,6 @@
-// Adjusted FeaturedProjects.js with better alignment, categorized stacks in badges, improved paragraph structure, and scrollable info
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef } from "react";
-import { FiClock, FiArrowRight, FiLock } from "react-icons/fi";
+import { FiClock, FiArrowRight, FiLock, FiChevronDown } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import "./FeaturedProjects.css";
 
@@ -85,7 +84,7 @@ const projects = [
                 "REST APIs",
             ],
             description:
-                "Spearheaded the end-to-end development of Dakestel’s e-commerce platform. Built the admin and customer dashboards that power the business’ growth and analytics. Implemented core features including product inventory management, category filtering, dynamic pricing, order tracking, and real-time cart updates. Designed APIs for seamless data flow and ensured that the platform scales with business needs.",
+                "Spearheaded the end-to-end development of Dakestel's e-commerce platform. Built the admin and customer dashboards that power the business' growth and analytics. Implemented core features including product inventory management, category filtering, dynamic pricing, order tracking, and real-time cart updates. Designed APIs for seamless data flow and ensured that the platform scales with business needs.",
             highlights: [
                 "Engineered scalable dashboard supporting business operations and analytics",
                 "Implemented quantity-controlled cart system with real-time price recalculations",
@@ -103,13 +102,31 @@ function FeaturedProjects() {
     const [activeIndex, setActiveIndex] = useState(null);
     const [hoveringIndex, setHoveringIndex] = useState(null);
     const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    // Add resize listener for responsive behavior
+    useState(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const handleProjectClick = (index) => {
+        if (isMobile) {
+            setActiveIndex((prev) => (prev === index ? null : index));
+        }
+    };
 
     const handleDoubleClick = (index) => {
-        setActiveIndex((prev) => (prev === index ? null : index));
+        if (!isMobile) {
+            setActiveIndex((prev) => (prev === index ? null : index));
+        }
     };
 
     const handleMouseMove = (e, cardRef) => {
-        if (!cardRef.current) return;
+        if (!cardRef.current || isMobile) return;
         const rect = cardRef.current.getBoundingClientRect();
         setCursorPos({
             x: e.clientX - rect.left,
@@ -127,142 +144,241 @@ function FeaturedProjects() {
                     const cardRef = useRef(null);
 
                     return (
-                        <div
-                            key={index}
-                            className="project-card"
-                            onMouseEnter={() => setHoveringIndex(index)}
-                            onMouseLeave={() => setHoveringIndex(null)}
-                        >
+                        <div key={index} className="project-wrapper">
                             <div
-                                ref={cardRef}
-                                className={`project-image-container ${
-                                    hoveringIndex === index && !isActive
-                                        ? "custom-cursor"
-                                        : ""
-                                }`}
-                                onDoubleClick={() => handleDoubleClick(index)}
-                                onMouseMove={(e) => handleMouseMove(e, cardRef)}
+                                className="project-card"
+                                onMouseEnter={() => !isMobile && setHoveringIndex(index)}
+                                onMouseLeave={() => !isMobile && setHoveringIndex(null)}
                             >
-                                {project.isVideo ? (
-                                    <video
-                                        className="project-image"
-                                        src={project.video}
-                                        autoPlay
-                                        loop
-                                        muted
-                                        playsInline
-                                    />
-                                ) : (
-                                    <img
-                                        src={project.image}
-                                        alt={project.title}
-                                        className="project-image"
-                                    />
-                                )}
+                                <div
+                                    ref={cardRef}
+                                    className={`project-image-container ${
+                                        hoveringIndex === index && !isActive && !isMobile
+                                            ? "custom-cursor"
+                                            : isMobile ? "mobile-cursor" : ""
+                                    }`}
+                                    onDoubleClick={() => handleDoubleClick(index)}
+                                    onClick={() => handleProjectClick(index)}
+                                    onMouseMove={(e) => handleMouseMove(e, cardRef)}
+                                >
+                                    {project.isVideo ? (
+                                        <video
+                                            className="project-image"
+                                            src={project.video}
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                        />
+                                    ) : (
+                                        <img
+                                            src={project.image}
+                                            alt={project.title}
+                                            className="project-image"
+                                        />
+                                    )}
 
-                                {hoveringIndex === index && !isActive && (
-                                    <div
-                                        className="drag-hint-circle"
-                                        style={{
-                                            left: `${cursorPos.x}px`,
-                                            top: `${cursorPos.y}px`,
+                                    {/* Mobile expand icon */}
+                                    {isMobile && (
+                                        <div className={`mobile-expand-icon ${isActive ? 'rotated' : ''}`}>
+                                            <FiChevronDown size={20} />
+                                        </div>
+                                    )}
+
+                                    {/* Desktop hover hint */}
+                                    {hoveringIndex === index && !isActive && !isMobile && (
+                                        <div
+                                            className="drag-hint-circle"
+                                            style={{
+                                                left: `${cursorPos.x}px`,
+                                                top: `${cursorPos.y}px`,
+                                            }}
+                                        >
+                                            Double Click for More
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Desktop side drawer */}
+                                {isActive && !isMobile && (
+                                    <motion.div
+                                        className="project-info-drawer"
+                                        initial={{ opacity: 0, x: "100%" }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: "100%" }}
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 300,
+                                            damping: 30,
                                         }}
                                     >
-                                        Double Click for More
-                                    </div>
+                                        <motion.h3
+                                            className="project-title"
+                                            initial={{ opacity: 0, y: 20 }}
+                                            whileInView={{ opacity: 1, y: 0 }}
+                                            transition={{
+                                                duration: 0.5,
+                                                delay: index * 0.2,
+                                            }}
+                                            viewport={{ once: true, amount: 0.3 }}
+                                        >
+                                            {project.title}
+                                        </motion.h3>
+                                        <div className="project-info-content scrollable">
+                                            <div className="read-time">
+                                                <FiClock className="clock-icon" />
+                                                <span>{project.readTime}</span>
+                                            </div>
+                                            <p className="project-role">
+                                                <strong>Role:</strong>{" "}
+                                                {project.fullDescription.role}
+                                            </p>
+                                            <div className="project-stack">
+                                                {project.fullDescription.stack.map(
+                                                    (tech, i) => (
+                                                        <span
+                                                            key={i}
+                                                            className="stack-badge"
+                                                        >
+                                                            {tech}
+                                                        </span>
+                                                    )
+                                                )}
+                                            </div>
+                                            <div className="project-link-wrapper">
+                                                {project.link &&
+                                                project.link !== "#" ? (
+                                                    <motion.a
+                                                        href={project.link}
+                                                        className="project-link"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        whileHover={{ scale: 1.05 }}
+                                                        whileTap={{ scale: 0.95 }}
+                                                    >
+                                                        Link to Project
+                                                    </motion.a>
+                                                ) : (
+                                                    <div className="project-link-disabled">
+                                                        <FiLock className="lock-icon" />
+                                                        <span>Private Project</span>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <p className="project-description">
+                                                {
+                                                    project.fullDescription
+                                                        .description
+                                                }
+                                            </p>
+                                            <ul className="project-highlights">
+                                                {project.fullDescription.highlights.map(
+                                                    (point, i) => (
+                                                        <li key={i}>{point}</li>
+                                                    )
+                                                )}
+                                            </ul>
+                                        </div>
+                                        <button
+                                            className="close-drawer"
+                                            onClick={() => setActiveIndex(null)}
+                                        >
+                                            &times;
+                                        </button>
+                                    </motion.div>
                                 )}
+
+                                {/* Mobile card content */}
+                                <div className="mobile-card-content">
+                                    <h3 className="mobile-project-title">
+                                        {project.title}
+                                    </h3>
+                                    <p className="mobile-project-description">
+                                        {project.shortDescription}
+                                    </p>
+                                    
+                                    {isMobile && (
+                                        <div className="mobile-stack-preview">
+                                            {project.fullDescription.stack.slice(0, 3).map((tech, i) => (
+                                                <span
+                                                    key={i}
+                                                    className="stack-badge-mobile"
+                                                >
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                            {project.fullDescription.stack.length > 3 && (
+                                                <span className="stack-more-indicator">
+                                                    +{project.fullDescription.stack.length - 3} more
+                                                </span>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
                             </div>
 
-                            {isActive && (
-                                <motion.div
-                                    className="project-info-drawer"
-                                    initial={{ opacity: 0, x: "100%" }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: "100%" }}
-                                    transition={{
-                                        type: "spring",
-                                        stiffness: 300,
-                                        damping: 30,
-                                    }}
-                                >
-                                    <motion.h3
-                                        className="project-title"
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        transition={{
-                                            duration: 0.5,
-                                            delay: index * 0.2,
+                            {/* Mobile accordion expansion */}
+                            <AnimatePresence>
+                                {isActive && isMobile && (
+                                    <motion.div
+                                        className="mobile-expanded-content"
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: 'auto' }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        transition={{ 
+                                            duration: 0.4,
+                                            ease: [0.04, 0.62, 0.23, 0.98]
                                         }}
-                                        viewport={{ once: true, amount: 0.3 }}
                                     >
-                                        {project.title}
-                                    </motion.h3>
-                                    <div className="project-info-content scrollable">
-                                        <div className="read-time">
-                                            <FiClock className="clock-icon" />
-                                            <span>{project.readTime}</span>
-                                        </div>
-                                        <p className="project-role">
-                                            <strong>Role:</strong>{" "}
-                                            {project.fullDescription.role}
-                                        </p>
-                                        <div className="project-stack">
-                                            {project.fullDescription.stack.map(
-                                                (tech, i) => (
-                                                    <span
-                                                        key={i}
-                                                        className="stack-badge"
-                                                    >
+                                        <motion.div 
+                                            className="mobile-expanded-inner"
+                                            initial={{ opacity: 0, y: -20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: 0.1, duration: 0.3 }}
+                                        >
+                                            <div className="read-time">
+                                                <FiClock className="clock-icon" />
+                                                <span>{project.readTime}</span>
+                                            </div>
+                                            <p className="project-role">
+                                                <strong>Role:</strong> {project.fullDescription.role}
+                                            </p>
+                                            <div className="project-stack">
+                                                {project.fullDescription.stack.map((tech, i) => (
+                                                    <span key={i} className="stack-badge">
                                                         {tech}
                                                     </span>
-                                                )
-                                            )}
-                                        </div>
-                                        <div className="project-link-wrapper">
-                                            {project.link &&
-                                            project.link !== "#" ? (
-                                                <motion.a
-                                                    href={project.link}
-                                                    className="project-link"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    whileHover={{ scale: 1.05 }}
-                                                    whileTap={{ scale: 0.95 }}
-                                                >
-                                                    Link to Project
-                                                </motion.a>
-                                            ) : (
-                                                <div className="project-link-disabled">
-                                                    <FiLock className="lock-icon" />
-                                                    <span>
-                                                        
-                                                    </span>
-                                                </div>
-                                            )}
-                                        </div>
-                                        <p className="project-description">
-                                            {
-                                                project.fullDescription
-                                                    .description
-                                            }
-                                        </p>
-                                        <ul className="project-highlights">
-                                            {project.fullDescription.highlights.map(
-                                                (point, i) => (
+                                                ))}
+                                            </div>
+                                            <div className="project-link-wrapper">
+                                                {project.link && project.link !== "#" ? (
+                                                    <a
+                                                        href={project.link}
+                                                        className="project-link"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                    >
+                                                        Link to Project
+                                                    </a>
+                                                ) : (
+                                                    <div className="project-link-disabled">
+                                                        <FiLock className="lock-icon" />
+                                                        <span>Private Project</span>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <p className="project-description">
+                                                {project.fullDescription.description}
+                                            </p>
+                                            <ul className="project-highlights">
+                                                {project.fullDescription.highlights.map((point, i) => (
                                                     <li key={i}>{point}</li>
-                                                )
-                                            )}
-                                        </ul>
-                                        
-                                    </div>
-                                    <button
-                                        className="close-drawer"
-                                        onClick={() => setActiveIndex(null)}
-                                    >
-                                        &times;
-                                    </button>
-                                </motion.div>
-                            )}
+                                                ))}
+                                            </ul>
+                                        </motion.div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
                     );
                 })}
