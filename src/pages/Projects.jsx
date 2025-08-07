@@ -30,11 +30,11 @@ const Projects = () => {
         {
             links: "#",
             image: "https://i.imgur.com/3TNFuz5.png",
-            title: "Awa Source",
+            title: "Awasource",
             details:
-                "AWA Source is a modern job-seeking platform that connects top-tier talents with clients across various industries. It streamlines the hiring process through curated matches, skill-based filtering, and a user-friendly interface tailored for both freelancers and businesses.",
+                "Engineered and delivered several core modules for AwaSource, a brand authentication and consumer engagement platform. Spearheaded the design and implementation of a full-featured in-app messaging system with real-time updates and state persistence. Architected a scalable, admin-facing support ticketing dashboard with threaded conversations and role-based access control. Integrated a real-time notification engine using WebSockets for instant user feedback on system events. Designed and implemented a responsive subscription billing UI with dynamic tier handling and multilingual support. Collaborated closely with the backend team to consume and secure RESTful and WebSocket endpoints, with emphasis on product verification, user actions, and internationalization.",
             shortDescription: "Modern job-seeking platform connecting talents with clients across industries.",
-            tags: ["React.js", "TypeScript", "Tailwind CSS", "REST APIs"],
+            tags: ["React.js", "JavaScript", "Tailwind CSS", "REST APIs"],
         },
         {
             links: "https://ben-resources.vercel.app/",
@@ -43,7 +43,7 @@ const Projects = () => {
             details:
                 "A digital church platform offering sermon recordings, Bible access, prayer requests, birthdays, and meeting resources. Built with Firebase and integrated with a live Bible API for scripture access.",
             shortDescription: "Digital platform for accessing sermons, Bible, prayer requests, and church resources.",
-            tags: ["Next.js", "Firebase", "Church", "Fullstack"],
+            tags: ["Next.js", "Firebase", "Tailwind CSS", "Rest APIs"],
         },
         {
             links: "#",
@@ -52,7 +52,7 @@ const Projects = () => {
             details:
                 "AI-powered educational platform supporting African migrants with culturally-informed learning resources.",
             shortDescription: "AI-powered learning platform for African migrants with cultural adaptation.",
-            tags: ["AI", "Education", "React", "Localization"],
+            tags: ["Rest API", "React.js", "Tailwind CSS"],
         },
         {
             links: "#",
@@ -61,7 +61,7 @@ const Projects = () => {
             details:
                 "Full-stack analytics dashboard for tracking user behavior and sales performance.",
             shortDescription: "Full-stack analytics dashboard for tracking user behavior and sales.",
-            tags: ["Dashboard", "Analytics", "Fullstack", "MongoDB"],
+            tags: ["React", "Figma", "Typescript", "Cascaded Style Sheets"],
         },
         {
             links: "https://grayshub.vercel.app/",
@@ -70,7 +70,7 @@ const Projects = () => {
             details:
                 "A wallpaper and inspiration app with system-based light/dark mode.",
             shortDescription: "Wallpaper and inspiration app with system-based theming.",
-            tags: ["React", "UI/UX", "Responsive", "Theme"],
+            tags: ["React", "Figma", "Typescript", "Cascaded Style Sheets"],
         },
     ];
 
@@ -110,7 +110,9 @@ const Projects = () => {
                             />
                             <div className="grid-text">
                                 <h3>{project.title}</h3>
-                                <p>{project.details}</p>
+                                <div className="grid-scrollable-content">
+                                    <p>{project.details}</p>
+                                </div>
                                 <a
                                     href={project.links}
                                     target="_blank"
@@ -139,11 +141,12 @@ const Projects = () => {
                                 </div>
                                 <div className="list-content">
                                     <h3>{project.title}</h3>
-                                    <p className="project-description">
-                                        {isMobile ? project.shortDescription : project.details}
-                                    </p>
-                    
-
+                                    <div className="scrollable-text">
+                                        <p className="project-description">
+                                            {isMobile ? project.shortDescription : project.details}
+                                        </p>
+                                    </div>
+                                    
                                     {!isMobile && (
                                         <a
                                             href={project.links}

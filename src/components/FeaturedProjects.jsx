@@ -6,19 +6,20 @@ import "./FeaturedProjects.css";
 
 const projects = [
     {
-        title: "Awa Source",
+        title: "Awasource",
         shortDescription:
-            "Brand authentication & anti-counterfeit platform for consumers.",
+            "Modern job-seeking/Skill-Matching platform connecting talents with clients across industries.",
         fullDescription: {
             role: "Frontend Developer",
-            stack: ["React.js", "TypeScript", "Tailwind CSS", "REST APIs"],
+            stack: ["React.js", "Javascript", "Tailwind CSS", "REST APIs"],
             description:
-                "Developed multiple mission-critical modules for AwaSource, a brand authentication platform. Led implementation of the in-app messaging feature, support ticketing admin dashboard, real-time notification system, and the subscription billing UI. Collaborated with the backend team to integrate secure endpoints for verification and user feedback capture. Ensured multi-language support to enhance accessibility for diverse user groups.",
+                "Engineered and delivered several core modules for AwaSource, a brand authentication and consumer engagement platform. Spearheaded the design and implementation of a full-featured in-app messaging system with real-time updates and state persistence. Architected a scalable, admin-facing support ticketing dashboard with threaded conversations and role-based access control. Integrated a real-time notification engine using WebSockets for instant user feedback on system events. Designed and implemented a responsive subscription billing UI with dynamic tier handling and multilingual support. Collaborated closely with the backend team to consume and secure RESTful and WebSocket endpoints, with emphasis on product verification, user actions, and internationalization.",
             highlights: [
-                "Built internal messaging interface and threaded support ticketing system from scratch",
-                "Integrated live notification system tied to backend events and updates",
-                "Developed secure QR product validation flow with detailed UI feedback",
-                "Handled API integrations for multilingual toggles and subscription tier management",
+                "Designed and implemented in-app messaging with persistent threads, read/unread state, and attachment support",
+                "Built scalable admin support dashboard with nested ticket views, status filters, and permission-based visibility",
+                "Integrated WebSocket-based notification system synced with backend triggers and user interactions",
+                "Implemented QR-based product authentication UI with secure API binding and contextual feedback modals",
+                "Handled frontend API architecture for dynamic language switching and region-based subscription management",
             ],
         },
         readTime: "1 min read",
@@ -109,8 +110,8 @@ function FeaturedProjects() {
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 768);
         };
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
     }, []);
 
     const handleProjectClick = (index) => {
@@ -147,19 +148,31 @@ function FeaturedProjects() {
                         <div key={index} className="project-wrapper">
                             <div
                                 className="project-card"
-                                onMouseEnter={() => !isMobile && setHoveringIndex(index)}
-                                onMouseLeave={() => !isMobile && setHoveringIndex(null)}
+                                onMouseEnter={() =>
+                                    !isMobile && setHoveringIndex(index)
+                                }
+                                onMouseLeave={() =>
+                                    !isMobile && setHoveringIndex(null)
+                                }
                             >
                                 <div
                                     ref={cardRef}
                                     className={`project-image-container ${
-                                        hoveringIndex === index && !isActive && !isMobile
+                                        hoveringIndex === index &&
+                                        !isActive &&
+                                        !isMobile
                                             ? "custom-cursor"
-                                            : isMobile ? "mobile-cursor" : ""
+                                            : isMobile
+                                            ? "mobile-cursor"
+                                            : ""
                                     }`}
-                                    onDoubleClick={() => handleDoubleClick(index)}
+                                    onDoubleClick={() =>
+                                        handleDoubleClick(index)
+                                    }
                                     onClick={() => handleProjectClick(index)}
-                                    onMouseMove={(e) => handleMouseMove(e, cardRef)}
+                                    onMouseMove={(e) =>
+                                        handleMouseMove(e, cardRef)
+                                    }
                                 >
                                     {project.isVideo ? (
                                         <video
@@ -180,23 +193,29 @@ function FeaturedProjects() {
 
                                     {/* Mobile expand icon */}
                                     {isMobile && (
-                                        <div className={`mobile-expand-icon ${isActive ? 'rotated' : ''}`}>
+                                        <div
+                                            className={`mobile-expand-icon ${
+                                                isActive ? "rotated" : ""
+                                            }`}
+                                        >
                                             <FiChevronDown size={20} />
                                         </div>
                                     )}
 
                                     {/* Desktop hover hint */}
-                                    {hoveringIndex === index && !isActive && !isMobile && (
-                                        <div
-                                            className="drag-hint-circle"
-                                            style={{
-                                                left: `${cursorPos.x}px`,
-                                                top: `${cursorPos.y}px`,
-                                            }}
-                                        >
-                                            Double Click for More
-                                        </div>
-                                    )}
+                                    {hoveringIndex === index &&
+                                        !isActive &&
+                                        !isMobile && (
+                                            <div
+                                                className="drag-hint-circle"
+                                                style={{
+                                                    left: `${cursorPos.x}px`,
+                                                    top: `${cursorPos.y}px`,
+                                                }}
+                                            >
+                                                Double Click for More
+                                            </div>
+                                        )}
                                 </div>
 
                                 {/* Desktop side drawer */}
@@ -220,7 +239,10 @@ function FeaturedProjects() {
                                                 duration: 0.5,
                                                 delay: index * 0.2,
                                             }}
-                                            viewport={{ once: true, amount: 0.3 }}
+                                            viewport={{
+                                                once: true,
+                                                amount: 0.3,
+                                            }}
                                         >
                                             {project.title}
                                         </motion.h3>
@@ -253,15 +275,21 @@ function FeaturedProjects() {
                                                         className="project-link"
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        whileHover={{ scale: 1.05 }}
-                                                        whileTap={{ scale: 0.95 }}
+                                                        whileHover={{
+                                                            scale: 1.05,
+                                                        }}
+                                                        whileTap={{
+                                                            scale: 0.95,
+                                                        }}
                                                     >
                                                         Link to Project
                                                     </motion.a>
                                                 ) : (
                                                     <div className="project-link-disabled">
                                                         <FiLock className="lock-icon" />
-                                                        <span>Private Project</span>
+                                                        <span>
+                                                            Private Project
+                                                        </span>
                                                     </div>
                                                 )}
                                             </div>
@@ -305,35 +333,45 @@ function FeaturedProjects() {
                                     <motion.div
                                         className="mobile-expanded-content"
                                         initial={{ opacity: 0, height: 0 }}
-                                        animate={{ opacity: 1, height: 'auto' }}
+                                        animate={{ opacity: 1, height: "auto" }}
                                         exit={{ opacity: 0, height: 0 }}
-                                        transition={{ 
+                                        transition={{
                                             duration: 0.4,
-                                            ease: [0.04, 0.62, 0.23, 0.98]
+                                            ease: [0.04, 0.62, 0.23, 0.98],
                                         }}
                                     >
-                                        <motion.div 
+                                        <motion.div
                                             className="mobile-expanded-inner"
                                             initial={{ opacity: 0, y: -20 }}
                                             animate={{ opacity: 1, y: 0 }}
-                                            transition={{ delay: 0.1, duration: 0.3 }}
+                                            transition={{
+                                                delay: 0.1,
+                                                duration: 0.3,
+                                            }}
                                         >
                                             <div className="read-time">
                                                 <FiClock className="clock-icon" />
                                                 <span>{project.readTime}</span>
                                             </div>
                                             <p className="project-role">
-                                                <strong>Role:</strong> {project.fullDescription.role}
+                                                <strong>Role:</strong>{" "}
+                                                {project.fullDescription.role}
                                             </p>
                                             <div className="project-stack">
-                                                {project.fullDescription.stack.map((tech, i) => (
-                                                    <span key={i} className="stack-badge">
-                                                        {tech}
-                                                    </span>
-                                                ))}
+                                                {project.fullDescription.stack.map(
+                                                    (tech, i) => (
+                                                        <span
+                                                            key={i}
+                                                            className="stack-badge"
+                                                        >
+                                                            {tech}
+                                                        </span>
+                                                    )
+                                                )}
                                             </div>
                                             <div className="project-link-wrapper">
-                                                {project.link && project.link !== "#" ? (
+                                                {project.link &&
+                                                project.link !== "#" ? (
                                                     <a
                                                         href={project.link}
                                                         className="project-link"
@@ -345,17 +383,24 @@ function FeaturedProjects() {
                                                 ) : (
                                                     <div className="project-link-disabled">
                                                         <FiLock className="lock-icon" />
-                                                        <span>Private Project</span>
+                                                        <span>
+                                                            Private Project
+                                                        </span>
                                                     </div>
                                                 )}
                                             </div>
                                             <p className="project-description">
-                                                {project.fullDescription.description}
+                                                {
+                                                    project.fullDescription
+                                                        .description
+                                                }
                                             </p>
                                             <ul className="project-highlights">
-                                                {project.fullDescription.highlights.map((point, i) => (
-                                                    <li key={i}>{point}</li>
-                                                ))}
+                                                {project.fullDescription.highlights.map(
+                                                    (point, i) => (
+                                                        <li key={i}>{point}</li>
+                                                    )
+                                                )}
                                             </ul>
                                         </motion.div>
                                     </motion.div>
