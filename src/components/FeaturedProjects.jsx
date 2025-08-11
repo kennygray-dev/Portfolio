@@ -47,7 +47,6 @@ const projects = [
         isVideo: true,
         link: "https://ben-resources.vercel.app/",
     },
-
     {
         title: "Taaleema",
         shortDescription:
@@ -99,6 +98,35 @@ const projects = [
     },
 ];
 
+// Animation variants for stagger effect
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2,
+            delayChildren: 0.1
+        }
+    }
+};
+
+const projectVariants = {
+    hidden: { 
+        opacity: 0, 
+        y: 60,
+        scale: 0.95
+    },
+    visible: { 
+        opacity: 1, 
+        y: 0,
+        scale: 1,
+        transition: {
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1] // Custom easing for smooth animation
+        }
+    }
+};
+
 function FeaturedProjects() {
     const [activeIndex, setActiveIndex] = useState(null);
     const [hoveringIndex, setHoveringIndex] = useState(null);
@@ -137,15 +165,37 @@ function FeaturedProjects() {
 
     return (
         <div className="featured-projects-container">
-            <h2 className="featured-projects-title">Featured Projects.</h2>
+            <motion.h2 
+                className="featured-projects-title"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, amount: 0.3 }}
+            >
+                Featured Projects.
+            </motion.h2>
 
-            <div className="projects-stack">
+            <motion.div 
+                className="projects-stack"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+            >
                 {projects.map((project, index) => {
                     const isActive = activeIndex === index;
                     const cardRef = useRef(null);
 
                     return (
-                        <div key={index} className="project-wrapper">
+                        <motion.div 
+                            key={index} 
+                            className="project-wrapper"
+                            variants={projectVariants}
+                            whileHover={{ 
+                                y: -5,
+                                transition: { duration: 0.3, ease: "easeOut" }
+                            }}
+                        >
                             <div
                                 className="project-card"
                                 onMouseEnter={() =>
@@ -174,157 +224,204 @@ function FeaturedProjects() {
                                         handleMouseMove(e, cardRef)
                                     }
                                 >
-                                    {project.isVideo ? (
-                                        <video
-                                            className="project-image"
-                                            src={project.video}
-                                            autoPlay
-                                            loop
-                                            muted
-                                            playsInline
-                                        />
-                                    ) : (
-                                        <img
-                                            src={project.image}
-                                            alt={project.title}
-                                            className="project-image"
-                                        />
-                                    )}
+                                    <motion.div
+                                        initial={{ scale: 1.1, opacity: 0 }}
+                                        whileInView={{ scale: 1, opacity: 1 }}
+                                        transition={{ 
+                                            duration: 0.8,
+                                            delay: index * 0.1,
+                                            ease: [0.22, 1, 0.36, 1]
+                                        }}
+                                        viewport={{ once: true, amount: 0.3 }}
+                                    >
+                                        {project.isVideo ? (
+                                            <video
+                                                className="project-image"
+                                                src={project.video}
+                                                autoPlay
+                                                loop
+                                                muted
+                                                playsInline
+                                            />
+                                        ) : (
+                                            <img
+                                                src={project.image}
+                                                alt={project.title}
+                                                className="project-image"
+                                            />
+                                        )}
+                                    </motion.div>
 
                                     {/* Mobile expand icon */}
                                     {isMobile && (
-                                        <div
+                                        <motion.div
                                             className={`mobile-expand-icon ${
                                                 isActive ? "rotated" : ""
                                             }`}
+                                            animate={{ rotate: isActive ? 180 : 0 }}
+                                            transition={{ duration: 0.3 }}
                                         >
                                             <FiChevronDown size={20} />
-                                        </div>
+                                        </motion.div>
                                     )}
 
                                     {/* Desktop hover hint */}
                                     {hoveringIndex === index &&
                                         !isActive &&
                                         !isMobile && (
-                                            <div
+                                            <motion.div
                                                 className="drag-hint-circle"
                                                 style={{
                                                     left: `${cursorPos.x}px`,
                                                     top: `${cursorPos.y}px`,
                                                 }}
+                                                initial={{ scale: 0, opacity: 0 }}
+                                                animate={{ scale: 1, opacity: 1 }}
+                                                exit={{ scale: 0, opacity: 0 }}
+                                                transition={{ duration: 0.2 }}
                                             >
                                                 Double Click for More
-                                            </div>
+                                            </motion.div>
                                         )}
                                 </div>
 
                                 {/* Desktop side drawer */}
-                                {isActive && !isMobile && (
-                                    <motion.div
-                                        className="project-info-drawer"
-                                        initial={{ opacity: 0, x: "100%" }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: "100%" }}
-                                        transition={{
-                                            type: "spring",
-                                            stiffness: 300,
-                                            damping: 30,
-                                        }}
-                                    >
-                                        <motion.h3
-                                            className="project-title"
-                                            initial={{ opacity: 0, y: 20 }}
-                                            whileInView={{ opacity: 1, y: 0 }}
+                                <AnimatePresence>
+                                    {isActive && !isMobile && (
+                                        <motion.div
+                                            className="project-info-drawer"
+                                            initial={{ opacity: 0, x: "100%" }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            exit={{ opacity: 0, x: "100%" }}
                                             transition={{
-                                                duration: 0.5,
-                                                delay: index * 0.2,
-                                            }}
-                                            viewport={{
-                                                once: true,
-                                                amount: 0.3,
+                                                type: "spring",
+                                                stiffness: 300,
+                                                damping: 30,
                                             }}
                                         >
-                                            {project.title}
-                                        </motion.h3>
-                                        <div className="project-info-content scrollable">
-                                            <div className="read-time">
-                                                <FiClock className="clock-icon" />
-                                                <span>{project.readTime}</span>
-                                            </div>
-                                            <p className="project-role">
-                                                <strong>Role:</strong>{" "}
-                                                {project.fullDescription.role}
-                                            </p>
-                                            <div className="project-stack">
-                                                {project.fullDescription.stack.map(
-                                                    (tech, i) => (
-                                                        <span
-                                                            key={i}
-                                                            className="stack-badge"
+                                            <motion.h3
+                                                className="project-title"
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{
+                                                    duration: 0.5,
+                                                    delay: 0.1,
+                                                }}
+                                            >
+                                                {project.title}
+                                            </motion.h3>
+                                            <motion.div 
+                                                className="project-info-content scrollable"
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                transition={{ duration: 0.3, delay: 0.2 }}
+                                            >
+                                                <div className="read-time">
+                                                    <FiClock className="clock-icon" />
+                                                    <span>{project.readTime}</span>
+                                                </div>
+                                                <p className="project-role">
+                                                    <strong>Role:</strong>{" "}
+                                                    {project.fullDescription.role}
+                                                </p>
+                                                <div className="project-stack">
+                                                    {project.fullDescription.stack.map(
+                                                        (tech, i) => (
+                                                            <motion.span
+                                                                key={i}
+                                                                className="stack-badge"
+                                                                initial={{ opacity: 0, scale: 0.8 }}
+                                                                animate={{ opacity: 1, scale: 1 }}
+                                                                transition={{ 
+                                                                    duration: 0.2, 
+                                                                    delay: 0.3 + (i * 0.05) 
+                                                                }}
+                                                            >
+                                                                {tech}
+                                                            </motion.span>
+                                                        )
+                                                    )}
+                                                </div>
+                                                <div className="project-link-wrapper">
+                                                    {project.link &&
+                                                    project.link !== "#" ? (
+                                                        <motion.a
+                                                            href={project.link}
+                                                            className="project-link"
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            whileHover={{
+                                                                scale: 1.05,
+                                                            }}
+                                                            whileTap={{
+                                                                scale: 0.95,
+                                                            }}
                                                         >
-                                                            {tech}
-                                                        </span>
-                                                    )
-                                                )}
-                                            </div>
-                                            <div className="project-link-wrapper">
-                                                {project.link &&
-                                                project.link !== "#" ? (
-                                                    <motion.a
-                                                        href={project.link}
-                                                        className="project-link"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        whileHover={{
-                                                            scale: 1.05,
-                                                        }}
-                                                        whileTap={{
-                                                            scale: 0.95,
-                                                        }}
-                                                    >
-                                                        Link to Project
-                                                    </motion.a>
-                                                ) : (
-                                                    <div className="project-link-disabled">
-                                                        <FiLock className="lock-icon" />
-                                                        <span>
-                                                            Private Project
-                                                        </span>
-                                                    </div>
-                                                )}
-                                            </div>
-                                            <p className="project-description">
-                                                {
-                                                    project.fullDescription
-                                                        .description
-                                                }
-                                            </p>
-                                            <ul className="project-highlights">
-                                                {project.fullDescription.highlights.map(
-                                                    (point, i) => (
-                                                        <li key={i}>{point}</li>
-                                                    )
-                                                )}
-                                            </ul>
-                                        </div>
-                                        <button
-                                            className="close-drawer"
-                                            onClick={() => setActiveIndex(null)}
-                                        >
-                                            &times;
-                                        </button>
-                                    </motion.div>
-                                )}
+                                                            Link to Project
+                                                        </motion.a>
+                                                    ) : (
+                                                        <div className="project-link-disabled">
+                                                            <FiLock className="lock-icon" />
+                                                            <span>
+                                                                Private Project
+                                                            </span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                <p className="project-description">
+                                                    {
+                                                        project.fullDescription
+                                                            .description
+                                                    }
+                                                </p>
+                                                <ul className="project-highlights">
+                                                    {project.fullDescription.highlights.map(
+                                                        (point, i) => (
+                                                            <motion.li 
+                                                                key={i}
+                                                                initial={{ opacity: 0, x: -20 }}
+                                                                animate={{ opacity: 1, x: 0 }}
+                                                                transition={{ 
+                                                                    duration: 0.3, 
+                                                                    delay: 0.4 + (i * 0.1) 
+                                                                }}
+                                                            >
+                                                                {point}
+                                                            </motion.li>
+                                                        )
+                                                    )}
+                                                </ul>
+                                            </motion.div>
+                                            <motion.button
+                                                className="close-drawer"
+                                                onClick={() => setActiveIndex(null)}
+                                                whileHover={{ scale: 1.1 }}
+                                                whileTap={{ scale: 0.9 }}
+                                            >
+                                                &times;
+                                            </motion.button>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
 
                                 {/* Mobile card content */}
-                                <div className="mobile-card-content">
+                                <motion.div 
+                                    className="mobile-card-content"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ 
+                                        duration: 0.5,
+                                        delay: index * 0.1 + 0.2 
+                                    }}
+                                    viewport={{ once: true, amount: 0.3 }}
+                                >
                                     <h3 className="mobile-project-title">
                                         {project.title}
                                     </h3>
                                     <p className="mobile-project-description">
                                         {project.shortDescription}
                                     </p>
-                                </div>
+                                </motion.div>
                             </div>
 
                             {/* Mobile accordion expansion */}
@@ -360,12 +457,18 @@ function FeaturedProjects() {
                                             <div className="project-stack">
                                                 {project.fullDescription.stack.map(
                                                     (tech, i) => (
-                                                        <span
+                                                        <motion.span
                                                             key={i}
                                                             className="stack-badge"
+                                                            initial={{ opacity: 0, scale: 0.8 }}
+                                                            animate={{ opacity: 1, scale: 1 }}
+                                                            transition={{ 
+                                                                duration: 0.2, 
+                                                                delay: i * 0.05 
+                                                            }}
                                                         >
                                                             {tech}
-                                                        </span>
+                                                        </motion.span>
                                                     )
                                                 )}
                                             </div>
@@ -398,24 +501,38 @@ function FeaturedProjects() {
                                             <ul className="project-highlights">
                                                 {project.fullDescription.highlights.map(
                                                     (point, i) => (
-                                                        <li key={i}>{point}</li>
-                                                    )
-                                                )}
+                                                        <motion.li 
+                                                            key={i}
+                                                            initial={{ opacity: 0, x: -20 }}
+                                                            animate={{ opacity: 1, x: 0 }}
+                                                            transition={{ 
+                                                                duration: 0.3, 
+                                                                delay: i * 0.1 
+                                                            }}
+                                                        >
+                                                            {point}
+                                                        </motion.li>
+                                                    ))}
                                             </ul>
                                         </motion.div>
                                     </motion.div>
                                 )}
                             </AnimatePresence>
-                        </div>
+                        </motion.div>
                     );
                 })}
-            </div>
+            </motion.div>
 
             <motion.div
                 className="view-more-container"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ 
+                    duration: 0.6, 
+                    delay: 0.3,
+                    ease: [0.22, 1, 0.36, 1] 
+                }}
+                viewport={{ once: true, amount: 0.3 }}
             >
                 <Link to="/projects" className="view-more-link">
                     <motion.button
