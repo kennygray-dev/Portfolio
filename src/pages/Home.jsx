@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope, FaArrowDown } from "react-icons/fa";
 import { useRef, useEffect, useState, useMemo, useCallback } from "react";
 import { Link } from "react-router-dom";
@@ -8,6 +9,30 @@ import Companies from "../components/Companies";
 import FeaturedProjects from "../components/FeaturedProjects";
 import Testimonials from "../components/Testimonials";
 import FourDs from "../components/FourDs";
+
+// Move variants outside component to prevent recreation
+const containerVariants = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.3,
+        },
+    },
+};
+
+const iconVariants = {
+    hidden: { opacity: 0, x: -30, scale: 0.8 },
+    visible: {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        transition: {
+            type: "spring",
+            stiffness: 500,
+            damping: 200,
+        },
+    },
+};
 
 function Home({ splashComplete }) {
     const companiesRef = useRef(null);
@@ -21,6 +46,7 @@ function Home({ splashComplete }) {
         }
     }, [splashComplete]);
 
+    // Simplified data fetching - removed unnecessary state
     useEffect(() => {
         setIsLoading(true);
         const timer = setTimeout(() => {
@@ -29,6 +55,7 @@ function Home({ splashComplete }) {
         return () => clearTimeout(timer);
     }, []);
 
+    // Memoized callbacks to prevent recreations
     const scrollToCompanies = useCallback(() => {
         companiesRef.current?.scrollIntoView({ behavior: "smooth" });
     }, []);
@@ -43,6 +70,7 @@ function Home({ splashComplete }) {
         setShowCalendar(false);
     }, []);
 
+    // Memoized calendar transform function
     const transformCalendarData = useMemo(() => {
         return (contributions) => {
             const marchStart = new Date(new Date().getFullYear(), 2, 1);
@@ -50,20 +78,72 @@ function Home({ splashComplete }) {
         };
     }, []);
 
+    // Memoized animation props to prevent object recreation
+    const nameAnimationProps = useMemo(() => ({
+        initial: { opacity: 0, y: 100 },
+        animate: animationsEnabled ? { opacity: 1, y: 0 } : {},
+        transition: { duration: 1, ease: "easeOut" }
+    }), [animationsEnabled]);
+
+    const titleAnimationProps = useMemo(() => ({
+        initial: { opacity: 0, y: 40 },
+        animate: animationsEnabled ? { opacity: 1, y: 0 } : {},
+        transition: { duration: 1, delay: 0.2 }
+    }), [animationsEnabled]);
+
+    const nameTextAnimationProps = useMemo(() => ({
+        initial: { opacity: 0, y: 40 },
+        animate: animationsEnabled ? { opacity: 1, y: 0 } : {},
+        transition: { duration: 0.6, delay: 0.8 }
+    }), [animationsEnabled]);
+
+    const designerAnimationProps = useMemo(() => ({
+        initial: { opacity: 0, y: 40 },
+        animate: animationsEnabled ? { opacity: 1, y: 0 } : {},
+        transition: { duration: 1, delay: 0.7 }
+    }), [animationsEnabled]);
+
+    const imageAnimationProps = useMemo(() => ({
+        initial: { opacity: 0, x: 50 },
+        animate: animationsEnabled ? { opacity: 1, x: 0 } : {},
+        transition: { duration: 0.8, delay: 0.2 }
+    }), [animationsEnabled]);
+
+    const hologramAnimationProps = useMemo(() => ({
+        animate: animationsEnabled ? { y: [0, -10, 0] } : {},
+        transition: {
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+        }
+    }), [animationsEnabled]);
+
     return (
         <div className="home-container">
             <div className="home-content">
                 <div className="home-info">
-                    <div className="name-section">
-                        <h2 className="name">
+                    <motion.div
+                        className="name-section"
+                        {...nameAnimationProps}
+                    >
+                        <motion.h2
+                            className="name"
+                            {...nameTextAnimationProps}
+                        >
                             Ken Agbapuonwu.
-                        </h2>
-                        <h2 className="title">
+                        </motion.h2>
+                        <motion.h2
+                            className="title"
+                            {...titleAnimationProps}
+                        >
                             Creative Engineer
-                        </h2>
-                        <h1 className="title">
+                        </motion.h2>
+                        <motion.h1
+                            className="title"
+                            {...designerAnimationProps}
+                        >
                             & Designer.
-                        </h1>
+                        </motion.h1>
                         <p className="description">
                             A front-end heavy fullstack Software engineer, I
                             support designers and agencies with creative
@@ -75,53 +155,63 @@ function Home({ splashComplete }) {
                                 to="/about"
                                 className="pointer-links about-link"
                             >
-                                <button
+                                <motion.button
                                     className="pointers-button about-button"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
                                 >
                                     <h3 className="pointers">ABOUT ME</h3>
-                                </button>
+                                </motion.button>
                             </Link>
 
                             <Link
                                 to="/projects"
                                 className="pointer-links works-link"
                             >
-                                <button
+                                <motion.button
                                     className="pointers-button works-button"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
                                 >
                                     <h3 className="pointers">MY WORKS</h3>
-                                </button>
+                                </motion.button>
                             </Link>
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <div
+                    <motion.div
                         className="image-social-section"
+                        {...imageAnimationProps}
                     >
-                        <div
-                            className="hologram-wrapper floating-image"
+                        <motion.div
+                            className="hologram-wrapper"
+                            {...hologramAnimationProps}
                         >
                             <img
                                 src="https://i.imgur.com/cxvks6I.png"
                                 alt="Kennedy Agbapuonwu"
                                 className="profile-image"
                             />
-                        </div>
+                        </motion.div>
 
                         <div className="social-arrow-container">
-                            <div
+                            <motion.div
                                 className="social-links"
+                                variants={containerVariants}
+                                initial="hidden"
+                                animate={animationsEnabled ? "visible" : "hidden"}
                             >
-                                <div
+                                <motion.div
                                     className="github-preview-wrapper"
                                     onMouseEnter={handleCalendarHover}
                                     onMouseLeave={handleCalendarLeave}
                                 >
-                                    <a
+                                    <motion.a
                                         href="https://github.com/kennygray-dev"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="social-icon"
+                                        variants={iconVariants}
                                     >
                                         <div className="icon-circle">
                                             <FaGithub className="icon" />
@@ -130,11 +220,26 @@ function Home({ splashComplete }) {
                                                 <div className="loading-indicator"></div>
                                             )}
                                         </div>
-                                    </a>
+                                    </motion.a>
 
                                     {showCalendar && (
-                                        <div
+                                        <motion.div
                                             className="calendar-preview glassmorphic"
+                                            initial={{
+                                                opacity: 0,
+                                                scale: 0.95,
+                                                y: -10,
+                                            }}
+                                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                                            exit={{
+                                                opacity: 0,
+                                                scale: 0.95,
+                                                y: -10,
+                                            }}
+                                            transition={{ 
+                                                duration: 0.3,
+                                                ease: "easeOut"
+                                            }}
                                         >
                                             <div className="calendar-header">
                                                 <h4>GitHub Activity</h4>
@@ -162,34 +267,36 @@ function Home({ splashComplete }) {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </motion.div>
                                     )}
-                                </div>
+                                </motion.div>
 
-                                <a
+                                <motion.a
                                     href="https://www.linkedin.com/in/ken-agbapuonwu-3134bab5/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="social-icon"
+                                    variants={iconVariants}
                                 >
                                     <div className="icon-circle">
                                         <FaLinkedin className="icon" />
                                         <div className="shine"></div>
                                     </div>
-                                </a>
+                                </motion.a>
 
-                                <a
+                                <motion.a
                                     href="mailto:kenagbapuonwu@gmail.com"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="social-icon"
+                                    variants={iconVariants}
                                 >
                                     <div className="icon-circle">
                                         <FaEnvelope className="icon" />
                                         <div className="shine"></div>
                                     </div>
-                                </a>
-                            </div>
+                                </motion.a>
+                            </motion.div>
 
                             <div className="down-arrow-container">
                                 <div
@@ -200,13 +307,16 @@ function Home({ splashComplete }) {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 
             {/* Tools Marquee Section */}
-            <div 
+            <motion.div 
                 className="tools-marquee-section"
+                initial={{ opacity: 0 }}
+                animate={animationsEnabled ? { opacity: 1 } : {}}
+                transition={{ delay: 1.2, duration: 0.8 }}
             >
                 <div className="tools-marquee-container">
                     <div className="tools-marquee">
@@ -305,7 +415,7 @@ function Home({ splashComplete }) {
                         ))}
                     </div>
                 </div>
-            </div>
+            </motion.div>
 
             <div ref={companiesRef} className="companies-wrapper">
                 <Companies />

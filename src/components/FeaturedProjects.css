@@ -37,7 +37,7 @@
     border-radius: 16px;
     background: #fff;
     transition: all 0.3s ease;
-    height: 100%;
+    
 }
 
 .project-card:hover {
@@ -395,7 +395,7 @@
     }
 
     .project-info-drawer {
-        width: 70%;
+        width: 30%;
         padding: 2rem;
     }
 
