@@ -1,42 +1,19 @@
-import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope, FaArrowDown } from "react-icons/fa";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useMemo, useCallback } from "react";
 import { Link } from "react-router-dom";
 import GitHubCalendar from "react-github-calendar";
-import { parseISO, isAfter } from "date-fns";
+import { parseISO } from "date-fns";
 import "./Home.css";
 import Companies from "../components/Companies";
 import FeaturedProjects from "../components/FeaturedProjects";
 import Testimonials from "../components/Testimonials";
 import FourDs from "../components/FourDs";
 
-const containerVariants = {
-    hidden: {},
-    visible: {
-        transition: {
-            staggerChildren: 0.3,
-        },
-    },
-};
-
-const iconVariants = {
-    hidden: { opacity: 0, x: -30, scale: 0.8 },
-    visible: {
-        opacity: 1,
-        x: 0,
-        scale: 1,
-        transition: {
-            type: "spring",
-            stiffness: 500,
-            damping: 200,
-        },
-    },
-};
-
 function Home({ splashComplete }) {
     const companiesRef = useRef(null);
     const [animationsEnabled, setAnimationsEnabled] = useState(false);
     const [showCalendar, setShowCalendar] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if (splashComplete) {
@@ -44,50 +21,49 @@ function Home({ splashComplete }) {
         }
     }, [splashComplete]);
 
-    const scrollToCompanies = () => {
+    useEffect(() => {
+        setIsLoading(true);
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 800);
+        return () => clearTimeout(timer);
+    }, []);
+
+    const scrollToCompanies = useCallback(() => {
         companiesRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
+    }, []);
+
+    const handleCalendarHover = useCallback(() => {
+        if (!isLoading) {
+            setShowCalendar(true);
+        }
+    }, [isLoading]);
+
+    const handleCalendarLeave = useCallback(() => {
+        setShowCalendar(false);
+    }, []);
+
+    const transformCalendarData = useMemo(() => {
+        return (contributions) => {
+            const marchStart = new Date(new Date().getFullYear(), 2, 1);
+            return contributions.filter((day) => parseISO(day.date) >= marchStart);
+        };
+    }, []);
 
     return (
         <div className="home-container">
             <div className="home-content">
                 <div className="home-info">
-                    <motion.div
-                        className="name-section"
-                        initial={{ opacity: 0, y: 100 }}
-                        animate={animationsEnabled ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                    >
-                        <motion.h2
-                            className="name"
-                            initial={{ opacity: 0, y: 40 }}
-                            animate={
-                                animationsEnabled ? { opacity: 1, y: 0 } : {}
-                            }
-                            transition={{ duration: 0.6, delay: 0.8 }}
-                        >
+                    <div className="name-section">
+                        <h2 className="name">
                             Ken Agbapuonwu.
-                        </motion.h2>
-                        <motion.h2
-                            className="title"
-                            initial={{ opacity: 0, y: 40 }}
-                            animate={
-                                animationsEnabled ? { opacity: 1, y: 0 } : {}
-                            }
-                            transition={{ duration: 1, delay: 0.2 }}
-                        >
+                        </h2>
+                        <h2 className="title">
                             Creative Engineer
-                        </motion.h2>
-                        <motion.h1
-                            className="title"
-                            initial={{ opacity: 0, y: 40 }}
-                            animate={
-                                animationsEnabled ? { opacity: 1, y: 0 } : {}
-                            }
-                            transition={{ duration: 1, delay: 0.7 }}
-                        >
+                        </h2>
+                        <h1 className="title">
                             & Designer.
-                        </motion.h1>
+                        </h1>
                         <p className="description">
                             A front-end heavy fullstack Software engineer, I
                             support designers and agencies with creative
@@ -99,174 +75,236 @@ function Home({ splashComplete }) {
                                 to="/about"
                                 className="pointer-links about-link"
                             >
-                                <motion.button
+                                <button
                                     className="pointers-button about-button"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
                                 >
                                     <h3 className="pointers">ABOUT ME</h3>
-                                </motion.button>
+                                </button>
                             </Link>
 
                             <Link
                                 to="/projects"
                                 className="pointer-links works-link"
                             >
-                                <motion.button
+                                <button
                                     className="pointers-button works-button"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
                                 >
                                     <h3 className="pointers">MY WORKS</h3>
-                                </motion.button>
+                                </button>
                             </Link>
                         </div>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
+                    <div
                         className="image-social-section"
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={animationsEnabled ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.8, delay: 0.2 }}
                     >
-                        <motion.div
-                            className="hologram-wrapper"
-                            animate={
-                                animationsEnabled ? { y: [0, -10, 0] } : {}
-                            }
-                            transition={{
-                                duration: 4,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                            }}
-                            whileHover={{
-                                filter: "drop-shadow(0 0 15px rgba(0, 255, 255, 0.4)) brightness(1.1)",
-                            }}
+                        <div
+                            className="hologram-wrapper floating-image"
                         >
                             <img
                                 src="https://i.imgur.com/cxvks6I.png"
                                 alt="Kennedy Agbapuonwu"
                                 className="profile-image"
                             />
-                        </motion.div>
+                        </div>
 
-                        {/* Social Icons */}
-                        <motion.div
-                            className="social-links"
-                            variants={containerVariants}
-                            initial="hidden"
-                            animate={animationsEnabled ? "visible" : "hidden"}
-                        >
-                            <motion.div
-                                className="github-preview-wrapper"
-                                onMouseEnter={() => setShowCalendar(true)}
-                                onMouseLeave={() => setShowCalendar(false)}
+                        <div className="social-arrow-container">
+                            <div
+                                className="social-links"
                             >
-                                <motion.a
-                                    href="https://github.com/kennygray-dev"
+                                <div
+                                    className="github-preview-wrapper"
+                                    onMouseEnter={handleCalendarHover}
+                                    onMouseLeave={handleCalendarLeave}
+                                >
+                                    <a
+                                        href="https://github.com/kennygray-dev"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="social-icon"
+                                    >
+                                        <div className="icon-circle">
+                                            <FaGithub className="icon" />
+                                            <div className="shine"></div>
+                                            {isLoading && (
+                                                <div className="loading-indicator"></div>
+                                            )}
+                                        </div>
+                                    </a>
+
+                                    {showCalendar && (
+                                        <div
+                                            className="calendar-preview glassmorphic"
+                                        >
+                                            <div className="calendar-header">
+                                                <h4>GitHub Activity</h4>
+                                                <span className="github-username">@kennygray-dev</span>
+                                            </div>
+                                            <GitHubCalendar
+                                                username="kennygray-dev"
+                                                blockSize={10}
+                                                blockMargin={4}
+                                                color="#5ea085"
+                                                fontSize={14}
+                                                fullYear={false}
+                                                weeks={17}
+                                                transformData={transformCalendarData}
+                                            />
+                                            <div className="calendar-footer">
+                                                <div className="activity-stats">
+                                                    <div className="stat">
+                                                        <span className="stat-number">120+</span>
+                                                        <span className="stat-label">Contributions</span>
+                                                    </div>
+                                                    <div className="stat">
+                                                        <span className="stat-number">15</span>
+                                                        <span className="stat-label">Repositories</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <a
+                                    href="https://www.linkedin.com/in/ken-agbapuonwu-3134bab5/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="social-icon"
-                                    variants={iconVariants}
                                 >
                                     <div className="icon-circle">
-                                        <FaGithub className="icon" />
+                                        <FaLinkedin className="icon" />
                                         <div className="shine"></div>
                                     </div>
-                                </motion.a>
+                                </a>
 
-                                {showCalendar && (
-                                    <motion.div
-                                        className="calendar-preview"
-                                        initial={{
-                                            opacity: 0,
-                                            scale: 0.95,
-                                            y: -10,
-                                        }}
-                                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                                        exit={{
-                                            opacity: 0,
-                                            scale: 0.95,
-                                            y: -10,
-                                        }}
-                                        transition={{ duration: 0.3 }}
-                                    >
-                                        <GitHubCalendar
-                                            username="kennygray-dev"
-                                            blockSize={10}
-                                            blockMargin={4}
-                                            color="#ff5b04"
-                                            fontSize={14}
-                                            fullYear={false}
-                                            weeks={17}
-                                            transformData={(contributions) => {
-                                                const marchStart = new Date(
-                                                    new Date().getFullYear(),
-                                                    2,
-                                                    1
-                                                ); // March 1
-                                                return contributions.filter(
-                                                    (day) =>
-                                                        parseISO(day.date) >=
-                                                        marchStart
-                                                );
-                                            }}
-                                        />
-                                    </motion.div>
-                                )}
-                            </motion.div>
+                                <a
+                                    href="mailto:kenagbapuonwu@gmail.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="social-icon"
+                                >
+                                    <div className="icon-circle">
+                                        <FaEnvelope className="icon" />
+                                        <div className="shine"></div>
+                                    </div>
+                                </a>
+                            </div>
 
-                            <motion.a
-                                href="https://www.linkedin.com/in/ken-agbapuonwu-3134bab5/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="social-icon"
-                                variants={iconVariants}
-                            >
-                                <div className="icon-circle">
-                                    <FaLinkedin className="icon" />
-                                    <div className="shine"></div>
+                            <div className="down-arrow-container">
+                                <div
+                                    className="down-arrow"
+                                    onClick={scrollToCompanies}
+                                >
+                                    <FaArrowDown className="arrow-icon" />
                                 </div>
-                            </motion.a>
-
-                            <motion.a
-                                href="mailto:kenagbapuonwu@gmail.com"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="social-icon"
-                                variants={iconVariants}
-                            >
-                                <div className="icon-circle">
-                                    <FaEnvelope className="icon" />
-                                    <div className="shine"></div>
-                                </div>
-                            </motion.a>
-                        </motion.div>
-                    </motion.div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                {animationsEnabled && (
-                    <motion.div
-                        className="down-arrow-container"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5 }}
-                    >
-                        <motion.div
-                            className="down-arrow"
-                            onClick={scrollToCompanies}
-                            animate={{ y: [0, 10, 0], scale: [1, 1.1, 1] }}
-                            transition={{
-                                duration: 3.5,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                            }}
-                            whileHover={{ scale: 1.2 }}
-                        >
-                            <FaArrowDown className="arrow-icon" />
-                        </motion.div>
-                    </motion.div>
-                )}
+            {/* Tools Marquee Section */}
+            <div 
+                className="tools-marquee-section"
+            >
+                <div className="tools-marquee-container">
+                    <div className="tools-marquee">
+                        {[
+                            {
+                                name: "React",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+                            },
+                            {
+                                name: "TypeScript",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+                            },
+                            {
+                                name: "JavaScript",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+                            },
+                            {
+                                name: "Node.js",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+                            },
+                            {
+                                name: "Jira",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg",
+                            },
+                            {
+                                name: "Figma",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+                            },
+                            {
+                                name: "Next.js",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+                            },
+                            {
+                                name: "MongoDB",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+                            },
+                            {
+                                name: "Photoshop",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg",
+                            },
+                            {
+                                name: "Github",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+                            },
+                        ].map((tool, index) => (
+                            <div key={index} className="marquee-tool-item" title={tool.name}>
+                                <img src={tool.src} alt={tool.name} />
+                            </div>
+                        ))}
+                        {/* Duplicate for seamless loop */}
+                        {[
+                            {
+                                name: "React",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+                            },
+                            {
+                                name: "TypeScript",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+                            },
+                            {
+                                name: "JavaScript",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+                            },
+                            {
+                                name: "Node.js",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+                            },
+                            {
+                                name: "Jira",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg",
+                            },
+                            {
+                                name: "Figma",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+                            },
+                            {
+                                name: "Next.js",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+                            },
+                            {
+                                name: "MongoDB",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+                            },
+                            {
+                                name: "Photoshop",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg",
+                            },
+                            {
+                                name: "Github",
+                                src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+                            },
+                        ].map((tool, index) => (
+                            <div key={`duplicate-${index}`} className="marquee-tool-item" title={tool.name}>
+                                <img src={tool.src} alt={tool.name} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
 
             <div ref={companiesRef} className="companies-wrapper">

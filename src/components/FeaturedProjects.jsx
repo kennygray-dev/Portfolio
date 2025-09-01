@@ -176,7 +176,7 @@ function FeaturedProjects() {
             </motion.h2>
 
             <motion.div 
-                className="projects-stack"
+                className="projects-grid"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
