@@ -59,12 +59,14 @@
     color: inherit;
 }
 
-.grid-image {
+.grid-image,
+.list-image {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;            /* maintain natural aspect ratio */
+    max-height: 400px;       /* keep it reasonable */
+    object-fit: contain;     /* fit whole image */
     display: block;
-    transition: transform 0.4s ease, filter 0.4s ease;
+    margin: 0 auto;          /* center */
 }
 
 .grid-card:hover .grid-image {
@@ -149,12 +151,6 @@
     position: relative;
 }
 
-.list-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    
-}
 
 .list-content {
     flex: 1;
@@ -379,7 +375,6 @@
     }
 
     .grid-card {
-        height: 250px;
         width: 100%;
         margin: auto;
         box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
