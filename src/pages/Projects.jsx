@@ -28,48 +28,43 @@ const Projects = () => {
 
     const projectData = [
         {
-            links: "#",
-            image: "https://i.imgur.com/3TNFuz5.png",
+            links: "https://dev.awasource.com/",
+            image: "https://i.imgur.com/4UgtYQl.png",
             title: "Awasource",
             details:
                 "Engineered and delivered several core modules for AwaSource, a brand authentication and consumer engagement platform. Spearheaded the design and implementation of a full-featured in-app messaging system with real-time updates and state persistence. Architected a scalable, admin-facing support ticketing dashboard with threaded conversations and role-based access control. Integrated a real-time notification engine using WebSockets for instant user feedback on system events. Designed and implemented a responsive subscription billing UI with dynamic tier handling and multilingual support. Collaborated closely with the backend team to consume and secure RESTful and WebSocket endpoints, with emphasis on product verification, user actions, and internationalization.",
-            shortDescription: "Modern job-seeking platform connecting talents with clients across industries.",
+            shortDescription:
+                "Modern job-seeking platform connecting talents with clients across industries.",
             tags: ["React.js", "JavaScript", "Tailwind CSS", "REST APIs"],
         },
         {
             links: "https://ben-resources.vercel.app/",
-            image: "/ben-demo-thumbnail.jpg",
+            image: "https://i.imgur.com/T5A57F9.png",
             title: "BEN Church Resource Center",
             details:
                 "A digital church platform offering sermon recordings, Bible access, prayer requests, birthdays, and meeting resources. Built with Firebase and integrated with a live Bible API for scripture access. ",
-            shortDescription: "Digital platform for accessing sermons, Bible, prayer requests, and church resources.",
+            shortDescription:
+                "Digital platform for accessing sermons, Bible, prayer requests, and church resources.",
             tags: ["Next.js", "Firebase", "Tailwind CSS", "Rest APIs"],
         },
         {
-            links: "#",
-            image: "https://i.imgur.com/2o8BlgL.png",
-            title: "Taaleema",
+            links: "https://www.adsvase.com/",
+            image: "https://i.imgur.com/Hj7VZQt.png",
+            title: "AdsVase",
             details:
-                "AI-powered educational platform supporting African migrants with culturally-informed learning resources.",
-            shortDescription: "AI-powered learning platform for African migrants with cultural adaptation.",
-            tags: ["Rest API", "React.js", "Tailwind CSS"],
+                "AdsVase helps people selling products or services advertise, gather engagement, and drive sales in a unique way.",
+            shortDescription:
+                "AdsVase helps people selling products or services advertise, gather engagement, and drive sales in a unique way.",
+            tags: ["Next.js", "TypeScript", "Tailwind", "Rest APIs"],
         },
         {
-            links: "#",
-            image: "https://i.imgur.com/T4i7bZU.png",
+            links: "https://dakestel-sales-management-application-p4fz.onrender.com/",
+            image: "https://i.imgur.com/ppxIssI.png",
             title: "Dakestel",
             details:
                 "Full-stack analytics dashboard for tracking user behavior and sales performance.",
-            shortDescription: "Full-stack analytics dashboard for tracking user behavior and sales.",
-            tags: ["React", "Figma", "Typescript", "Cascaded Style Sheets"],
-        },
-        {
-            links: "https://grayshub.vercel.app/",
-            image: "https://i.imgur.com/a67bQWT.jpeg",
-            title: "Wallpaper App",
-            details:
-                "A wallpaper and inspiration app with system-based light/dark mode.",
-            shortDescription: "Wallpaper and inspiration app with system-based theming.",
+            shortDescription:
+                "Full-stack analytics dashboard for tracking user behavior and sales.",
             tags: ["React", "Figma", "Typescript", "Cascaded Style Sheets"],
         },
     ];

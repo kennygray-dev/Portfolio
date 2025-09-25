@@ -23,8 +23,8 @@ const projects = [
             ],
         },
         readTime: "1 min read",
-        image: "https://i.imgur.com/3TNFuz5.png",
-        link: "#",
+        image: "https://i.imgur.com/4UgtYQl.png",
+        link: "https://dev.awasource.com/",
     },
     {
         title: "BEN Church Resource Center",
@@ -43,30 +43,30 @@ const projects = [
             ],
         },
         readTime: "1 min read",
-        video: "/videos/ben-demo.mp4",
-        isVideo: true,
+        image: "https://i.imgur.com/T5A57F9.png",
         link: "https://ben-resources.vercel.app/",
     },
+
     {
-        title: "Taaleema",
+        title: "AdsVase",
         shortDescription:
-            "AI-powered learning dashboard for African migrants to Gulf countries.",
+            "AdsVase helps people selling products or services advertise, gather engagement, and drive sales in a unique way.",
         fullDescription: {
             role: "Lead Frontend Developer",
             stack: ["React.js", "JavaScript", "Tailwind CSS", "REST APIs"],
             description:
-                "Architected and developed a learning platform tailored for African migrants, focusing on certification prep like IELTS. Engineered a fully responsive dashboard with localization support for various languages and cultures. Conducted extensive research on similar platforms to design intuitive onboarding flows, dynamic assessments, and eligibility-based course rendering. Built reusable components with smooth UX and API-driven content delivery.",
+                "AdsVase helps people selling products or services advertise, gather engagement, and drive sales in a unique way.",
             highlights: [
-                "Created user experience tailored to various language and regional needs",
-                "Built assessment engine and eligibility tracking logic",
-                "Designed mobile-first guided learning modules and progress trackers",
-                "Researched and benchmarked IELTS features for accurate implementation",
+                "Built dynamic campaign creation and management UI",
+                "Implemented real-time analytics dashboard for engagement tracking",
+                "Integrated REST APIs for ad delivery and performance reporting",
             ],
         },
         readTime: "1 min read",
-        image: "https://i.imgur.com/2o8BlgL.png",
-        link: "#",
+        image: "https://i.imgur.com/Hj7VZQt.png",
+        link: "https://www.adsvase.com/",
     },
+
     {
         title: "Dakestel",
         shortDescription:
@@ -93,8 +93,8 @@ const projects = [
             ],
         },
         readTime: "1 min read",
-        image: "https://i.imgur.com/T4i7bZU.png",
-        link: "#",
+        image: "https://i.imgur.com/ppxIssI.png",
+        link: "https://dakestel-sales-management-application-p4fz.onrender.com/",
     },
 ];
 
@@ -105,26 +105,26 @@ const containerVariants = {
         opacity: 1,
         transition: {
             staggerChildren: 0.2,
-            delayChildren: 0.1
-        }
-    }
+            delayChildren: 0.1,
+        },
+    },
 };
 
 const projectVariants = {
-    hidden: { 
-        opacity: 0, 
+    hidden: {
+        opacity: 0,
         y: 60,
-        scale: 0.95
+        scale: 0.95,
     },
-    visible: { 
-        opacity: 1, 
+    visible: {
+        opacity: 1,
         y: 0,
         scale: 1,
         transition: {
             duration: 0.6,
-            ease: [0.22, 1, 0.36, 1] // Custom easing for smooth animation
-        }
-    }
+            ease: [0.22, 1, 0.36, 1], // Custom easing for smooth animation
+        },
+    },
 };
 
 function FeaturedProjects() {
@@ -165,7 +165,7 @@ function FeaturedProjects() {
 
     return (
         <div className="featured-projects-container">
-            <motion.h2 
+            <motion.h2
                 className="featured-projects-title"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -175,7 +175,7 @@ function FeaturedProjects() {
                 Featured Projects.
             </motion.h2>
 
-            <motion.div 
+            <motion.div
                 className="projects-grid"
                 variants={containerVariants}
                 initial="hidden"
@@ -187,13 +187,13 @@ function FeaturedProjects() {
                     const cardRef = useRef(null);
 
                     return (
-                        <motion.div 
-                            key={index} 
+                        <motion.div
+                            key={index}
                             className="project-wrapper"
                             variants={projectVariants}
-                            whileHover={{ 
+                            whileHover={{
                                 y: -5,
-                                transition: { duration: 0.3, ease: "easeOut" }
+                                transition: { duration: 0.3, ease: "easeOut" },
                             }}
                         >
                             <div
@@ -227,10 +227,10 @@ function FeaturedProjects() {
                                     <motion.div
                                         initial={{ scale: 1.1, opacity: 0 }}
                                         whileInView={{ scale: 1, opacity: 1 }}
-                                        transition={{ 
+                                        transition={{
                                             duration: 0.8,
                                             delay: index * 0.1,
-                                            ease: [0.22, 1, 0.36, 1]
+                                            ease: [0.22, 1, 0.36, 1],
                                         }}
                                         viewport={{ once: true, amount: 0.3 }}
                                     >
@@ -258,7 +258,9 @@ function FeaturedProjects() {
                                             className={`mobile-expand-icon ${
                                                 isActive ? "rotated" : ""
                                             }`}
-                                            animate={{ rotate: isActive ? 180 : 0 }}
+                                            animate={{
+                                                rotate: isActive ? 180 : 0,
+                                            }}
                                             transition={{ duration: 0.3 }}
                                         >
                                             <FiChevronDown size={20} />
@@ -275,8 +277,14 @@ function FeaturedProjects() {
                                                     left: `${cursorPos.x}px`,
                                                     top: `${cursorPos.y}px`,
                                                 }}
-                                                initial={{ scale: 0, opacity: 0 }}
-                                                animate={{ scale: 1, opacity: 1 }}
+                                                initial={{
+                                                    scale: 0,
+                                                    opacity: 0,
+                                                }}
+                                                animate={{
+                                                    scale: 1,
+                                                    opacity: 1,
+                                                }}
                                                 exit={{ scale: 0, opacity: 0 }}
                                                 transition={{ duration: 0.2 }}
                                             >
@@ -310,19 +318,27 @@ function FeaturedProjects() {
                                             >
                                                 {project.title}
                                             </motion.h3>
-                                            <motion.div 
+                                            <motion.div
                                                 className="project-info-content scrollable"
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
-                                                transition={{ duration: 0.3, delay: 0.2 }}
+                                                transition={{
+                                                    duration: 0.3,
+                                                    delay: 0.2,
+                                                }}
                                             >
                                                 <div className="read-time">
                                                     <FiClock className="clock-icon" />
-                                                    <span>{project.readTime}</span>
+                                                    <span>
+                                                        {project.readTime}
+                                                    </span>
                                                 </div>
                                                 <p className="project-role">
                                                     <strong>Role:</strong>{" "}
-                                                    {project.fullDescription.role}
+                                                    {
+                                                        project.fullDescription
+                                                            .role
+                                                    }
                                                 </p>
                                                 <div className="project-stack">
                                                     {project.fullDescription.stack.map(
@@ -330,11 +346,20 @@ function FeaturedProjects() {
                                                             <motion.span
                                                                 key={i}
                                                                 className="stack-badge"
-                                                                initial={{ opacity: 0, scale: 0.8 }}
-                                                                animate={{ opacity: 1, scale: 1 }}
-                                                                transition={{ 
-                                                                    duration: 0.2, 
-                                                                    delay: 0.3 + (i * 0.05) 
+                                                                initial={{
+                                                                    opacity: 0,
+                                                                    scale: 0.8,
+                                                                }}
+                                                                animate={{
+                                                                    opacity: 1,
+                                                                    scale: 1,
+                                                                }}
+                                                                transition={{
+                                                                    duration: 0.2,
+                                                                    delay:
+                                                                        0.3 +
+                                                                        i *
+                                                                            0.05,
                                                                 }}
                                                             >
                                                                 {tech}
@@ -377,13 +402,21 @@ function FeaturedProjects() {
                                                 <ul className="project-highlights">
                                                     {project.fullDescription.highlights.map(
                                                         (point, i) => (
-                                                            <motion.li 
+                                                            <motion.li
                                                                 key={i}
-                                                                initial={{ opacity: 0, x: -20 }}
-                                                                animate={{ opacity: 1, x: 0 }}
-                                                                transition={{ 
-                                                                    duration: 0.3, 
-                                                                    delay: 0.4 + (i * 0.1) 
+                                                                initial={{
+                                                                    opacity: 0,
+                                                                    x: -20,
+                                                                }}
+                                                                animate={{
+                                                                    opacity: 1,
+                                                                    x: 0,
+                                                                }}
+                                                                transition={{
+                                                                    duration: 0.3,
+                                                                    delay:
+                                                                        0.4 +
+                                                                        i * 0.1,
                                                                 }}
                                                             >
                                                                 {point}
@@ -394,7 +427,9 @@ function FeaturedProjects() {
                                             </motion.div>
                                             <motion.button
                                                 className="close-drawer"
-                                                onClick={() => setActiveIndex(null)}
+                                                onClick={() =>
+                                                    setActiveIndex(null)
+                                                }
                                                 whileHover={{ scale: 1.1 }}
                                                 whileTap={{ scale: 0.9 }}
                                             >
@@ -405,13 +440,13 @@ function FeaturedProjects() {
                                 </AnimatePresence>
 
                                 {/* Mobile card content */}
-                                <motion.div 
+                                <motion.div
                                     className="mobile-card-content"
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ 
+                                    transition={{
                                         duration: 0.5,
-                                        delay: index * 0.1 + 0.2 
+                                        delay: index * 0.1 + 0.2,
                                     }}
                                     viewport={{ once: true, amount: 0.3 }}
                                 >
@@ -460,11 +495,17 @@ function FeaturedProjects() {
                                                         <motion.span
                                                             key={i}
                                                             className="stack-badge"
-                                                            initial={{ opacity: 0, scale: 0.8 }}
-                                                            animate={{ opacity: 1, scale: 1 }}
-                                                            transition={{ 
-                                                                duration: 0.2, 
-                                                                delay: i * 0.05 
+                                                            initial={{
+                                                                opacity: 0,
+                                                                scale: 0.8,
+                                                            }}
+                                                            animate={{
+                                                                opacity: 1,
+                                                                scale: 1,
+                                                            }}
+                                                            transition={{
+                                                                duration: 0.2,
+                                                                delay: i * 0.05,
                                                             }}
                                                         >
                                                             {tech}
@@ -501,18 +542,25 @@ function FeaturedProjects() {
                                             <ul className="project-highlights">
                                                 {project.fullDescription.highlights.map(
                                                     (point, i) => (
-                                                        <motion.li 
+                                                        <motion.li
                                                             key={i}
-                                                            initial={{ opacity: 0, x: -20 }}
-                                                            animate={{ opacity: 1, x: 0 }}
-                                                            transition={{ 
-                                                                duration: 0.3, 
-                                                                delay: i * 0.1 
+                                                            initial={{
+                                                                opacity: 0,
+                                                                x: -20,
+                                                            }}
+                                                            animate={{
+                                                                opacity: 1,
+                                                                x: 0,
+                                                            }}
+                                                            transition={{
+                                                                duration: 0.3,
+                                                                delay: i * 0.1,
                                                             }}
                                                         >
                                                             {point}
                                                         </motion.li>
-                                                    ))}
+                                                    )
+                                                )}
                                             </ul>
                                         </motion.div>
                                     </motion.div>
@@ -527,10 +575,10 @@ function FeaturedProjects() {
                 className="view-more-container"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ 
-                    duration: 0.6, 
+                transition={{
+                    duration: 0.6,
                     delay: 0.3,
-                    ease: [0.22, 1, 0.36, 1] 
+                    ease: [0.22, 1, 0.36, 1],
                 }}
                 viewport={{ once: true, amount: 0.3 }}
             >
